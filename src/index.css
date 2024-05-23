@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    font-family: sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
+    /* position: relative; */
+
+    color-scheme: light dark;
+    color: rgba(255, 255, 255, 0.87);
+    background-color: #494848;
+
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    --nav-height: 5rem;
+}
+
+.under-navbar {
+    /* height: calc((100%-var(--nav-height))); */
+    padding-top: var(--nav-height);
+    min-height: 100vh;
+}
+
+.filter-navbar {
+    filter: blur(15px);
+}
+
+.image-overlay {
+    border-image: fill 0 linear-gradient(#0003, #191919);
+}

@@ -1,0 +1,21 @@
+node_modules
+bower_components
+.env
+.prettierrc
+.eslintrc.cjs
+postcss.config.js
+# vite.config.js
+# tailwind.config.js
+
+### react ###
+.DS_*
+*.log
+logs
+**/*.backup.*
+**/*.back.*
+
+*.sublime*
+
+psd
+thumb
+sketch

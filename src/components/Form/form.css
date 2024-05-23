@@ -1,0 +1,7 @@
+.clamp-width-input {
+  width: clamp(120px, 55%, 250px);
+}
+.clamp-width-button {
+  width: clamp(10px, 50%, 100px);
+  overflow: hidden;
+}
