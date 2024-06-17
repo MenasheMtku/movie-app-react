@@ -1,34 +1,88 @@
-import { moviesReq } from "../../request"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import CardItem from "../../components/CardItem/CardItem"
-// import "./movies.css";
 import "../../index.css"
+import { fetchDiscoverMovies } from "../../services/api"
+import ProgressBar from "../../components/ProgressBar/ProgressBar"
+import Pagination from "../../components/Pagination/Pagination"
 
 const Movies = () => {
-    const [movies, setMovies] = useState([])
-    const popular = moviesReq.reqPopular
+    // const { data, isLoading, activePage, totalPages } = useFetch(
+    //     fetchDiscoverMovies(),
+    // )
 
-    const fetchData = () => {
-        fetch(popular)
-            .then((res) => res.json())
-            .then((data) => setMovies(data.results))
-            .catch((err) => console?.error(err))
-    }
+    const [data, setData] = useState([])
+    const [activePage, setActivePage] = useState(1)
+    const [totalPages, setTotalPages] = useState(1)
+    const [sortBy, setSortBy] = useState("popularity.desc")
+    const [isLoading, setIsLoading] = useState(true)
 
-    fetchData()
+    useEffect(() => {
+        setIsLoading(true)
+        fetchDiscoverMovies(activePage, sortBy)
+            .then((res) => {
+                console.log(res, "res")
+                setData(res?.results)
+                setActivePage(res?.page)
+                setTotalPages(res?.total_pages)
+            })
+            .catch((err) => {
+                console.log(err, "err")
+            })
+            .finally(() => {
+                setIsLoading(false)
+            })
+    }, [activePage, sortBy])
 
+    // if (isLoading) {
+    //     return <ProgressBar />
+    // }
     return (
         <>
-            <div className="under-navbar bg-black/70 ">
-                <div className="mx-auto max-w-screen-xl">
-                    <h1 className="flex justify-center py-2 text-4xl font-bold ">
-                        Popular Movies
-                    </h1>
-                    <div className="movie-grid mb-4">
-                        {movies.map((movie) => (
-                            <CardItem key={movie.id} {...movie} />
-                        ))}
+            <div className="min-h-full bg-gray-800/40 pb-8">
+                <div className="mx-auto min-h-screen max-w-screen-xl">
+                    <div className="flex  pt-8">
+                        <h1 className="px-4 text-xl md:text-3xl md:font-semibold">
+                            Discover Movies
+                        </h1>
+                        <select
+                            className="w-[180px] rounded-lg bg-gray-500 px-3 font-semibold text-black"
+                            onChange={(e) => {
+                                setActivePage(1)
+                                setSortBy(e.target.value)
+                            }}
+                        >
+                            <option value="popularity.desc">Popular</option>
+                            <option value="vote_average.desc&vote_count.gte=1000">
+                                Top Rated
+                            </option>
+                        </select>
                     </div>
+
+                    {data?.length > 0 && !isLoading && (
+                        <Pagination
+                            activePage={activePage}
+                            totalPages={totalPages}
+                            setActivePage={setActivePage}
+                        />
+                    )}
+                    {isLoading && <ProgressBar />}
+                    <div className="movie-grid">
+                        {data &&
+                            data?.map((item) => (
+                                <CardItem
+                                    key={item.id}
+                                    item={item}
+                                    type="movie"
+                                />
+                            ))}
+                    </div>
+                    {data?.length > 0 && !isLoading && (
+                        <Pagination
+                            activePage={activePage}
+                            totalPages={totalPages}
+                            setActivePage={setActivePage}
+                        />
+                    )}
                 </div>
             </div>
         </>

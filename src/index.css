@@ -3,11 +3,8 @@
 @tailwind utilities;
 
 :root {
-    font-family: sans-serif;
+    font-family: "Roboto", sans-serif;
     line-height: 1.5;
-    font-weight: 400;
-    /* position: relative; */
-
     color-scheme: light dark;
     color: rgba(255, 255, 255, 0.87);
     background-color: #494848;
@@ -17,8 +14,12 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 
-    --nav-height: 5rem;
+    --nav-height: 3.8rem;
 }
+
+/* body {
+    min-height: 100vh;
+} */
 
 .under-navbar {
     /* height: calc((100%-var(--nav-height))); */
@@ -32,4 +33,16 @@
 
 .image-overlay {
     border-image: fill 0 linear-gradient(#0003, #191919);
+}
+.detail-overlay {
+    border-image: fill 0 linear-gradient(#000, #0003);
+}
+.image-dark-overlay-bottom {
+    border-image: fill 0 linear-gradient(#0008, #191919);
+}
+/* .image-dark-overlay-top {
+    border-image: fill 0 linear-gradient(#191919, #0008);
+} */
+.filter-image {
+    filter: blur();
 }

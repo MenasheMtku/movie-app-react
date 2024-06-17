@@ -1,14 +1,14 @@
 import React from "react"
 import Navbar from "./Navbar/Navbar"
-import NavMobile from "./NavMobile/NavMobile"
 import PropTypes from "prop-types"
+import Footer from "./Footer/Footer"
 
 const Layout = ({ children }) => {
     return (
         <>
             <Navbar />
-            <NavMobile />
             <main>{children}</main>
+            <Footer />
         </>
     )
 }
