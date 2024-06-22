@@ -1,84 +1,83 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
 import {
-    fetchTrendingAll,
-    imagePathOriginal,
-    imagePath,
-    fetchDiscoverMovies,
-} from "../services/api"
-import "../index.css"
+  fetchTrendingAll,
+  imagePathOriginal,
+  imagePath,
+  fetchDiscoverMovies,
+} from "../services/api";
+import "../index.css";
 
-import { Link } from "react-router-dom"
-import ProgressBar from ".././components/ProgressBar/ProgressBar"
-import Pagination from ".././components/Pagination/Pagination"
-import CardItem from ".././components/CardItem/CardItem"
+import { Link } from "react-router-dom";
+import ProgressBar from ".././components/ProgressBar/ProgressBar";
+import Pagination from ".././components/Pagination/Pagination";
+import CardItem from ".././components/CardItem/CardItem";
 
 const Home = () => {
-    const [data, setData] = useState([])
-    const [isLoading, setIsLoading] = useState(true)
-    const [timeWindow, setTimeWindow] = useState("day")
+  const [data, setData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [timeWindow, setTimeWindow] = useState("day");
 
-    // let randMovie = data[Math.floor(Math.random() * data.length)]
-    useEffect(() => {
-        setIsLoading(true)
-        fetchTrendingAll(timeWindow)
-            .then((res) => {
-                console.log(res, "res")
-                setData(res?.results)
-            })
-            .catch((err) => {
-                console.log(err, "err")
-            })
-            .finally(() => {
-                setIsLoading(false)
-            })
-    }, [timeWindow])
+  // let randMovie = data[Math.floor(Math.random() * data.length)]
+  useEffect(() => {
+    setIsLoading(true);
+    fetchTrendingAll(timeWindow)
+      .then(res => {
+        console.log(res, "res");
+        setData(res?.results);
+      })
+      .catch(err => {
+        console.log(err, "err");
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  }, [timeWindow]);
 
-    return (
-        <div className="h-full w-full">
-            <div className="min-h-full bg-black/40 pb-8">
-                <div className="mx-auto min-h-screen max-w-screen-xl">
-                    <div className="flex items-baseline justify-between pt-8">
-                        <h1 className="px-4 text-xl md:text-3xl md:font-semibold">
-                            Trending{" "}
-                            {timeWindow == "day" ? "Today" : "This Week"}
-                        </h1>
-                        <div className="ml-auto mr-4 flex min-w-[250px] justify-around gap-3 p-2">
-                            <button
-                                type="button"
-                                className="w-[50%] rounded-xl bg-gray-400 p-2 text-black"
-                                onClick={() => setTimeWindow("week")}
-                            >
-                                Week
-                            </button>
-                            <button
-                                type="button"
-                                className="w-[50%] rounded-xl bg-gray-400 p-2 text-black"
-                                onClick={() => setTimeWindow("day")}
-                            >
-                                Day
-                            </button>
-                        </div>
-                    </div>
-                    {isLoading && <ProgressBar />}
-                    <div className="movie-grid">
-                        {data &&
-                            data?.map((item) => (
-                                <CardItem
-                                    key={item.id}
-                                    item={item}
-                                    type={`${item?.media_type}`}
-                                />
-                            ))}
-                    </div>
-                </div>
+  return (
+    <div className='h-full w-full'>
+      <div className='min-h-full bg-black/40 pb-8'>
+        <div className='mx-auto min-h-screen max-w-screen-xl'>
+          <div className='flex items-baseline justify-between pt-8'>
+            <h1 className='px-4 text-xl md:text-3xl md:font-semibold'>
+              Trending {timeWindow == "day" ? "Today" : "This Week"}
+            </h1>
+            <div className='ml-auto mr-4 flex min-w-[250px] justify-around gap-3 p-2'>
+              <button
+                type='button'
+                className='w-[50%] rounded-xl bg-gray-400 p-2 text-black'
+                onClick={() => setTimeWindow("week")}
+              >
+                Week
+              </button>
+              <button
+                type='button'
+                className='w-[50%] rounded-xl bg-gray-400 p-2 text-black'
+                onClick={() => setTimeWindow("day")}
+              >
+                Day
+              </button>
             </div>
+          </div>
+          {isLoading && <ProgressBar />}
+          <div className='movie-grid'>
+            {data &&
+              data?.map(item => (
+                <CardItem
+                  key={item.id}
+                  item={item}
+                  type={`${item?.media_type}`}
+                />
+              ))}
+          </div>
         </div>
-    )
-}
+      </div>
+    </div>
+  );
+};
 
-export default Home
+export default Home;
 {
-    /* <div className="relative h-full w-full ">
+  /* <div className="relative h-full w-full ">
     <div className="h-screen w-full object-cover">
         <img
             src={imagePathOriginal + randMovie?.backdrop_path}
@@ -92,7 +91,7 @@ export default Home
 }
 
 {
-    /* <div className=" flex h-full gap-2 overflow-auto px-2">
+  /* <div className=" flex h-full gap-2 overflow-auto px-2">
     {data &&
         data?.map((item) => (
             <div key={item?.id} className="min-w-36">

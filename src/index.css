@@ -3,18 +3,18 @@
 @tailwind utilities;
 
 :root {
-    font-family: "Roboto", sans-serif;
-    line-height: 1.5;
-    color-scheme: light dark;
-    color: rgba(255, 255, 255, 0.87);
-    background-color: #494848;
+  font-family: "Roboto", sans-serif;
+  line-height: 1.5;
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #494848;
 
-    font-synthesis: none;
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 
-    --nav-height: 3.8rem;
+  --nav-height: 3.8rem;
 }
 
 /* body {
@@ -22,27 +22,42 @@
 } */
 
 .under-navbar {
-    /* height: calc((100%-var(--nav-height))); */
-    padding-top: var(--nav-height);
-    min-height: 100vh;
+  /* height: calc((100%-var(--nav-height))); */
+  padding-top: var(--nav-height);
+  min-height: 100vh;
 }
 
 .filter-navbar {
-    filter: blur(15px);
+  filter: blur(15px);
 }
 
 .image-overlay {
-    border-image: fill 0 linear-gradient(#0003, #191919);
+  border-image: fill 0 linear-gradient(#0003, #191919);
 }
 .detail-overlay {
-    border-image: fill 0 linear-gradient(#000, #0003);
+  border-image: fill 0 linear-gradient(#000, #0003);
 }
 .image-dark-overlay-bottom {
-    border-image: fill 0 linear-gradient(#0008, #191919);
+  border-image: fill 0 linear-gradient(#0008, #191919);
 }
 /* .image-dark-overlay-top {
     border-image: fill 0 linear-gradient(#191919, #0008);
 } */
 .filter-image {
-    filter: blur();
+  filter: blur();
 }
+
+/* .movies {
+  margin-left: -6px;
+  margin-right: -6px;
+  margin-top: 1rem;
+} */
+
+/* .items {
+  border-radius: 0.5rem;
+  position: relative;
+  float: left;
+  width: 14.2857142857%;
+  padding: 0 6px;
+  margin-bottom: 2rem;
+} */
