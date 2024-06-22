@@ -67,9 +67,9 @@ const DetailsPage = () => {
     fetchData();
   }, [type, id]);
 
-  //   if (loading) {
-  //     return <ProgressBar />;
-  //   }
+  if (isLoading) {
+    return <ProgressBar />;
+  }
 
   const title = details?.title || details?.name;
   const releaseDate =
