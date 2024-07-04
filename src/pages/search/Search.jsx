@@ -54,7 +54,7 @@ const Search = () => {
       <div className='min-h-screen w-full bg-black/70 pb-8'>
         <div className='mx-auto h-full max-w-screen-xl'>
           <form
-            onChange={handleSearch}
+            onSubmit={handleSearch}
             className='mx-auto flex place-content-center pt-10'
           >
             <input
