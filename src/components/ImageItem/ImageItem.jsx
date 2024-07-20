@@ -4,13 +4,13 @@ const ImageItem = ({ imgSrc, title, width }) => {
   return (
     <>
       <LazyLoadImage
-        effect='blur'
+        effect="blur"
         alt={title}
         src={`${imgSrc}`}
-        delayTime={90}
-        loading='lazy'
+        // delayTime={90}
+        loading="lazy"
         width={width}
-        className='rounded-md'
+        className="rounded-md"
       />
     </>
   );

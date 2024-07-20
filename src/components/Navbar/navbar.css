@@ -1,19 +1,19 @@
 ul {
-    list-style-type: none;
+  list-style-type: none;
 }
 
 a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
-header {
-    display: flex;
-    padding: 0.5rem 2rem;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    height: var(--nav-height);
-    /* position: absolute;
+.header {
+  display: flex;
+  padding: 0.5rem 2rem;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: var(--nav-height);
+  /* position: absolute;
   top: 0;
   right: 0;
   left: 0;
@@ -22,16 +22,16 @@ header {
 }
 
 .logo {
-    color: aqua;
-    font-size: 1.5rem;
-    text-decoration: none;
+  color: aqua;
+  font-size: 1.5rem;
+  text-decoration: none;
 }
 
 .nav {
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
 }
 .nav a {
-    margin: 0 1rem;
-    color: aliceblue;
+  margin: 0 1rem;
+  color: aliceblue;
 }

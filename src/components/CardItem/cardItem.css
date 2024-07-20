@@ -1,3 +1,17 @@
+.horizontal-flex {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  gap: 0.5rem;
+  padding: 0.5rem 0.5rem;
+  cursor: grab;
+  overflow-x: scroll;
+}
+
+.horizontal-flex .item {
+  flex: 0 0 168px;
+}
+
 .movie-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(168px, 1fr));

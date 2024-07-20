@@ -98,7 +98,7 @@ const DetailsPage = () => {
               // filter: `blur(${2}px)`,
             }}
           >
-            <div className='container mx-auto my-4 w-full md:my-0'>
+            <div className='container mx-auto my-4 w-11/12 md:my-0'>
               <div className='container flex flex-col  gap-4 rounded-full px-2  md:flex-row  md:items-center md:gap-10'>
                 <div className='w-[220px]'>
                   <ImageItem imgSrc={imgSrc} title={title} />
