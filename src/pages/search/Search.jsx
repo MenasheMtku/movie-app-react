@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import "../../index.css";
 import "../../components/Form/form.css";
-import CardItem from "../../components/CardItem/CardItem";
+import MovieCard from "../../components/Card/MovieCard";
 import { fetchSearchQuery } from "../../services/api";
 import ProgressBar from "../../components/ProgressBar/ProgressBar";
 import Pagination from "../../components/Pagination/Pagination";
@@ -51,15 +51,15 @@ const Search = () => {
   return (
     <>
       {/* <div className="under-navbar h-full"> */}
-      <div className='min-h-screen w-full bg-black/70 pb-8'>
-        <div className='mx-auto h-full max-w-screen-xl'>
+      <div className="min-h-screen w-full bg-black/70 pb-8">
+        <div className="mx-auto h-full max-w-screen-xl">
           <form
             onSubmit={handleSearch}
-            className='mx-auto flex place-content-center pt-10'
+            className="mx-auto flex place-content-center pt-10"
           >
             <input
-              className='clamp-width-input rounded-s-lg bg-gray-700 px-6 py-2 text-center outline-0 focus:outline-none'
-              placeholder='Type here'
+              className="clamp-width-input rounded-s-lg bg-gray-700 px-6 py-2 text-center outline-0 focus:outline-none"
+              placeholder="Type here"
               value={tempSearchValue}
               onChange={e => setTempSearchValue(e.target.value)}
               // defaultValue='Search...'
@@ -68,7 +68,7 @@ const Search = () => {
               // onInput={onInput}
             />
             <select
-              className='w-[120px] rounded-e-lg bg-gray-500 px-3 outline-none'
+              className="w-[120px] rounded-e-lg bg-gray-500 px-3 outline-none"
               onChange={e => {
                 setActivePage(1);
                 setType(e.target.value);
@@ -79,8 +79,8 @@ const Search = () => {
               <option value={"DEFAULT"} disabled>
                 Choose...
               </option>
-              <option value='tv'>TV Show</option>
-              <option value='movie'>Movie</option>
+              <option value="tv">TV Show</option>
+              <option value="movie">Movie</option>
             </select>
           </form>
           {/* {!searchValue && <ProgressBar />} */}
@@ -94,7 +94,7 @@ const Search = () => {
             />
           )}
 
-          <div className='movie-grid h-full'>
+          <div className="movie-grid h-full">
             {data?.length > 0 &&
               // !isLoading &&
               // data.filter(
@@ -103,11 +103,11 @@ const Search = () => {
               //         item?.backdrop_path !== null,
               // ) &&
               data.map((item, i) => (
-                <CardItem key={item.id} item={item} type={type} />
+                <MovieCard key={item.id} item={item} type={type} />
               ))}
           </div>
           {data?.length === 0 && !isLoading && (
-            <h3 className='mt-10  text-center text-sm'>Type To search</h3>
+            <h3 className="mt-10  text-center text-sm">Type To search</h3>
           )}
           {data?.length > 0 && !isLoading && (
             <Pagination

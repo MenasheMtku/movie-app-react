@@ -16,7 +16,7 @@ export const fetchTrendingAll = async (timeWindow = "day") => {
 // -------- MOVIES --------
 export const fetchUpcomingMovies = async () => {
   const { data } = await axios.get(
-    `${baseUrl}/movie/upcoming?api_key=${apiKey}`
+    `${baseUrl}movie/upcoming?api_key=${apiKey}`
   );
   return data?.results;
 };

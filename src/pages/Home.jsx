@@ -1,16 +1,11 @@
 import { useEffect, useState } from "react";
-import {
-  fetchTrendingAll,
-  imagePathOriginal,
-  imagePath,
-  fetchDiscoverMovies,
-} from "../services/api";
+import { fetchTrendingAll } from "../services/api";
 import "../index.css";
 
-import { Link } from "react-router-dom";
 import ProgressBar from ".././components/ProgressBar/ProgressBar";
-import Pagination from ".././components/Pagination/Pagination";
-import CardItem from ".././components/CardItem/CardItem";
+import MovieCard from "../components/Card/MovieCard";
+import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
+import { Swiper, SwiperSlide } from "../components/MySwiper/Swiper";
 
 const Home = () => {
   const [data, setData] = useState([]);
@@ -34,24 +29,24 @@ const Home = () => {
   }, [timeWindow]);
 
   return (
-    <div className='h-full w-full'>
-      <div className='min-h-full bg-black/40 pb-8'>
-        <div className='mx-auto min-h-screen max-w-screen-xl'>
-          <div className='flex items-baseline justify-between pt-8'>
-            <h1 className='px-4 text-xl md:text-3xl md:font-semibold'>
-              Trending {timeWindow == "day" ? "Today" : "This Week"}
+    <div className="h-full w-full">
+      <div className="min-h-full bg-black/40 pb-8">
+        <div className="min-h-screen max-w-screen-xl mx-auto">
+          <div className="flex flex-col sm:flex-row  items-baseline justify-between pt-8">
+            <h1 className="px-4 text-2xl font-medium">
+              Trending {timeWindow === "day" ? "Today" : "This Week"}
             </h1>
-            <div className='ml-auto mr-4 flex min-w-[250px] justify-around gap-3 p-2'>
+            <div className="mr-4 inline-flex w-[250px] justify-around gap-3 p-2">
               <button
-                type='button'
-                className='w-[50%] rounded-xl bg-gray-400 p-2 text-black'
+                type="button"
+                className="w-full rounded-sm bg-gray-400 py-1 text-black font-semibold"
                 onClick={() => setTimeWindow("week")}
               >
                 Week
               </button>
               <button
-                type='button'
-                className='w-[50%] rounded-xl bg-gray-400 p-2 text-black'
+                type="button"
+                className="w-full rounded-sm bg-gray-400 py-1 text-black font-semibold"
                 onClick={() => setTimeWindow("day")}
               >
                 Day
@@ -59,7 +54,52 @@ const Home = () => {
             </div>
           </div>
           {isLoading && <ProgressBar />}
-          <div className='movie-grid'>
+          {/* Swiper component */}
+          <Swiper
+            // modules={[Navigation, Pagination, Scrollbar, A11y]}
+            className="px-4 py-2 bg-black/20"
+            slidesPerView={6}
+            spaceBetween={20}
+            // navigation="true"
+            // pagination="true"
+            breakpoints={{
+              0: {
+                slidesPerView: 1,
+              },
+              400: {
+                slidesPerView: 2,
+              },
+              639: {
+                slidesPerView: 3,
+              },
+              865: {
+                slidesPerView: 4,
+              },
+              1000: {
+                slidesPerView: 5,
+              },
+            }}
+            on={{
+              slideChange: () => console.log("slide changed"),
+              progress: (_s, progress) =>
+                console.log(`progress is ${progress}`),
+            }}
+          >
+            {data &&
+              data?.map(item => (
+                <SwiperSlide key={item.id}>
+                  <div className="py-6">
+                    <MovieCard
+                      key={item.id}
+                      item={item}
+                      width="90"
+                      type={`${item?.media_type}`}
+                    />
+                  </div>
+                </SwiperSlide>
+              ))}
+          </Swiper>
+          {/* <div className="horizontal-flex">
             {data &&
               data?.map(item => (
                 <CardItem
@@ -68,7 +108,7 @@ const Home = () => {
                   type={`${item?.media_type}`}
                 />
               ))}
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
