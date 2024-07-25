@@ -3,7 +3,7 @@ import { fetchTrendingAll } from "../services/api";
 import "../index.css";
 
 import ProgressBar from ".././components/ProgressBar/ProgressBar";
-import CardItem from ".././components/CardItem/CardItem";
+import MovieCard from "../components/Card/MovieCard";
 import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
 import { Swiper, SwiperSlide } from "../components/MySwiper/Swiper";
 
@@ -31,10 +31,10 @@ const Home = () => {
   return (
     <div className="h-full w-full">
       <div className="min-h-full bg-black/40 pb-8">
-        <div className="mx-auto min-h-screen max-w-screen-xl">
+        <div className="min-h-screen max-w-screen-xl mx-auto">
           <div className="flex flex-col sm:flex-row  items-baseline justify-between pt-8">
-            <h1 className="px-4 text-3xl font-medium">
-              Trending {timeWindow == "day" ? "Today" : "This Week"}
+            <h1 className="px-4 text-2xl font-medium">
+              Trending {timeWindow === "day" ? "Today" : "This Week"}
             </h1>
             <div className="mr-4 inline-flex w-[250px] justify-around gap-3 p-2">
               <button
@@ -56,10 +56,11 @@ const Home = () => {
           {isLoading && <ProgressBar />}
           {/* Swiper component */}
           <Swiper
+            // modules={[Navigation, Pagination, Scrollbar, A11y]}
             className="px-4 py-2 bg-black/20"
             slidesPerView={6}
             spaceBetween={20}
-            navigation="true"
+            // navigation="true"
             // pagination="true"
             breakpoints={{
               0: {
@@ -88,7 +89,7 @@ const Home = () => {
               data?.map(item => (
                 <SwiperSlide key={item.id}>
                   <div className="py-6">
-                    <CardItem
+                    <MovieCard
                       key={item.id}
                       item={item}
                       width="90"

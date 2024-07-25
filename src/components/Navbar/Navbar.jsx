@@ -1,7 +1,8 @@
 import React, { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { useClickAway } from "react-use";
-import { Squash as Hamburger } from "hamburger-react";
+import Hamburger from "hamburger-react";
+// import { Squash as Hamburger } from "hamburger-react";
 import "./navbar.css";
 
 const Navbar = () => {
@@ -32,9 +33,16 @@ const Navbar = () => {
           </ul>
         </nav>
         <div className="block lg:hidden">
-          <Hamburger toggled={isOpen} size={28} toggle={setOpen} />
+          <Hamburger
+            toggled={isOpen}
+            size={28}
+            toggle={setOpen}
+            direction="right"
+          />
           {isOpen && (
-            <div className="fixed bottom-0 right-0 top-[3.5rem] z-[9999] flex h-screen w-[300px] border-b-white/20 bg-black/95 p-2">
+            <div
+              className={`fixed bottom-0 right-0 top-[--nav-height] z-[9999] h-screen w-[300px] border-b-white/20 bg-gray-800 p-6 ${isOpen ? "translate-x-0" : "translate-x-full"} ease-in-out duration-800`}
+            >
               <ul
                 className="flex h-[50%]  w-full flex-col 
                              justify-start gap-9 pl-3"

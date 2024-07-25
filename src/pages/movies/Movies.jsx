@@ -1,15 +1,12 @@
 import { useEffect, useState } from "react";
-import CardItem from "../../components/CardItem/CardItem";
+import MovieCard from "../../components/Card/MovieCard";
 import "../../index.css";
 import { fetchDiscoverMovies } from "../../services/api";
 import ProgressBar from "../../components/ProgressBar/ProgressBar";
 import Pagination from "../../components/Pagination/Pagination";
+import Menu from "../../components/Menu/Menu";
 
 const Movies = () => {
-  // const { data, isLoading, activePage, totalPages } = useFetch(
-  //     fetchDiscoverMovies(),
-  // )
-
   const [data, setData] = useState([]);
   const [activePage, setActivePage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
@@ -33,31 +30,17 @@ const Movies = () => {
       });
   }, [activePage, sortBy]);
 
-  // if (isLoading) {
-  //     return <ProgressBar />
-  // }
   return (
     <>
       <div className="min-h-full bg-gray-800/40 pb-8">
         <div className="mx-auto min-h-screen max-w-screen-xl">
-          <div className="flex  pt-8">
-            <h1 className="px-4 text-xl md:text-3xl md:font-semibold">
-              Discover Movies
-            </h1>
-            <select
-              className="w-[180px] rounded-lg bg-gray-500 px-3 font-semibold text-black"
-              onChange={e => {
-                setActivePage(1);
-                setSortBy(e.target.value);
-              }}
-            >
-              <option value="popularity.desc">Popular</option>
-              <option value="vote_average.desc&vote_count.gte=1000">
-                Top Rated
-              </option>
-            </select>
-          </div>
-
+          <Menu
+            handlePage={setActivePage}
+            handleSort={setSortBy}
+            header="Discover Movies"
+            opt1="Popular"
+            opt2="Top Rated"
+          />
           {data?.length > 0 && !isLoading && (
             <Pagination
               activePage={activePage}
@@ -69,9 +52,14 @@ const Movies = () => {
           <div className="movie-grid">
             {data &&
               data?.map(item => (
-                <CardItem key={item.id} item={item} type="movie" />
+                <MovieCard key={item.id} item={item} type="movie" />
               ))}
           </div>
+          {/* <div className="bg-blue-500 items-center w-60 mx-auto p-1 justify-center">
+            <button>
+              <p>Load more</p>
+            </button>
+          </div> */}
           {data?.length > 0 && !isLoading && (
             <Pagination
               activePage={activePage}

@@ -19,3 +19,10 @@ logs
 psd
 thumb
 sketch
+
+# editors
+*.swp
+.idea/
+.vs/
+.vscode/
+.DS_Store

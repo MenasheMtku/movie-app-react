@@ -22,7 +22,11 @@ import {
 import ProgressBar from "../components/ProgressBar/ProgressBar";
 import VideoCompoennet from "../components/Video/VideoCompoennet";
 import { defaultImage } from "../services/api";
-import ImageItem from "../components/ImageItem/ImageItem";
+import ImageItem from "../components/Image/Image";
+import { Swiper, SwiperSlide } from "../components/MySwiper/Swiper";
+import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
+import Image from "../components/Image/Image";
+// import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const DetailsPage = () => {
   const router = useParams();
@@ -89,34 +93,35 @@ const DetailsPage = () => {
   console.log("Teasers", videos);
   return (
     <>
-      <div className='h-full w-full bg-black/60'>
-        <div className='box-1'>
+      <div className="h-full w-full bg-black/60">
+        <div className="box-1">
           <div
-            className='image-dark-overlay-bottom image-dark-overlay-top z[-100] flex h-auto w-full items-center bg-gradient-to-r from-black/50 to-black/10 bg-cover bg-center bg-no-repeat py-2 md:h-[500px]'
+            className="image-dark-overlay-bottom image-dark-overlay-top z[-100] flex h-auto w-full items-center bg-gradient-to-r from-black/50 to-black/10 bg-cover bg-center bg-no-repeat py-2 md:h-[500px]"
             style={{
               backgroundImage: `url(${originalIMG})`,
               // filter: `blur(${2}px)`,
+              // shapeRendering: "-moz-initial",
             }}
           >
-            <div className='container mx-auto my-4 w-11/12 md:my-0'>
-              <div className='container flex flex-col  gap-4 rounded-full px-2  md:flex-row  md:items-center md:gap-10'>
-                <div className='w-[220px]'>
-                  <ImageItem imgSrc={imgSrc} title={title} />
+            <div className="container mx-auto my-4 w-11/12 md:my-0">
+              <div className="container flex flex-col  gap-4 rounded-full px-2  md:flex-row  md:items-center md:gap-10">
+                <div className="w-[220px]">
+                  <ImageItem src={imgSrc} title={title} />
                 </div>
                 {/* <img className='w-[220px] rounded-lg' src={imgSrc} /> */}
 
                 <div>
-                  <div className='flex flex-row items-baseline gap-2 md:gap-1'>
-                    <p className='text-xl'>{title}</p>
-                    <p className='text-xl font-semibold text-gray-400'>
+                  <div className="flex flex-row items-baseline gap-2 md:gap-1">
+                    <p className="text-xl">{title}</p>
+                    <p className="text-xl font-semibold text-gray-400">
                       {new Date(releaseDate).getFullYear()}
                     </p>
                   </div>
-                  <div className='mb-5 mt-1 flex items-center gap-4'>
-                    <div className='flex items-center gap-4'>
-                      <div className='flex items-center'>
-                        <BsCalendar3 className='mr-2 text-gray-400' />
-                        <p className='text-sm'>
+                  <div className="mb-5 mt-1 flex items-center gap-4">
+                    <div className="flex items-center gap-4">
+                      <div className="flex items-center">
+                        <BsCalendar3 className="mr-2 text-gray-400" />
+                        <p className="text-sm">
                           {new Date(releaseDate).toLocaleDateString("en-US")}{" "}
                           (US)
                         </p>
@@ -124,13 +129,13 @@ const DetailsPage = () => {
                       {type === "movie" && (
                         <>
                           <span>*</span>
-                          <div className='flex items-center'>
+                          <div className="flex items-center">
                             <IoTimeSharp
-                              className='mr-1'
-                              mr='2'
+                              className="mr-1"
+                              mr="2"
                               color={"gray.400"}
                             />
-                            <p className=' text-sm'>
+                            <p className="text-sm">
                               {minutesTohours(details?.runtime)}
                             </p>
                           </div>
@@ -138,11 +143,11 @@ const DetailsPage = () => {
                       )}
                     </div>
                   </div>
-                  <div className='flex items-start text-right'>
+                  <div className="flex items-start text-right">
                     {/* rating progress bar */}
                     <a>
                       <CircularProgressbar
-                        className='mr-8 size-12'
+                        className="mr-8 size-12"
                         text={ratingToPercentage(details?.vote_average) + "%"}
                         strokeWidth={4}
                         styles={buildStyles({
@@ -154,25 +159,25 @@ const DetailsPage = () => {
                       ></CircularProgressbar>
                     </a>
                   </div>
-                  <p className='text my-5 text-sm italic text-gray-400'>
+                  <p className="text my-5 text-sm italic text-gray-400">
                     {details?.tagline}
                   </p>
                   {details?.overview ? (
                     <>
-                      <h2 className='mb-2 text-xl'>Overview</h2>
-                      <p className='mb-3 w-full text-base md:w-96'>
+                      <h2 className="mb-2 text-xl">Overview</h2>
+                      <p className="mb-3 w-full text-base md:w-96">
                         {shortenOverview(details?.overview)}
                       </p>
                     </>
                   ) : (
                     <>
-                      <h2 className='mb-2 text-sm'>Overvier Unavailable</h2>
+                      <h2 className="mb-2 text-sm">Overvier Unavailable</h2>
                     </>
                   )}
-                  <div className='mt-6 flex w-full flex-wrap  gap-2 md:flex-row'>
+                  <div className="mt-6 flex w-full flex-wrap  gap-2 md:flex-row">
                     {details?.genres?.map(genre => (
                       <p
-                        className=' rounded bg-gray-500 px-2 py-1 text-center text-sm  font-semibold text-blue-gray-900 '
+                        className=" rounded bg-gray-500 px-2 py-1 text-center text-sm  font-semibold text-blue-gray-900 "
                         key={genre?.id}
                         // p="1"
                       >
@@ -186,57 +191,92 @@ const DetailsPage = () => {
           </div>
         </div>
         <div
-          className='box-2 container mx-auto  pb-10 pt-2'
+          className="box-2 container mx-auto  pb-10 pt-2"
           // style={{ border: "2px solid purple" }}
         >
-          <h2 className='mb-5 ml-4 mt-2 text-base uppercase'>Cast</h2>
-          {!cast && <p>No cast found</p>}
-          <div className='mb-10 mt-5 flex  gap-2 overflow-auto rounded-2xl bg-gray-800 px-2 py-2'>
-            {/* <div className='h-full mx-auto my-auto'>
-              {isLoading && <ProgressBar />}
-            </div> */}
+          {cast.length === 0 ? (
+            <h2 className="mb-5 ml-4 mt-2 text-base uppercase">
+              No cast found
+            </h2>
+          ) : (
+            <h2 className="mb-5 ml-4 mt-2 text-base uppercase">Cast</h2>
+          )}
+          {/* {!cast && <p>No cast found</p>} */}
+          {/* <div className="mb-10 mt-5 flex gap-2 rounded-2xl bg-yellow-600 px-2 py-2"> */}
+          <Swiper
+            className="px-4 py-2 bg-gray-800/30 rounded-sm"
+            modules={[Navigation, Pagination, Scrollbar, A11y]}
+            // slidesPerView={6}
+            spaceBetween={10}
+            // navigation
+            // paginaton
+            breakpoints={{
+              400: {
+                slidesPerView: 2,
+              },
+              639: {
+                slidesPerView: 3,
+              },
+              865: {
+                slidesPerView: 4,
+              },
+              1000: {
+                slidesPerView: 6,
+              },
+            }}
+          >
             {cast &&
               cast
                 ?.filter(item => item?.profile_path)
                 .map(item => (
-                  <div key={item?.id} className='min-w-36 content-center'>
-                    {/* <div className='mb-3 h-[225px] w-[100%] rounded-2xl object-cover'> */}
-                    <ImageItem
-                      imgSrc={`${imagePath}/${item?.profile_path}`}
-                      title={item?.name}
-                      width={cast.length < 2 ? "160" : "170"}
-                    />
-                  </div>
-                  // </div>
+                  <SwiperSlide key={item.id}>
+                    <div key={item?.id}>
+                      <Image
+                        className="rounded-sm"
+                        src={`${imagePath}/${item?.profile_path}`}
+                        alt={item?.name}
+                        width={160}
+                      />
+                    </div>
+                  </SwiperSlide>
                 ))}
-          </div>
-          <h2 className='mb-5 ml-4 mt-2 text-base uppercase'>Trailer</h2>
-          <div className='mx-auto ml-4 mr-4 max-w-4xl'>
-            <div className='relative h-0 pb-[56.25%] pt-[25px]'>
-              <div className='absolute left-0 top-0 h-full w-full'>
-                <iframe
-                  className='h-full w-full'
-                  // width="960"
-                  // height="415"
-                  src={`https://www.youtube.com/embed/${video?.key}?si=${video?.id}`}
-                  title='YouTube video player'
-                  allowFullScreen
-                ></iframe>
+          </Swiper>
+          {/* </div> */}
+          {cast.length === 0 ? (
+            <h2 className="mb-5 ml-4 mt-2 text-base uppercase">
+              No Trailer found
+            </h2>
+          ) : (
+            <>
+              <h2 className="mb-5 ml-4 mt-2 text-base uppercase">Trailer</h2>
+              <div className="mx-auto ml-4 mr-4 max-w-4xl">
+                <div className="relative h-0 pb-[56.25%] pt-[25px]">
+                  <div className="absolute left-0 top-0 h-full w-full">
+                    <iframe
+                      className="h-full w-full"
+                      // width="960"
+                      // height="415"
+                      src={`https://www.youtube.com/embed/${video?.key}?si=${video?.id}`}
+                      title="YouTube video player"
+                      allowFullScreen
+                    ></iframe>
+                  </div>
+                </div>
+                {/* <video id={video?.key} /> */}
+                <div className="mb-10 mt-5 hidden  gap-3 overflow-auto  md:flex">
+                  {videos &&
+                    videos?.map(item => (
+                      <div className="min-w-72" key={item?.id}>
+                        <VideoCompoennet id={item?.key} small />
+                        <h1 className="mt-2 text-sm font-bold">
+                          {item?.name}{" "}
+                        </h1>
+                      </div>
+                    ))}
+                </div>
               </div>
-            </div>
-            {/* <video id={video?.key} /> */}
-            <div className='mb-10 mt-5 hidden  gap-3 overflow-auto  md:flex'>
-              {videos &&
-                videos?.map(item => (
-                  <div className='min-w-72' key={item?.id}>
-                    <VideoCompoennet id={item?.key} small />
-                    <h1 className='mt-2 text-sm font-bold'>{item?.name} </h1>
-                  </div>
-                ))}
-            </div>
-          </div>
-
-          {/* {video} */}
+            </>
+          )}
         </div>
       </div>
     </>
