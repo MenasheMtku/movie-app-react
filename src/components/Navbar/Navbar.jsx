@@ -11,8 +11,8 @@ const Navbar = () => {
   useClickAway(ref, () => setOpen(false));
 
   return (
-    <header className="header z-[1000]  bg-black/60 px-8 py-3 " ref={ref}>
-      <div className="container mx-auto flex w-full items-center justify-between">
+    <header className="header z-[1000] bg-black/65 px-8 py-3" ref={ref}>
+      <div className="max-w-[1440px] mx-auto flex w-full items-center justify-between">
         <Link to="/" className="text-3xl font-bold text-cyan-300">
           TMDB
         </Link>

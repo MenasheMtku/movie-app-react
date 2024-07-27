@@ -1,7 +1,7 @@
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { defaultImage } from "../../services/api";
 
-const Image = ({ src, title }) => {
+const Image = ({ src, title, _width }) => {
   return (
     <>
       <LazyLoadImage
@@ -11,7 +11,7 @@ const Image = ({ src, title }) => {
         loading="lazy"
         className="rounded-sm"
         placeholderSrc={`${defaultImage}`}
-        // width={width}
+        width={_width}
         // delayTime={1000}
         visibleByDefault="false"
         wrapperProps={{

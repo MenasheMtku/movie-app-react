@@ -5,7 +5,7 @@ const Skeleton = () => {
     <div className="p-2 rounded shadow-2xl">
       <div className="relative h-60 mb-4 flex justify-center items-center bg-gray-300 animate-pulse rounded-md duration-150">
         <svg
-          className="w-[168px] h-10 text-gray-200 dark:text-gray-600"
+          className="w-[100px] h-10 text-gray-200 dark:text-gray-600"
           aria-hidden="true"
           xmlns="http://www.w3.org/2000/svg"
           fill="currentColor"

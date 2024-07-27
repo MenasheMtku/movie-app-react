@@ -22,12 +22,7 @@ export function Swiper(props) {
     swiperRef.current.initialize();
   }, []);
   return (
-    <swiper-container
-      init="false"
-      ref={swiperRef}
-      // navigation="true"
-      // pagination="true"
-    >
+    <swiper-container init="false" ref={swiperRef}>
       {children}
     </swiper-container>
   );

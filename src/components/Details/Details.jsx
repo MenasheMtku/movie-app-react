@@ -1,0 +1,98 @@
+import React from "react";
+import { imagePath } from "../../services/api";
+import { defaultImage } from "../../services/api";
+import {
+  minutesTohours,
+  ratingToPercentage,
+  resolveRatingColor,
+  shortenOverview,
+} from "../../utils/helpers";
+import { BsCalendar3 } from "react-icons/bs";
+import { IoTimeSharp } from "react-icons/io5";
+import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
+import "react-circular-progressbar/dist/styles.css";
+
+const Details = ({ details, type }) => {
+  const title = details?.title || details?.name;
+  const releaseDate =
+    type === "tv" ? details?.first_air_date : details?.release_date;
+  let imgSrc = `${imagePath}/${details?.poster_path}`;
+  if (details?.poster_path === null) {
+    imgSrc = defaultImage;
+  }
+  const rateColor = resolveRatingColor(details?.vote_average);
+
+  return (
+    <>
+      <div className="flex flex-row items-baseline gap-2 md:gap-1">
+        <p className="text-xl">{title}</p>
+        <p className="text-xl font-semibold text-gray-400">
+          {new Date(releaseDate).getFullYear()}
+        </p>
+      </div>
+      <div className="mb-5 mt-1 flex items-center gap-4">
+        <div className="flex items-center gap-4">
+          <div className="flex items-center">
+            <BsCalendar3 className="mr-2 text-gray-400" />
+            <p className="text-sm">
+              {new Date(releaseDate).toLocaleDateString("en-US")} (US)
+            </p>
+          </div>
+          {type === "movie" && (
+            <>
+              <span>*</span>
+              <div className="flex items-center">
+                <IoTimeSharp className="mr-1" mr="2" color={"gray.400"} />
+                <p className="text-sm">{minutesTohours(details?.runtime)}</p>
+              </div>
+            </>
+          )}
+        </div>
+      </div>
+      <div className="flex items-start text-right">
+        {/* rating progress bar */}
+        <a>
+          <CircularProgressbar
+            className="mr-8 size-12"
+            text={ratingToPercentage(details?.vote_average) + "%"}
+            strokeWidth={4}
+            styles={buildStyles({
+              textColor: `${rateColor}`,
+              pathColor: `${rateColor}`,
+              trailColor: "gray",
+              textSize: "28px",
+            })}
+          ></CircularProgressbar>
+        </a>
+      </div>
+      <p className="text my-5 text-sm italic text-gray-400">
+        {details?.tagline}
+      </p>
+      {details?.overview ? (
+        <>
+          <h2 className="mb-2 text-xl">Overview</h2>
+          <p className="mb-3 w-full text-base md:w-96">
+            {shortenOverview(details?.overview)}
+          </p>
+        </>
+      ) : (
+        <>
+          <h2 className="mb-2 text-sm">Overvier Unavailable</h2>
+        </>
+      )}
+      <div className="mt-6 flex w-full flex-wrap  gap-2 md:flex-row">
+        {details?.genres?.map(genre => (
+          <p
+            className=" rounded bg-gray-500 px-2 py-1 text-center text-sm  font-semibold text-blue-gray-900 "
+            key={genre?.id}
+            // p="1"
+          >
+            {genre?.name}
+          </p>
+        ))}
+      </div>
+    </>
+  );
+};
+
+export default Details;

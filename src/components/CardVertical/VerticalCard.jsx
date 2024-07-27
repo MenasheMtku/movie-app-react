@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
-import "./movieCard.css";
-import { defaultImage, imagePath } from "../../services/api";
+import "./verticalCard.css";
+import { defaultImage, imagePath, imagePathOriginal } from "../../services/api";
 import { Link } from "react-router-dom";
 import "../../index.css";
 import Image from "../Image/Image";
 import Skeleton from "../Skeleton";
 
-const MovieCard = ({ item, type }) => {
+const VerticalCard = ({ item, type }) => {
   const [isLoading, setIsLoading] = useState(true);
   // ------------------------------------------
   const title = item?.title || item?.name;
@@ -58,7 +58,7 @@ const MovieCard = ({ item, type }) => {
   );
 };
 
-export default MovieCard;
+export default VerticalCard;
 
 {
   /* <div className="text-sm text-center grid gap-1">
