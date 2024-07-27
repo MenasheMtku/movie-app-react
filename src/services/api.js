@@ -25,8 +25,8 @@ export const fetchTrendingMovies = async () => {
   return data?.results;
 };
 export const fetchPopularMovies = async () => {
-  const { data } = await axios.get(`${baseUrl}movie/popular?api_key=${apiKey}`);
-  return data?.results;
+  const res = await axios.get(`${baseUrl}movie/popular?api_key=${apiKey}`);
+  return res?.data;
 };
 // -------- DISCOVER MOVIES & SHOWS --------
 export const fetchDiscoverMovies = async (page, sortBy) => {

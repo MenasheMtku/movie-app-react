@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import "../../index.css";
 import "../../components/Form/form.css";
-import MovieCard from "../../components/Card/MovieCard";
+import MovieCard from "../../components/CardVertical/VerticalCard";
 import { fetchSearchQuery } from "../../services/api";
 import ProgressBar from "../../components/ProgressBar/ProgressBar";
 import Pagination from "../../components/Pagination/Pagination";

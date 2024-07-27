@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import MovieCard from "../../components/Card/MovieCard";
+import MovieCard from "../../components/CardVertical/VerticalCard";
 import "../../index.css";
 import { fetchDiscoverMovies } from "../../services/api";
 import ProgressBar from "../../components/ProgressBar/ProgressBar";
