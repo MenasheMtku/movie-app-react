@@ -5,7 +5,7 @@ import Footer from "./Footer/Footer";
 
 const Layout = ({ children }) => {
   return (
-    <div>
+    <div className="grid grid-rows-[auto_1fr_auto] grid-cols-1">
       <Navbar />
       <main>{children}</main>
       <Footer />
