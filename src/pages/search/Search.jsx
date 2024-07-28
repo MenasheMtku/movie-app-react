@@ -51,14 +51,14 @@ const Search = () => {
   return (
     <>
       {/* <div className="under-navbar h-full"> */}
-      <div className="min-h-screen w-full bg-black/70 pb-8">
+      <div className="min-h-screen w-full  pb-8">
         <div className="mx-auto h-full max-w-screen-xl">
           <form
             onSubmit={handleSearch}
-            className="mx-auto flex place-content-center pt-10"
+            className="mx-auto flex place-content-center pt-10 text-black font-semibold"
           >
             <input
-              className="clamp-width-input rounded-s-lg bg-gray-700 px-6 py-2 text-center outline-0 focus:outline-none"
+              className="clamp-width-input rounded-s-lg bg-gray-400  px-6 py-2 text-center outline-0 focus:outline-none placeholder-black"
               placeholder="Type here"
               value={tempSearchValue}
               onChange={e => setTempSearchValue(e.target.value)}
@@ -73,18 +73,19 @@ const Search = () => {
                 setActivePage(1);
                 setType(e.target.value);
               }}
-              defaultValue={"DEFAULT"}
+              defaultValue={type}
               onSelect={onClear}
             >
-              <option value={"DEFAULT"} disabled>
+              {/* <option value={"DEFAULT"} disabled>
                 Choose...
-              </option>
-              <option value="tv">TV Show</option>
+              </option> */}
               <option value="movie">Movie</option>
+              <option value="tv">TV Show</option>
             </select>
           </form>
-          {/* {!searchValue && <ProgressBar />} */}
-
+          {data?.length === 0 && !isLoading && (
+            <h3 className="mt-10  text-center text-sm">Type To search</h3>
+          )}
           {isLoading && <ProgressBar />}
           {data?.length > 0 && !isLoading && (
             <Pagination
@@ -96,19 +97,11 @@ const Search = () => {
 
           <div className="movie-grid h-full">
             {data?.length > 0 &&
-              // !isLoading &&
-              // data.filter(
-              //     (item) =>
-              //         item?.media_type !== "person" ||
-              //         item?.backdrop_path !== null,
-              // ) &&
               data.map((item, i) => (
                 <MovieCard key={item.id} item={item} type={type} />
               ))}
           </div>
-          {data?.length === 0 && !isLoading && (
-            <h3 className="mt-10  text-center text-sm">Type To search</h3>
-          )}
+
           {data?.length > 0 && !isLoading && (
             <Pagination
               activePage={activePage}

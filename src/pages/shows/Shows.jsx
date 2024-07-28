@@ -36,7 +36,7 @@ const Shows = () => {
   // }
   return (
     <>
-      <div className="min-h-full bg-gray-800/40 pb-8">
+      <div className="min-h-full  pb-8">
         <div className="mx-auto min-h-screen max-w-screen-xl">
           <Menu
             handlePage={setActivePage}
