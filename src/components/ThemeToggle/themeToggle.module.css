@@ -1,0 +1,70 @@
+.label {
+  width: 40px;
+  height: 20px;
+  position: relative;
+  display: block;
+  border-radius: 10px;
+  background: #ebebeb;
+  box-shadow:
+    inset 0px 5px 15px rgba(0, 0, 0, 0.4),
+    inset 0px -5px 15px rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+}
+
+.label:after {
+  content: "";
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 0px;
+  left: 20px;
+  background: linear-gradient(180deg, #eee, #3a3a3a);
+  border-radius: 180px;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+}
+.input {
+  width: 0;
+  height: 0;
+  visibility: hidden;
+}
+
+.input:checked + label {
+  background: hsl(180, 0%, 48%);
+}
+.input:checked + label:after {
+  right: 40px;
+  transform: translateX(-100%);
+  background: linear-gradient(180deg, #ffcc89, #d8860b);
+}
+.label,
+.label:after {
+  transition: 0.3s;
+}
+
+.label:active:after {
+  width: 40px;
+}
+
+.label svg {
+  position: absolute;
+  width: 20px;
+  /* top: 0; */
+  z-index: 100;
+}
+.label svg.sun {
+  position: absolute;
+  right: 10px;
+  fill: #fff;
+  transition: 0.3s;
+}
+.label svg.moon {
+  right: -5px;
+  fill: #7e7e7e;
+  transition: 0.3s;
+}
+.input:checked + .label svg.sun {
+  fill: #7e7e7e;
+}
+.input:checked + .label svg.moon {
+  fill: #fff;
+}

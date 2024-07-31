@@ -6,6 +6,8 @@ import ProgressBar from "../../components/ProgressBar/ProgressBar.jsx";
 import { FaCaretDown } from "react-icons/fa";
 import Pagination from "../../components/Pagination/Pagination";
 import Menu from "../../components/Menu/Menu.jsx";
+import VerticalCard from "../../components/CardVertical/VerticalCard.jsx";
+import Title from "../../components/Title/Title.jsx";
 
 const Shows = () => {
   const [shows, setShows] = useState([]);
@@ -36,7 +38,7 @@ const Shows = () => {
   // }
   return (
     <>
-      <div className="min-h-full  pb-8">
+      <div className="min-h-full  pb-8 bg-gray-100 text-black  dark:bg-gray-900 dark:text-gray-200">
         <div className="mx-auto min-h-screen max-w-screen-xl">
           <Menu
             handlePage={setActivePage}
@@ -59,7 +61,10 @@ const Shows = () => {
               shows
                 .filter(item => item?.backdrop_path !== null)
                 .map(item => (
-                  <MovieCard key={item?.id} item={item} type="tv" />
+                  <div className="flex flex-col " key={item.id}>
+                    <VerticalCard item={item} type="tv" />
+                    <Title title={item.name} />
+                  </div>
                 ))}
           </div>
           {shows?.length > 0 && !loading && (
