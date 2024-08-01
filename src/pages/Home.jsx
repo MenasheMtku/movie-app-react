@@ -70,7 +70,7 @@ const Home = () => {
   return (
     <div className="h-full w-full bg-gray-100 text-black  dark:bg-gray-900 dark:text-gray-200 duration-200">
       <div className="min-h-full  pb-8">
-        <div className="md:w-full md:h-[65dvh] relative block z-10 ">
+        <div className="w-full h-[65dvh] relative block z-10 ">
           <Swiper
             modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
             className="absolute top-0 right-0 left-0 bottom-0"

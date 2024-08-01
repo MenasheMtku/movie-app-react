@@ -48,9 +48,7 @@ body {
 .hero-image-overlay {
   border-image: fill 0 linear-gradient(#0003, #222121ff);
 }
-.filter-image {
-  /* filter: blur(2px); */
-}
+
 .gray-image {
   filter: grayscale(65%);
 }
