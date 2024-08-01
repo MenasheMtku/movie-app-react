@@ -4,7 +4,7 @@ import { useClickAway } from "react-use";
 import Hamburger from "hamburger-react";
 // import { Squash as Hamburger } from "hamburger-react";
 import "./navbar.css";
-import { useTheme } from "../../contexts/themeContext/ThemeContext";
+// import { useTheme } from "../../contexts/themeContext/ThemeContext";
 import ThemeToggle from "../ThemeToggle/ThemeToggle";
 // TODO: make  navbar transparentadd
 const Navbar = () => {
