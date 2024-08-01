@@ -46,16 +46,6 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     {/* <div className="h-[20px] w-full"> */}
     <ThemeProvider>
       <RouterProvider router={router} />
-      {/* <Router>
-        <Routes>
-          <Route path="/" element={<App />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/movies" element={<Movies />} />
-          <Route path="/shows" element={<Shows />} />
-          <Route path="/search" element={<Search />} />
-          <Route path="/:type/:id" element={<DetailsPage />} />
-        </Routes>
-      </Router> */}
     </ThemeProvider>
     {/* </div> */}
   </>
