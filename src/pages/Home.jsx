@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import "../index.css";
 import {
   fetchTrendingAll,
@@ -19,11 +19,13 @@ import {
 import { Swiper, SwiperSlide } from "../components/MySwiper/Swiper";
 import HorizontalCard from "../components/CardHorizotal/HorizotalCard";
 import VerticalCard from "../components/CardVertical/VerticalCard";
+import { ThemeContext } from "../contexts/themeContext/ThemeContext";
 
 const Home = () => {
   const [trend, setTrend] = useState([]);
   const [all, setAll] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const { isDark, setIsDark } = useContext(ThemeContext);
   // const [timeWindow, setTimeWindow] = useState("day");
 
   // let randMovie = data[Math.floor(Math.random() * data.length)]
@@ -68,7 +70,9 @@ const Home = () => {
   console.log(all, "all");
 
   return (
-    <div className="h-full w-full bg-gray-100 text-black  dark:bg-gray-900 dark:text-gray-200 duration-200">
+    <div
+      className={`h-full w-full ${isDark ? "bg-black/85 text-red-200" : "bg-gray-100 text-black"} duration-200`}
+    >
       <div className="min-h-full  pb-8">
         <div className="w-full h-[65dvh] relative block z-10 ">
           <Swiper
