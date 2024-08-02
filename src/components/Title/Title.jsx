@@ -4,7 +4,7 @@ const Title = ({ title }) => {
   return (
     <>
       <div className="text-center">
-        <h4>
+        <h4 className="font-bold">
           {title?.length > 30
             ? title.replace(/:/g, "").split(" ").slice(0, 3).join(" ")
             : title}
