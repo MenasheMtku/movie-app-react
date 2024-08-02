@@ -19,12 +19,12 @@ import {
 import { Swiper, SwiperSlide } from "../components/MySwiper/Swiper";
 import HorizontalCard from "../components/CardHorizotal/HorizotalCard";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import VerticalCard from "../components/CardVertical/VerticalCard";
 
 const Home = () => {
   const [trend, setTrend] = useState([]);
   const [all, setAll] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const { isDark, setIsDark } = useContext(ThemeContext);
   // const [timeWindow, setTimeWindow] = useState("day");
 
   // let randMovie = data[Math.floor(Math.random() * data.length)]
@@ -33,8 +33,7 @@ const Home = () => {
       try {
         const [moviesData, allData] = await Promise.all([
           fetchPopularMovies(),
-          // fetchTrendingAll(timeWindow),
-          fetchTrendingAll(),
+          fetchTrendingAll(timeWindow),
         ]);
 
         // set trend Movies
@@ -63,15 +62,15 @@ const Home = () => {
     //     setIsLoading(false);
     //   });
     fetchData();
-  }, []);
+  }, [timeWindow]);
 
   // console.log(trend, "trend");
   // console.log(all, "all");
 
   return (
-    <div className={`h-full w-full  duration-200`}>
+    <div className="h-full w-full">
       <div className="min-h-full  pb-8">
-        <div className="w-full h-[65dvh] relative block z-10 ">
+        <div className="md:w-full md:h-[65dvh]  relative block z-10  mx-auto">
           <Swiper
             modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
             className="absolute top-0 right-0 left-0 bottom-0"
@@ -97,23 +96,31 @@ const Home = () => {
                     before:to-black/5
                     before:opacity-75
                     before:z-[-5]`}
-                  ></div>
+                    // style={{
+                    //   backgroundImage: `url(${imagePathOriginal}/${item?.backdrop_path})`,
+                    // }}
+                  >
+                    {/* <img
+                      className="object-cover h-full w-full  bg-gradient-to-r from-black/50 to-black/90 bg-black bg-cover"
+                      src={`${imagePathOriginal}/${item?.backdrop_path}`}
+                      alt={item?.title}
+                    /> */}
+                  </div>
                 </SwiperSlide>
               ))}
           </Swiper>
         </div>
         <div className="min-h-screen max-w-screen-2xl  mx-auto px-5">
           <div className="flex flex-col sm:flex-row  items-baseline justify-between pt-8">
-            <h1 className="pl-4 text-3xl font-semibold pb-2">Trending</h1>
+            <h1 className="px-4 text-2xl font-medium pb-1">Trending</h1>
           </div>
           {isLoading && <ProgressBar />}
           {/* Swiper component */}
           <Swiper
             modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
             className="px-4 py-1 bg-black/10"
-            slidesPerView={4}
+            slidesPerView={7}
             spaceBetween={10}
-            loop={true}
             autoplay={{
               delay: 10000,
               disableOnInteraction: false,
@@ -134,14 +141,17 @@ const Home = () => {
                 slidesPerView: 2,
               },
               1000: {
-                slidesPerView: 3,
+                slidesPerView: 6,
+              },
+              1200: {
+                slidesPerView: 7,
               },
             }}
           >
             {all &&
               all?.map(item => (
                 <SwiperSlide key={item.id}>
-                  <div className="py-2">
+                  <div className="py-6">
                     <VerticalCard
                       key={item.id}
                       item={item}
@@ -152,6 +162,16 @@ const Home = () => {
                 </SwiperSlide>
               ))}
           </Swiper>
+          {/* <div className="horizontal-flex">
+            {trend &&
+              data?.map(item => (
+                <CardItem
+                  key={item.id}
+                  item={item}
+                  type={`${item?.media_type}`}
+                />
+              ))}
+          </div> */}
         </div>
       </div>
     </div>
@@ -159,3 +179,33 @@ const Home = () => {
 };
 
 export default Home;
+{
+  /* <div className="relative h-full w-full ">
+    <div className="h-screen w-full object-cover">
+        <img
+            src={imagePathOriginal + randMovie?.backdrop_path}
+            alt={randMovie?.title}
+        />
+    </div>
+    <div className="image-overlay absolute bottom-0 left-0 right-0 top-0"></div>
+    <div className="absolute bottom-0 left-0 right-0 top-0 z-[999] h-full w-full bg-gradient-to-r from-black/95 to-black/10"></div>
+    <div className="container absolute left-4 right-4 top-[50%] z-[999] mx-auto flex h-fit w-[80%] items-center justify-center overflow-x-hidden bg-gradient-to-t from-black/30 to-black/5 py-2"></div>
+</div> */
+}
+
+{
+  /* <div className=" flex h-full gap-2 overflow-auto px-2">
+    {data &&
+        data?.map((item) => (
+            <div key={item?.id} className="min-w-36">
+                <Link to={`/${item?.media_type}/${item?.id}`}>
+                    <img
+                        className=" h-[225px] w-[100%] rounded-lg object-cover"
+                        src={`${imagePath}/${item?.poster_path}`}
+                        onMouseEnter={hoverHandler}
+                    />
+                </Link>
+            </div>
+        ))}
+</div> */
+}
