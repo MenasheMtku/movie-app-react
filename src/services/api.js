@@ -7,7 +7,7 @@ const baseUrl = "https://api.themoviedb.org/3/";
 export const imagePath = "https://image.tmdb.org/t/p/w500/";
 export const imagePathOriginal = "https://image.tmdb.org/t/p/original/";
 
-export const fetchTrendingAll = async (timeWindow = "week") => {
+export const fetchTrendingAll = async (timeWindow = "day") => {
   const res = await axios.get(
     `${baseUrl}trending/all/${timeWindow}?api_key=${apiKey}`
   );

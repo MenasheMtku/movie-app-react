@@ -78,7 +78,7 @@ const DetailsPage = () => {
   console.log("Teasers", videos);
   return (
     <>
-      <div className="min-h-screen w-full">
+      <div className="min-h-screen w-full bg-black/60">
         <div className="box-1">
           <div
             className="image-dark-overlay-bottom z-[100] flex h-auto w-full items-center bg-gradient-to-r from-black/50 to-black/10 bg-cover bg-center bg-no-repeat py-2 md:h-[500px]"
@@ -105,16 +105,16 @@ const DetailsPage = () => {
           // style={{ border: "2px solid purple" }}
         >
           {cast.length === 0 ? (
-            <h2 className="mb-2 ml-1 mt-2 font-bold uppercase">
+            <h2 className="mb-5 ml-4 mt-2 text-base uppercase">
               No cast found
             </h2>
           ) : (
-            <h2 className="mb-2 ml-1 mt-2 font-bold uppercase">Cast</h2>
+            <h2 className="mb-5 ml-4 mt-2 text-base uppercase">Cast</h2>
           )}
           {/* {!cast && <p>No cast found</p>} */}
           {/* <div className="mb-10 mt-5 flex gap-2 rounded-2xl bg-yellow-600 px-2 py-2"> */}
           <Swiper
-            className="pl-10 py-2 bg-gray-800 rounded-sm"
+            className="px-4 py-2 bg-gray-800/30 rounded-sm"
             modules={[Navigation, Pagination, Scrollbar, A11y]}
             // slidesPerView={6}
             spaceBetween={10}
@@ -153,12 +153,12 @@ const DetailsPage = () => {
           </Swiper>
           {/* </div> */}
           {cast.length === 0 ? (
-            <h2 className="mb-2 font-bold ml-4 mt-6  uppercase">
+            <h2 className="mb-5 ml-4 mt-2 text-base uppercase">
               No Trailer found
             </h2>
           ) : (
             <>
-              <h2 className="mb-2 font-bold ml-4 mt-6  uppercase">Trailer</h2>
+              <h2 className="mb-5 ml-4 mt-2 text-base uppercase">Trailer</h2>
               <div className="mx-auto ml-4 mr-4 max-w-4xl">
                 <div className="relative h-0 pb-[56.25%] pt-[25px]">
                   <div className="absolute left-0 top-0 h-full w-full">
