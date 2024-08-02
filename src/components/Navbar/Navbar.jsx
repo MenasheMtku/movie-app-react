@@ -16,10 +16,7 @@ const Navbar = () => {
   // const { darkMode, toggleTheme } = useTheme();
 
   return (
-    <header
-      className="header bg-gray-300 text-black dark:bg-gray-800 dark:text-gray-200 px-8 py-3 duration-200"
-      ref={ref}
-    >
+    <header className="header  bg-gray-300 text-black   duration-200" ref={ref}>
       <div className="max-w-[1440px] mx-auto flex w-full items-center justify-between ">
         <Link
           to="/"

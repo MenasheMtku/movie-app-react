@@ -70,9 +70,7 @@ const Home = () => {
   console.log(all, "all");
 
   return (
-    <div
-      className={`h-full w-full ${isDark ? "bg-black/85 text-red-200" : "bg-gray-100 text-black"} duration-200`}
-    >
+    <div className={`h-full w-full  duration-200`}>
       <div className="min-h-full  pb-8">
         <div className="w-full h-[65dvh] relative block z-10 ">
           <Swiper
@@ -113,7 +111,7 @@ const Home = () => {
           {/* Swiper component */}
           <Swiper
             modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
-            className="px-4 py-1 bg-white dark:bg-black/10"
+            className="px-4 py-1 "
             slidesPerView={7}
             spaceBetween={10}
             loop={true}

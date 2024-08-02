@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import MovieCard from "../../components/CardVertical/VerticalCard.jsx";
+
 import "../../index.css";
 import { fetchDiscoverShows } from "../../services/api.js";
 import ProgressBar from "../../components/ProgressBar/ProgressBar.jsx";
-import { FaCaretDown } from "react-icons/fa";
+
 import Pagination from "../../components/Pagination/Pagination";
 import Menu from "../../components/Menu/Menu.jsx";
 import VerticalCard from "../../components/CardVertical/VerticalCard.jsx";
@@ -38,7 +38,7 @@ const Shows = () => {
   // }
   return (
     <>
-      <div className="min-h-full  pb-8 bg-gray-100 text-black  dark:bg-gray-900 dark:text-gray-200">
+      <div className="min-h-full  pb-8">
         <div className="mx-auto min-h-screen max-w-screen-xl">
           <Menu
             handlePage={setActivePage}

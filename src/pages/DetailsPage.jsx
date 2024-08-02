@@ -79,7 +79,7 @@ const DetailsPage = () => {
   console.log("Teasers", videos);
   return (
     <>
-      <div className="min-h-screen w-full bg-gray-100 text-black  dark:bg-gray-900 dark:text-gray-200 duration-200">
+      <div className="min-h-screen w-full ">
         <div className="box-1">
           <div
             className="image-dark-overlay-bottom z-[100] flex h-auto w-full items-center bg-gradient-to-r from-black/50 to-black/10 bg-cover bg-center bg-no-repeat py-2 md:h-[500px]"
