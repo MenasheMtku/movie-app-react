@@ -18,8 +18,7 @@ import {
 } from "swiper/modules";
 import { Swiper, SwiperSlide } from "../components/MySwiper/Swiper";
 import HorizontalCard from "../components/CardHorizotal/HorizotalCard";
-import VerticalCard from "../components/CardVertical/VerticalCard";
-import { ThemeContext } from "../contexts/themeContext/ThemeContext";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const Home = () => {
   const [trend, setTrend] = useState([]);
@@ -111,8 +110,8 @@ const Home = () => {
           {/* Swiper component */}
           <Swiper
             modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
-            className="px-4 py-1 "
-            slidesPerView={7}
+            className="px-4 py-1 bg-black/10"
+            slidesPerView={4}
             spaceBetween={10}
             loop={true}
             autoplay={{
@@ -132,10 +131,10 @@ const Home = () => {
                 slidesPerView: 3,
               },
               768: {
-                slidesPerView: 5,
+                slidesPerView: 2,
               },
               1000: {
-                slidesPerView: 7,
+                slidesPerView: 3,
               },
             }}
           >
