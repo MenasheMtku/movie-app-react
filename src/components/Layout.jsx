@@ -12,7 +12,7 @@ const Layout = ({ children }) => {
     <>
       <div
         className={
-          " dark:bg-primary dark:text-secondary bg-secondary text-primary grid grid-rows-[auto_1fr_auto] grid-cols-1 duration-200"
+          "bg-bkg text-content grid grid-rows-[auto_1fr_auto] grid-cols-1 duration-200"
         }
       >
         <Navbar />
