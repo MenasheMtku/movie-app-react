@@ -80,13 +80,13 @@ const Details = ({ details, type }) => {
         </>
       ) : (
         <>
-          <h2 className="mb-2 text-sm">Overvier Unavailable</h2>
+          <h2 className="mb-2 text-sm">Overview Unavailable</h2>
         </>
       )}
       <div className="mt-6 flex w-full flex-wrap  gap-2 md:flex-row">
         {details?.genres?.map(genre => (
           <p
-            className=" rounded bg-gray-500 px-2 py-1 text-center text-sm  font-semibold text-blue-gray-900 "
+            className=" rounded bg-gray-200 text-black p-1 text-center font-bold text-sm dark:text-gray-200 dark:bg-gray-500"
             key={genre?.id}
             // p="1"
           >
