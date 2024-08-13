@@ -1,4 +1,8 @@
+/* Nunito fontFamily */
 @import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
+
+/* roboto */
+/* @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"); */
 
 @tailwind base;
 @tailwind components;
@@ -7,14 +11,11 @@
 :root {
   font-family: "Nunito", sans-serif;
   line-height: 1.5;
-  /* color-scheme: light dark; */
-  /* color: rgba(255, 255, 255, 0.87); */
-  /* background-color: #eee; */
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
+  /* css variables */
   --nav-height: 3.8rem;
 }
 

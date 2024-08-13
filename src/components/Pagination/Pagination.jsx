@@ -6,21 +6,21 @@ const Pagination = ({ activePage, totalPages, setActivePage }) => {
     <div className="mb-4 mt-3 flex w-full items-center justify-center gap-8">
       <div className="my-2 flex max-w-64 gap-2">
         <button
-          className="rounded-xl bg-gray-600 text-white  dark:bg-gray-500 dark:text-gray-900 px-3 py-2"
+          className="bg-gray-400 text-gray-700  dark:bg-gray-600 dark:text-gray-200 p-2 rounded-xl font-bold"
           onClick={() => setActivePage(activePage - 1)}
           disabled={activePage === 1}
         >
           Prev
         </button>
         <button
-          className="rounded-xl bg-gray-600 text-white  dark:bg-gray-500 dark:text-gray-900 px-3 py-2"
+          className="bg-gray-400 text-gray-700  dark:bg-gray-600 dark:text-gray-200 p-2 rounded-xl font-bold"
           onClick={() => setActivePage(activePage + 1)}
           disabled={activePage === totalPages}
         >
           Next
         </button>
       </div>
-      <div className="flex  gap-3">
+      <div className="flex gap-3">
         <p className="text-base font-semibold">{activePage}</p>
         <p className="text-base font-semibold">of</p>
         <p className="text-base font-semibold">{totalPages}</p>

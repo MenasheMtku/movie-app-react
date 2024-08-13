@@ -16,17 +16,20 @@ const Navbar = () => {
   // const { darkMode, toggleTheme } = useTheme();
 
   return (
-    <header className="header  bg-gray-300 text-black   duration-200" ref={ref}>
+    <header
+      className="header  bg-gray-300 text-gray-800 dark:bg-gray-500 dark:text-gray-100  duration-200"
+      ref={ref}
+    >
       <div className="max-w-[1440px] mx-auto flex w-full items-center justify-between ">
         <Link
           to="/"
-          className="text-3xl md:text-4xl font-bold text-cyan-700 dark:text-cyan-500"
+          className="text-3xl md:text-4xl font-bold text-cyan-500 dark:text-cyan-500"
         >
           TMDB
         </Link>
-        <div className="hidden lg:flex lg:flex-row lg:items-center">
-          <nav className="">
-            <ul className="justify-between font-semibold ">
+        <div className="hidden lg:flex lg:flex-row lg:items-center ">
+          <nav className="mr-10 ">
+            <ul className="justify-between font-bold ">
               <Link className="mr-4" to="/">
                 Home
               </Link>
@@ -72,7 +75,7 @@ const Navbar = () => {
                   Search
                 </Link>
               </ul>
-              <div className="pl-3">
+              <div className="pl-3 mt-4">
                 <ThemeToggle />
               </div>
             </div>
