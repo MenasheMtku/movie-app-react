@@ -66,8 +66,8 @@ const Home = () => {
     fetchData();
   }, []);
 
-  console.log(trend, "trend");
-  console.log(all, "all");
+  // console.log(trend, "trend");
+  // console.log(all, "all");
 
   return (
     <div className={`h-full w-full  duration-200`}>
