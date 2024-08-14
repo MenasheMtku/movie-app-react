@@ -6,8 +6,6 @@ import Footer from "./Footer/Footer";
 import { ThemeContext } from "../contexts/themeContext/ThemeContext";
 
 const Layout = ({ children }) => {
-  // const { isDark, setIsDark } = useContext(ThemeContext);
-
   return (
     <>
       <div
