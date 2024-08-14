@@ -8,18 +8,15 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  font-family: "Nunito", sans-serif;
-  line-height: 1.5;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  --nav-height: 3.8rem;
-}
-
 @layer base {
   :root {
+    font-family: "Nunito", sans-serif;
+    line-height: 1.5;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    --nav-height: 3.8rem;
     --color-bkg: 210deg 40% 98%;
     --color-content: 217deg 32.6% 17.5%;
     --accent-1: 288deg 95.8% 90.6%;
