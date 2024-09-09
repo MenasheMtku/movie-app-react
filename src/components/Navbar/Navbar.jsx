@@ -16,13 +16,13 @@ const Navbar = () => {
   // const { darkMode, toggleTheme } = useTheme();
 
   return (
-    <header className="header bg-black/90 px-8 py-3" ref={ref}>
-      <div className="max-w-[1440px] mx-auto flex w-full items-center justify-between ">
-        <Link to="/" className="text-3xl font-bold text-cyan-500">
+    <header className="header z-[1000] bg-black/65 px-8 py-3" ref={ref}>
+      <div className="max-w-[1440px] mx-auto flex w-full items-center justify-between">
+        <Link to="/" className="text-3xl font-bold text-cyan-300">
           TMDB
         </Link>
         <nav className="hidden lg:block">
-          <ul className="justify-between font-semibold ">
+          <ul className="justify-between">
             <Link className="mr-4" to="/">
               Home
             </Link>

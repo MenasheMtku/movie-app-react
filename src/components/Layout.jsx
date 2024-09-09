@@ -7,7 +7,7 @@ import { ThemeContext } from "../contexts/themeContext/ThemeContext";
 
 const Layout = ({ children }) => {
   return (
-    <div className="grid grid-rows-[auto_1fr_auto] grid-cols-1">
+    <div>
       <Navbar />
       <main>{children}</main>
       <Footer />

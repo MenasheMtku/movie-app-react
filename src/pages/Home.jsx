@@ -18,6 +18,9 @@ import {
 } from "swiper/modules";
 import { Swiper, SwiperSlide } from "../components/MySwiper/Swiper";
 import HorizontalCard from "../components/CardHorizotal/HorizotalCard";
+
+// import { ThemeContext } from "../contexts/themeContext/ThemeContext";
+
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import VerticalCard from "../components/CardVertical/VerticalCard";
 
@@ -25,6 +28,7 @@ const Home = () => {
   const [trend, setTrend] = useState([]);
   const [all, setAll] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  // const { isDark, setIsDark } = useContext(ThemeContext);
   // const [timeWindow, setTimeWindow] = useState("day");
 
   // let randMovie = data[Math.floor(Math.random() * data.length)]
@@ -68,9 +72,9 @@ const Home = () => {
   // console.log(all, "all");
 
   return (
-    <div className="h-full w-full">
+    <div className={`h-full w-full  duration-200`}>
       <div className="min-h-full  pb-8">
-        <div className="md:w-full md:h-[65dvh]  relative block z-10  mx-auto">
+        <div className="w-full h-[65dvh] relative block z-10 ">
           <Swiper
             modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
             className="absolute top-0 right-0 left-0 bottom-0"
@@ -112,7 +116,7 @@ const Home = () => {
         </div>
         <div className="min-h-screen max-w-screen-2xl  mx-auto px-5">
           <div className="flex flex-col sm:flex-row  items-baseline justify-between pt-8">
-            <h1 className="px-4 text-2xl font-medium pb-1">Trending</h1>
+            <h1 className="pl-4 text-3xl font-semibold pb-2">Trending</h1>
           </div>
           {isLoading && <ProgressBar />}
           {/* Swiper component */}
@@ -121,6 +125,7 @@ const Home = () => {
             className="px-4 py-1 bg-black/10"
             slidesPerView={7}
             spaceBetween={10}
+            loop={true}
             autoplay={{
               delay: 10000,
               disableOnInteraction: false,
@@ -138,7 +143,10 @@ const Home = () => {
                 slidesPerView: 3,
               },
               768: {
-                slidesPerView: 2,
+                slidesPerView: 5,
+              },
+              1000: {
+                slidesPerView: 4,
               },
               1000: {
                 slidesPerView: 6,
@@ -151,7 +159,7 @@ const Home = () => {
             {all &&
               all?.map(item => (
                 <SwiperSlide key={item.id}>
-                  <div className="py-6">
+                  <div className="py-2">
                     <VerticalCard
                       key={item.id}
                       item={item}
