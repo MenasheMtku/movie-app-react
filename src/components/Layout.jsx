@@ -7,11 +7,17 @@ import { ThemeContext } from "../contexts/themeContext/ThemeContext";
 
 const Layout = ({ children }) => {
   return (
-    <div>
-      <Navbar />
-      <main>{children}</main>
-      <Footer />
-    </div>
+    <>
+      <div
+        className={
+          "bg-bkg text-content grid grid-rows-[auto_1fr_auto] grid-cols-1 duration-200"
+        }
+      >
+        <Navbar />
+        <main>{children}</main>
+        <Footer />
+      </div>
+    </>
   );
 };
 Layout.propTypes = {

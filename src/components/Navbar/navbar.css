@@ -13,7 +13,9 @@ a {
   align-items: center;
   width: 100%;
   height: var(--nav-height);
-  /* color: aqua; */
+  position: fixed;
+  top: 0;
+  z-index: 99999;
 }
 
 .logo {

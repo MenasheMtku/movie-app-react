@@ -16,27 +16,34 @@ const Navbar = () => {
   // const { darkMode, toggleTheme } = useTheme();
 
   return (
-    <header className="header z-[1000] bg-black/65 px-8 py-3" ref={ref}>
-      <div className="max-w-[1440px] mx-auto flex w-full items-center justify-between">
-        <Link to="/" className="text-3xl font-bold text-cyan-300">
+    <header className="header bg-bkg text-content duration-200" ref={ref}>
+      <div className="max-w-[1440px] mx-auto flex w-full items-center justify-between ">
+        <Link
+          to="/"
+          className="text-3xl md:text-4xl font-bold text-cyan-500 dark:text-cyan-500"
+        >
           TMDB
         </Link>
-        <nav className="hidden lg:block">
-          <ul className="justify-between">
-            <Link className="mr-4" to="/">
-              Home
-            </Link>
-            <Link className="mr-4" to="/movies">
-              Movies
-            </Link>
-            <Link className="mr-4" to="/shows">
-              TV Shows
-            </Link>
-            <Link className="mr-4 w-full" to="/search">
-              Search
-            </Link>
-          </ul>
-        </nav>
+        <div className="hidden lg:flex lg:flex-row lg:items-center ">
+          <nav className="mr-10 ">
+            <ul className="justify-between font-bold ">
+              <Link className="mr-4" to="/">
+                Home
+              </Link>
+              <Link className="mr-4" to="/movies">
+                Movies
+              </Link>
+              <Link className="mr-4" to="/shows">
+                TV Shows
+              </Link>
+              <Link className="mr-4 w-full" to="/search">
+                Search
+              </Link>
+            </ul>
+          </nav>
+          <ThemeToggle />
+        </div>
+
         <div className="block lg:hidden">
           <Hamburger
             toggled={isOpen}

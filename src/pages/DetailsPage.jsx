@@ -79,7 +79,7 @@ const DetailsPage = () => {
   console.log("Teasers", videos);
   return (
     <>
-      <div className="min-h-screen w-full bg-black/60">
+      <div className="min-h-screen w-full ">
         <div className="box-1">
           <div
             className="image-dark-overlay-bottom z-[100] flex h-auto w-full items-center bg-gradient-to-r from-black/50 to-black/10 bg-cover bg-center bg-no-repeat py-2 md:h-[500px]"
@@ -115,7 +115,7 @@ const DetailsPage = () => {
           {/* {!cast && <p>No cast found</p>} */}
           {/* <div className="mb-10 mt-5 flex gap-2 rounded-2xl bg-yellow-600 px-2 py-2"> */}
           <Swiper
-            className="px-4 py-2 bg-gray-800/30 rounded-sm"
+            className="px-3 py-2  rounded-sm"
             modules={[Navigation, Pagination, Scrollbar, A11y]}
             slidesPerView={6}
             spaceBetween={10}
