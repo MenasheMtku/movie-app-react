@@ -33,7 +33,7 @@ const Home = () => {
       try {
         const [moviesData, allData] = await Promise.all([
           fetchPopularMovies(),
-          fetchTrendingAll(timeWindow),
+          fetchTrendingAll(),
         ]);
 
         // set trend Movies
@@ -62,7 +62,7 @@ const Home = () => {
     //     setIsLoading(false);
     //   });
     fetchData();
-  }, [timeWindow]);
+  }, []);
 
   // console.log(trend, "trend");
   // console.log(all, "all");
