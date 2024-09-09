@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import "../../index.css";
 import Image from "../Image/Image";
 import Skeleton from "../Skeleton";
+import Title from "../Title/Title";
 
 const VerticalCard = ({ item, type }) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -42,17 +43,17 @@ const VerticalCard = ({ item, type }) => {
             </div>
           </div>
         </Link>
-        <div className="p-3">
+        {/* <div className="p-1">
           {isLoading ? (
             <div className="h-[5px] w-2/4 mx-auto bg-blue-gray-500/10 mt-0"></div>
           ) : (
-            <h4 className="text-center cursor-default text-base capitalize">
+            <h4 className="text-center cursor-default text-base capitalize bg-white">
               {title?.length > 30
                 ? title.replace(/:/g, "").split(" ").slice(0, 3).join(" ")
                 : title}
             </h4>
           )}
-        </div>
+        </div> */}
       </div>
     </>
   );

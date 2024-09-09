@@ -51,7 +51,7 @@ const Search = () => {
   return (
     <>
       {/* <div className="under-navbar h-full"> */}
-      <div className="min-h-screen w-full bg-black/70 pb-8">
+      <div className="min-h-screen w-full pb-8 ">
         <div className="mx-auto h-full max-w-screen-xl">
           <form
             onSubmit={handleSearch}
@@ -124,3 +124,5 @@ const Search = () => {
 };
 
 export default Search;
+
+// bg-gray-100 text-black  dark:bg-gray-600 dark:text-gray-200

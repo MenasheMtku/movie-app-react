@@ -17,6 +17,7 @@ import { Swiper, SwiperSlide } from "../components/MySwiper/Swiper";
 import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
 import Image from "../components/Image/Image";
 import Details from "../components/Details/Details";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const DetailsPage = () => {
   const router = useParams();
@@ -78,7 +79,7 @@ const DetailsPage = () => {
   console.log("Teasers", videos);
   return (
     <>
-      <div className="min-h-screen w-full bg-black/60">
+      <div className="min-h-screen w-full ">
         <div className="box-1">
           <div
             className="image-dark-overlay-bottom z-[100] flex h-auto w-full items-center bg-gradient-to-r from-black/50 to-black/10 bg-cover bg-center bg-no-repeat py-2 md:h-[500px]"
@@ -114,13 +115,16 @@ const DetailsPage = () => {
           {/* {!cast && <p>No cast found</p>} */}
           {/* <div className="mb-10 mt-5 flex gap-2 rounded-2xl bg-yellow-600 px-2 py-2"> */}
           <Swiper
-            className="px-4 py-2 bg-gray-800/30 rounded-sm"
+            className="px-3 py-2  rounded-sm"
             modules={[Navigation, Pagination, Scrollbar, A11y]}
-            // slidesPerView={6}
+            slidesPerView={6}
             spaceBetween={10}
             // navigation
             // paginaton
             breakpoints={{
+              0: {
+                slidesPerView: 1,
+              },
               400: {
                 slidesPerView: 2,
               },
@@ -140,14 +144,16 @@ const DetailsPage = () => {
                 ?.filter(item => item?.profile_path)
                 .map(item => (
                   <SwiperSlide key={item.id}>
-                    <div key={item?.id}>
-                      <Image
-                        className="rounded-sm w-[120px]"
-                        src={`${imagePath}/${item?.profile_path}`}
-                        alt={item?.name}
-                        _width={160}
-                      />
-                    </div>
+                    {/* <div
+                      key={item?.id}
+                      className="relative rounded-full w-full min-h-[20rem] bg-white"
+                    ></div> */}
+                    <Image
+                      src={`${imagePath}/${item?.profile_path}`}
+                      title={item?.name}
+                      width={160}
+                      round="rounded-full"
+                    />
                   </SwiperSlide>
                 ))}
           </Swiper>

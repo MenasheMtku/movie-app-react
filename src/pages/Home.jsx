@@ -18,17 +18,14 @@ import {
 } from "swiper/modules";
 import { Swiper, SwiperSlide } from "../components/MySwiper/Swiper";
 import HorizontalCard from "../components/CardHorizotal/HorizotalCard";
-
-// import { ThemeContext } from "../contexts/themeContext/ThemeContext";
-
-import { LazyLoadImage } from "react-lazy-load-image-component";
 import VerticalCard from "../components/CardVertical/VerticalCard";
+import { ThemeContext } from "../contexts/themeContext/ThemeContext";
 
 const Home = () => {
   const [trend, setTrend] = useState([]);
   const [all, setAll] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  // const { isDark, setIsDark } = useContext(ThemeContext);
+  const { isDark, setIsDark } = useContext(ThemeContext);
   // const [timeWindow, setTimeWindow] = useState("day");
 
   // let randMovie = data[Math.floor(Math.random() * data.length)]
@@ -69,8 +66,8 @@ const Home = () => {
     fetchData();
   }, []);
 
-  console.log(trend, "trend");
-  console.log(all, "all");
+  // console.log(trend, "trend");
+  // console.log(all, "all");
 
   return (
     <div className={`h-full w-full  duration-200`}>
@@ -114,7 +111,7 @@ const Home = () => {
           {/* Swiper component */}
           <Swiper
             modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
-            className="px-4 py-1 bg-black/10"
+            className="px-4 py-1 "
             slidesPerView={7}
             spaceBetween={10}
             loop={true}
@@ -138,12 +135,6 @@ const Home = () => {
                 slidesPerView: 5,
               },
               1000: {
-                slidesPerView: 4,
-              },
-              1000: {
-                slidesPerView: 6,
-              },
-              1200: {
                 slidesPerView: 7,
               },
             }}

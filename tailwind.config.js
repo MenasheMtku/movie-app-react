@@ -1,19 +1,21 @@
-const withMT = require("@material-tailwind/react/utils/withMT");
 /** @type {import('tailwindcss').Config} */
-module.exports = withMT({
-  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+export default {
+  darkMode: "selector",
+  content: ["./index.html", "./src/**/*.{html,js,ts,jsx,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        accent: {
+          1: "hsl(var(--accent-1) / <alpha-value>)",
+          2: "hsl(var(--accent-2) / <alpha-value>)",
+        },
+        bkg: "hsl(var(--color-bkg) / <alpha-value>)",
+        content: "hsl(var(--color-content) / <alpha-value>)",
+        primary: "#2c2f33",
+        secondary: "#e5e5e5",
+      },
+    },
   },
 
   plugins: [],
-});
-// /** @type {import('tailwindcss').Config} */
-// export default {
-//     content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
-//     theme: {
-//         extend: {},
-//     },
-
-//     plugins: [],
-// }
+};

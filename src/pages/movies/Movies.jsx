@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
-import MovieCard from "../../components/CardVertical/VerticalCard";
+
 import "../../index.css";
+
 import { fetchDiscoverMovies } from "../../services/api";
 import ProgressBar from "../../components/ProgressBar/ProgressBar";
 import Pagination from "../../components/Pagination/Pagination";
 import Menu from "../../components/Menu/Menu";
+import VerticalCard from "../../components/CardVertical/VerticalCard";
+import Title from "../../components/Title/Title";
 
 const Movies = () => {
   const [data, setData] = useState([]);
@@ -51,9 +54,14 @@ const Movies = () => {
           {isLoading && <ProgressBar />}
           <div className="movie-grid">
             {data &&
-              data?.map(item => (
-                <MovieCard key={item.id} item={item} type="movie" />
-              ))}
+              data
+                ?.filter(item => item?.backdrop_path !== null)
+                .map(item => (
+                  <div className="flex flex-col" key={item.id}>
+                    <VerticalCard item={item} type="movie" />
+                    <Title title={item.title} />
+                  </div>
+                ))}
           </div>
           {/* <div className="bg-blue-500 items-center w-60 mx-auto p-1 justify-center">
             <button>
@@ -74,3 +82,15 @@ const Movies = () => {
 };
 
 export default Movies;
+
+{
+  /* <div className="p-3">
+{isLoading ? (
+  <div className="h-[15px] w-full mx-auto bg-red-500 mt-0"></div>
+) : (
+  <>
+  
+  </>
+)}
+</div> */
+}

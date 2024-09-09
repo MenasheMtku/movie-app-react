@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
-import MovieCard from "../../components/CardVertical/VerticalCard.jsx";
+
 import "../../index.css";
 import { fetchDiscoverShows } from "../../services/api.js";
 import ProgressBar from "../../components/ProgressBar/ProgressBar.jsx";
-import { FaCaretDown } from "react-icons/fa";
+
 import Pagination from "../../components/Pagination/Pagination";
 import Menu from "../../components/Menu/Menu.jsx";
+import VerticalCard from "../../components/CardVertical/VerticalCard.jsx";
+import Title from "../../components/Title/Title.jsx";
 
 const Shows = () => {
   const [shows, setShows] = useState([]);
@@ -59,7 +61,10 @@ const Shows = () => {
               shows
                 .filter(item => item?.backdrop_path !== null)
                 .map(item => (
-                  <MovieCard key={item?.id} item={item} type="tv" />
+                  <div className="flex flex-col " key={item.id}>
+                    <VerticalCard item={item} type="tv" />
+                    <Title title={item.name} />
+                  </div>
                 ))}
           </div>
           {shows?.length > 0 && !loading && (

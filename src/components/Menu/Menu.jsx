@@ -9,7 +9,7 @@ const Menu = ({ handlePage, handleSort, header, opt1, opt2 }) => {
         </div>
         <div className="w-[120px] font-bold">
           <select
-            className="block w-full p-1 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500"
+            className="block w-full p-1 mb-6 text-sm outline-none rounded-lg border-2 border-gray-800   bg-gray-200  text-black  focus:ring-blue-500 focus:border-blue-500  dark:text-gray-800 dark:border-white dark:focus:ring-blue-500 dark:focus:border-blue-500 "
             onChange={e => {
               handlePage(1);
               handleSort(e.target.value);
