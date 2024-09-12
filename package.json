@@ -14,6 +14,7 @@
     "axios": "^1.7.2",
     "framer-motion": "^11.2.6",
     "hamburger-react": "^2.5.1",
+    "next": "^14.2.10",
     "node-fetch": "^2.7.0",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
@@ -40,6 +41,7 @@
     "prettier": "^3.2.5",
     "prettier-plugin-tailwindcss": "^0.5.14",
     "tailwindcss": "^3.4.1",
+    "typescript": "^5.6.2",
     "vite": "^5.0.8"
   }
 }

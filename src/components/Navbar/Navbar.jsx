@@ -84,23 +84,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
-{
-  /* <label className="flex items-center cursor-pointer">
-            <div className="relative">
-              <input
-                type="checkbox"
-                className="sr-only"
-                checked={darkMode}
-                onChange={toggleTheme}
-              />
-              <div className="block bg-gray-600 w-12 h-6 rounded-full"></div>
-              <div
-                className={`absolute left-0 top-0 bg-white w-6 h-6 rounded-full transition transform ${darkMode ? "translate-x-full bg-gray-300" : ""}`}
-              ></div>
-            </div>
-            <span className="ml-3 text-sm font-medium">
-              {darkMode ? "Dark Mode" : "Light Mode"}
-            </span>
-          </label> */
-}

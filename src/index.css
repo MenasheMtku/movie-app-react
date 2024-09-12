@@ -31,13 +31,14 @@
   }
 }
 
-/* body {
-    min-height: 100vh;
-} */
-
-.under-navbar {
-  /* height: calc((100%-var(--nav-height))); */
+body {
+  min-height: 100vh;
   padding-top: var(--nav-height);
+}
+
+.underNavbar {
+  /* height: calc((100%-var(--nav-height))); */
+  padding-top: var(--nav-height) !important;
   min-height: 100vh;
 }
 

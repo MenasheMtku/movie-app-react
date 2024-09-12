@@ -1,9 +1,7 @@
-import React, { useContext } from "react";
-import Navbar from "./Navbar/Navbar";
 import PropTypes from "prop-types";
+import React from "react";
 import Footer from "./Footer/Footer";
-
-import { ThemeContext } from "../contexts/themeContext/ThemeContext";
+import Navbar from "./Navbar/Navbar";
 
 const Layout = ({ children }) => {
   return (
@@ -14,7 +12,7 @@ const Layout = ({ children }) => {
         }
       >
         <Navbar />
-        <main>{children}</main>
+        <main className="">{children}</main>
         <Footer />
       </div>
     </>

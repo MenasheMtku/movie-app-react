@@ -1,15 +1,14 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ReactDOM from "react-dom/client";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { ThemeProvider } from "../src/contexts/themeContext/ThemeContext.jsx";
 import App from "./App.jsx";
 import "./index.css";
+import DetailsPage from "./pages/DetailsPage.jsx";
 import Home from "./pages/Home.jsx";
 import Movies from "./pages/movies/Movies.jsx";
-import Shows from "./pages/shows/Shows.jsx";
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import DetailsPage from "./pages/DetailsPage.jsx";
 import Search from "./pages/search/Search.jsx";
-import { ThemeProvider } from "../src/contexts/themeContext/ThemeContext.jsx";
+import Shows from "./pages/shows/Shows.jsx";
 
 const router = createBrowserRouter([
   {
