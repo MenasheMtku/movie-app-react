@@ -1,10 +1,12 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  purge: ["./src/**/*.{js,jsx,ts,tsx}", "./public/index.html"],
   darkMode: "class",
   content: ["./index.html", "./src/**/*.{html,js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ["Nunito", "sans-serif"],
+      },
       colors: {
         accent: {
           1: "hsl(var(--accent-1) / <alpha-value>)",
