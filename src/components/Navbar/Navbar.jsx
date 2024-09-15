@@ -12,8 +12,12 @@ const Navbar = () => {
   const ref = useRef(null);
   useClickAway(ref, () => setOpen(false));
 
-  // Theme
-  // const { darkMode, toggleTheme } = useTheme();
+  const navLinks = [
+    { id: 1, title: "Home", to: "/" },
+    { id: 2, title: "Movies", to: "/movies" },
+    { id: 3, title: "TV Shows", to: "/shows" },
+    { id: 4, title: "Search", to: "/search" },
+  ];
 
   return (
     <header className="header bg-bkg text-content duration-200" ref={ref}>
@@ -27,18 +31,13 @@ const Navbar = () => {
         <div className="hidden lg:flex lg:flex-row lg:items-center ">
           <nav className="mr-10 ">
             <ul className="justify-between font-bold ">
-              <Link className="mr-4" to="/">
-                Home
-              </Link>
-              <Link className="mr-4" to="/movies">
-                Movies
-              </Link>
-              <Link className="mr-4" to="/shows">
-                TV Shows
-              </Link>
-              <Link className="mr-4 w-full" to="/search">
-                Search
-              </Link>
+              {navLinks.map(link => {
+                return (
+                  <Link key={link.id} className="mr-4" to={link.to}>
+                    {link.title}
+                  </Link>
+                );
+              })}
             </ul>
           </nav>
           <ThemeToggle />
@@ -53,24 +52,24 @@ const Navbar = () => {
           />
           {isOpen && (
             <div
-              className={`fixed bottom-0 right-0 top-[--nav-height] z-[9999] h-screen w-[300px] text-black bg-gray-100 dark:border-b-white/20 dark:bg-gray-700 dark:text-gray-300 p-6 ${isOpen ? "translate-x-0" : "translate-x-full"} ease-in-out duration-800 font-semibold`}
+              className={`fixed bottom-0 right-0 top-[--nav-height] z-[9999] h-screen w-[300px] text-black bg-bkg dark:border-b-white/20 dark:bg-gray-700 dark:text-gray-300 p-6 ${isOpen ? "translate-x-0" : "translate-x-full"} ease-in-out font-semibold`}
             >
               <ul
                 className="flex h-[auto]  w-full flex-col 
                              justify-start gap-9 pl-3"
               >
-                <Link className="text-lg" to="/" onClick={useClickAway}>
-                  Home
-                </Link>
-                <Link className="text-lg" to="/movies" onClick={useClickAway}>
-                  Movies
-                </Link>
-                <Link className="text-lg" to="/shows" onClick={useClickAway}>
-                  TV Shows
-                </Link>
-                <Link className="text-lg" to="/search" onClick={useClickAway}>
-                  Search
-                </Link>
+                {navLinks.map(link => {
+                  return (
+                    <Link
+                      key={link.id}
+                      className="text-lg"
+                      to={link.to}
+                      onClick={useClickAway}
+                    >
+                      {link.title}
+                    </Link>
+                  );
+                })}
               </ul>
               <div className="pl-3 mt-4">
                 <ThemeToggle />
