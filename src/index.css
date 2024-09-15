@@ -37,7 +37,6 @@ body {
 }
 
 .underNavbar {
-  /* height: calc((100%-var(--nav-height))); */
   padding-top: var(--nav-height) !important;
   min-height: 100vh;
 }
