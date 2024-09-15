@@ -4,9 +4,9 @@ export default {
   content: ["./index.html", "./src/**/*.{html,js,ts,jsx,tsx}"],
   theme: {
     extend: {
-      fontFamily: {
-        nunito: ["Nunito", "sans-serif"],
-      },
+      // fontFamily: {
+      //   nunito: ["Nunito", "sans-serif"],
+      // },
       colors: {
         accent: {
           1: "hsl(var(--accent-1) / <alpha-value>)",
