@@ -4,18 +4,17 @@ export default {
   content: ["./index.html", "./src/**/*.{html,js,ts,jsx,tsx}"],
   theme: {
     extend: {
-      // fontFamily: {
-      //   nunito: ["Nunito", "sans-serif"],
-      // },
       colors: {
+        // primary: "var(--primary-color)",
+        // secondary: "var(--secondary-color)",
         accent: {
           1: "hsl(var(--accent-1) / <alpha-value>)",
           2: "hsl(var(--accent-2) / <alpha-value>)",
         },
         bkg: "hsl(var(--color-bkg) / <alpha-value>)",
         content: "hsl(var(--color-content) / <alpha-value>)",
-        primary: "#2c2f33",
-        secondary: "#e5e5e5",
+        primary: "var(--primary-color)",
+        secondary: "var(--secondary-color)",
       },
     },
   },

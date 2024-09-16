@@ -5,16 +5,12 @@ import { ThemeProvider } from "../src/contexts/themeContext/ThemeContext.jsx";
 import Layout from "./components/Layout.jsx";
 
 const App = () => {
-  console.log("App");
-
   return (
-    <>
-      <ThemeProvider>
-        <Layout>
-          <Outlet />
-        </Layout>
-      </ThemeProvider>
-    </>
+    <ThemeProvider>
+      <Layout>
+        <Outlet />
+      </Layout>
+    </ThemeProvider>
   );
 };
 

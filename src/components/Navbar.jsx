@@ -19,7 +19,7 @@ const Navbar = () => {
 
   return (
     <header
-      className="flex px-4 py-2 justify-between items-center w-full h-[var(--nav-height)] fixed top-0 z-[99999] bg-bkg text-content duration-200 "
+      className="flex px-4 py-2 justify-between items-center w-full h-[var(--nav-height)] fixed top-0 z-[99999] bg-secondary text-primary duration-200 "
       ref={ref}
     >
       <div className="max-w-[1440px] mx-auto flex w-full items-center justify-between ">
@@ -36,7 +36,7 @@ const Navbar = () => {
                 return (
                   <Link
                     key={link.id}
-                    className="mr-4 hover:border-b-[2px] border-content py-4 duration-150"
+                    className="mr-4 hover:border-b-[2px] border-primary py-4 duration-150"
                     to={link.to}
                   >
                     {link.title}
@@ -57,7 +57,7 @@ const Navbar = () => {
           />
           {isOpen && (
             <div
-              className={`bg-bkg/95 text-content fixed bottom-0 right-0 top-[--nav-height] z-[9999] h-screen w-[300px] dark:border-b-white/20 p-6 ${isOpen ? "translate-x-0" : "translate-x-full"} ease-in-out font-semibold`}
+              className={`bg-secondary text-primary fixed bottom-0 right-0 top-[--nav-height] z-[9999] h-screen w-[300px] dark:border-b-white/20 p-6 ${isOpen ? "translate-x-0" : "translate-x-full"} ease-in-out font-semibold`}
             >
               <ul
                 className="flex h-[auto]  w-full flex-col 

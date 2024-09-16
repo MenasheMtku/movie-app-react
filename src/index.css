@@ -12,17 +12,21 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   --nav-height: 3.8rem;
-  --color-bkg: 210deg 40% 98%;
-  --color-content: 217deg 32.6% 17.5%;
   --accent-1: 288deg 95.8% 90.6%;
   --accent-2: 168deg 83.8% 78.2%;
+  --color-bkg: 210deg 40% 98%;
+  --color-content: 217deg 32.6% 17.5%;
+  --primary-color: #2c2f33;
+  --secondary-color: #e5e5e5;
 }
 
 :root[class="dark"] {
-  --color-bkg: 217deg 32.6% 27.5%;
-  --color-content: 210deg 40% 98%;
   --accent-1: 168deg 83.8% 78.2%;
   --accent-2: 288deg 95.8% 90.6%;
+  --color-bkg: 217deg 32.6% 27.5%;
+  --color-content: 210deg 40% 98%;
+  --secondary-color: #2c2f33;
+  --primary-color: #e5e5e5;
 }
 
 body {
