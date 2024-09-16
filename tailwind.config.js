@@ -18,6 +18,8 @@ export default {
       },
     },
   },
-
+  safelist: [
+    "dark", // Safelist the "dark" class so it’s never purged
+  ],
   plugins: [],
 };
