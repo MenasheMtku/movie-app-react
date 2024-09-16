@@ -1,23 +1,22 @@
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import "../index.css";
 import {
+  fetchCredits,
   fetchDetails,
+  fetchVideos,
   imagePath,
   imagePathOriginal,
-  fetchCredits,
-  fetchVideos,
 } from "../services/api";
-import { useParams } from "react-router-dom";
 
-import ProgressBar from "../components/ProgressBar/ProgressBar";
+import ProgressBar from "../components/ProgressBar";
 import VideoCompoennet from "../components/Video/VideoCompoennet";
 import { defaultImage } from "../services/api";
 
-import { Swiper, SwiperSlide } from "../components/MySwiper/Swiper";
-import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
-import Image from "../components/Image/Image";
+import { A11y, Navigation, Pagination, Scrollbar } from "swiper/modules";
 import Details from "../components/Details/Details";
-import { LazyLoadImage } from "react-lazy-load-image-component";
+import { Swiper, SwiperSlide } from "../components/MySwiper/Swiper";
+import Poster from "../components/Poster";
 
 const DetailsPage = () => {
   const router = useParams();
@@ -85,14 +84,12 @@ const DetailsPage = () => {
             className="image-dark-overlay-bottom z-[100] flex h-auto w-full items-center bg-gradient-to-r from-black/50 to-black/10 bg-cover bg-center bg-no-repeat py-2 md:h-[500px]"
             style={{
               backgroundImage: `url(${wide_image})`,
-              // filter: `blur(${1}px)`,
-              // shapeRendering: "-moz-initial",
             }}
           >
             <div className="container mx-auto my-4 w-11/12 md:my-0">
               <div className="container flex flex-col  gap-4 rounded-full px-2  md:flex-row  md:items-center md:gap-10">
                 <div className="w-[220px]">
-                  <Image src={imgSrc} title={title} />
+                  <Poster src={imgSrc} title={title} />
                 </div>
                 <div>
                   <Details details={details} type={type} />
@@ -148,7 +145,7 @@ const DetailsPage = () => {
                       key={item?.id}
                       className="relative rounded-full w-full min-h-[20rem] bg-white"
                     ></div> */}
-                    <Image
+                    <Poster
                       src={`${imagePath}/${item?.profile_path}`}
                       title={item?.name}
                       width={160}

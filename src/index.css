@@ -30,31 +30,9 @@ body {
   padding-top: var(--nav-height);
 }
 
-.underNavbar {
-  padding-top: var(--nav-height) !important;
-  min-height: 100vh;
-}
-
-.filter-navbar {
-  filter: blur(15px);
-}
-
-.image-overlay {
-  border-image: fill 0 linear-gradient(#0003, #191919);
-}
-.detail-overlay {
-  border-image: fill 0 linear-gradient(#000, #0003);
-}
-.image-dark-overlay-bottom {
-  border-image: fill 0 linear-gradient(#0008, #191919);
-}
-.image-dark-overlay-top {
-  border-image: fill 0 linear-gradient(#191919, #0008);
-}
-.hero-image-overlay {
-  border-image: fill 0 linear-gradient(#0003, #222121ff);
-}
-
-.gray-image {
-  filter: grayscale(65%);
+.movie-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(168px, 1fr));
+  padding: 0 1rem;
+  gap: 1rem;
 }

@@ -1,27 +1,34 @@
-export const minutesTohours = (minutes) => {
-    const hours = Math.floor(minutes / 60)
-    const mins = minutes % 60
+export const shortenOverview = overvie => {
+  if (overvie.length <= 100) return overvie;
+  const short = overvie.slice(0, 150);
 
-    return `${hours}h ${mins}m`
-}
+  return short + "...";
+};
+export const shortenTitle = title => {
+  if (!title?.length > 30) return title;
 
-export const ratingToPercentage = (rating) => {
-    return (rating * 10)?.toFixed(0)
-}
+  const shortTitle = title.replace(/:/g, "").split(" ").slice(0, 3).join(" ");
 
-export const resolveRatingColor = (rating) => {
-    if (rating >= 7) {
-        return "green"
-    } else if (rating >= 5) {
-        return "orange"
-    } else {
-        return "red"
-    }
-}
+  return shortTitle;
+};
 
-export const shortenOverview = (overvie) => {
-    if (overvie.length <= 100) return overvie
-    const short = overvie.slice(0, 150)
+export const minutesTohours = minutes => {
+  const hours = Math.floor(minutes / 60);
+  const mins = minutes % 60;
 
-    return short + "..."
-}
+  return `${hours}h ${mins}m`;
+};
+
+export const ratingToPercentage = rating => {
+  return (rating * 10)?.toFixed(0);
+};
+
+export const resolveRatingColor = rating => {
+  if (rating >= 7) {
+    return "green";
+  } else if (rating >= 5) {
+    return "orange";
+  } else {
+    return "red";
+  }
+};

@@ -6,9 +6,9 @@ import App from "./App.jsx";
 import "./index.css";
 import DetailsPage from "./pages/DetailsPage.jsx";
 import Home from "./pages/Home.jsx";
-import Movies from "./pages/movies/Movies.jsx";
-import Search from "./pages/search/Search.jsx";
-import Shows from "./pages/shows/Shows.jsx";
+import Movies from "./pages/Movies.jsx";
+import Search from "./pages/Search.jsx";
+import Shows from "./pages/Shows.jsx";
 
 const router = createBrowserRouter([
   {

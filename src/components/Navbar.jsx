@@ -1,12 +1,10 @@
+import Hamburger from "hamburger-react";
 import React, { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { useClickAway } from "react-use";
-import Hamburger from "hamburger-react";
-// import { Squash as Hamburger } from "hamburger-react";
-import "./navbar.css";
-// import { useTheme } from "../../contexts/themeContext/ThemeContext";
-import ThemeToggle from "../ThemeToggle/ThemeToggle";
-// TODO: make  navbar transparentadd
+// import "./navbar.css";
+import ThemeToggle from "./ThemeToggle/ThemeToggle";
+
 const Navbar = () => {
   const [isOpen, setOpen] = useState(false);
   const ref = useRef(null);
@@ -15,12 +13,15 @@ const Navbar = () => {
   const navLinks = [
     { id: 1, title: "Home", to: "/" },
     { id: 2, title: "Movies", to: "/movies" },
-    { id: 3, title: "TV Shows", to: "/shows" },
+    { id: 3, title: "Shows", to: "/shows" },
     { id: 4, title: "Search", to: "/search" },
   ];
 
   return (
-    <header className="header bg-bkg text-content duration-200" ref={ref}>
+    <header
+      className="flex px-4 py-2 justify-between items-center w-full h-[var(--nav-height)] fixed top-0 z-[99999] bg-bkg text-content duration-200 "
+      ref={ref}
+    >
       <div className="max-w-[1440px] mx-auto flex w-full items-center justify-between ">
         <Link
           to="/"
@@ -28,12 +29,16 @@ const Navbar = () => {
         >
           TMDB
         </Link>
-        <div className="hidden lg:flex lg:flex-row lg:items-center ">
+        <div className="hidden md:flex lg:flex-row lg:items-center ">
           <nav className="mr-10 ">
-            <ul className="justify-between font-bold ">
+            <ul className="justify-between font-semibold ">
               {navLinks.map(link => {
                 return (
-                  <Link key={link.id} className="mr-4" to={link.to}>
+                  <Link
+                    key={link.id}
+                    className="mr-4 hover:border-b-[2px] border-content py-4 duration-150"
+                    to={link.to}
+                  >
                     {link.title}
                   </Link>
                 );
@@ -43,7 +48,7 @@ const Navbar = () => {
           <ThemeToggle />
         </div>
 
-        <div className="block lg:hidden">
+        <div className="block md:hidden">
           <Hamburger
             toggled={isOpen}
             size={28}
@@ -52,7 +57,7 @@ const Navbar = () => {
           />
           {isOpen && (
             <div
-              className={`fixed bottom-0 right-0 top-[--nav-height] z-[9999] h-screen w-[300px] text-black bg-bkg dark:border-b-white/20 dark:bg-gray-700 dark:text-gray-300 p-6 ${isOpen ? "translate-x-0" : "translate-x-full"} ease-in-out font-semibold`}
+              className={`bg-bkg/95 text-content fixed bottom-0 right-0 top-[--nav-height] z-[9999] h-screen w-[300px] dark:border-b-white/20 p-6 ${isOpen ? "translate-x-0" : "translate-x-full"} ease-in-out font-semibold`}
             >
               <ul
                 className="flex h-[auto]  w-full flex-col 

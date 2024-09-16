@@ -1,25 +1,23 @@
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
-import { defaultImage } from "../../services/api";
+import { defaultImage } from "../services/api";
 
-const Image = ({ src, title, round = "rounded-md", _width }) => {
+const Poster = ({ src, alt }) => {
   return (
     <>
       <LazyLoadImage
         effect="blur"
         loading="lazy"
         src={src}
-        alt={title}
-        width={_width}
-        className={round}
+        alt={alt}
         placeholderSrc={defaultImage}
         wrapperProps={{
           // If you need to, you can tweak the effect transition using the wrapper style.
-          style: { transitionDelay: ".5s" },
+          style: { transitionDelay: ".4s" },
         }}
       />
     </>
   );
 };
 
-export default Image;
+export default Poster;
