@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  darkMode: "class",
+  darkMode: "selector",
   content: ["./index.html", "./src/**/*.{html,js,ts,jsx,tsx}"],
   theme: {
     extend: {
@@ -18,8 +18,5 @@ export default {
       },
     },
   },
-  safelist: [
-    "dark", // Safelist the "dark" class so it’s never purged
-  ],
   plugins: [],
 };
