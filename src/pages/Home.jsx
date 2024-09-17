@@ -13,9 +13,9 @@ import {
   Pagination,
   Scrollbar,
 } from "swiper/modules";
-import ProgressBar from "../components/ProgressBar";
 import VerticalCard from "../components/CardVertical/VerticalCard";
 import { Swiper, SwiperSlide } from "../components/MySwiper/Swiper";
+import ProgressBar from "../components/ProgressBar";
 import { ThemeContext } from "../contexts/themeContext/ThemeContext";
 
 const Home = () => {
@@ -48,14 +48,14 @@ const Home = () => {
   }
 
   return (
-    <div className="h-full w-full duration-200">
+    <div className="h-full w-full duration-200 bg-bkg/25 text-content">
       <div className="min-h-full pb-8 ">
         {/* Main Swiper for Popular Movies */}
         <div className="relative w-full h-[65dvh] z-10">
           <Swiper
             modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
             slidesPerView={1}
-            spaceBetween={20}
+            spaceBetween={0}
             className="absolute inset-0"
           >
             {trend.map(item => (
@@ -66,7 +66,14 @@ const Home = () => {
                     backgroundImage: `url('${imagePathOriginal}/${item?.backdrop_path}')`,
                   }}
                 >
-                  <div className="absolute inset-0 bg-gradient-to-b from-black/90 to-black/5 opacity-75 z-[-5]"></div>
+                  {/* Overlay with proper z-index */}
+                  <div className="absolute inset-0 bg-black/75 z-10"></div>
+                  {/* You can add content on top of the overlay here */}
+                  <div className="absolute inset-0 flex flex-col justify-center items-center z-20 text-white text-center">
+                    <h2 className="text-2xl max-w-[35rem] font-semibold">
+                      {item.title}
+                    </h2>
+                  </div>
                 </div>
               </SwiperSlide>
             ))}

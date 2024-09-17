@@ -7,7 +7,7 @@ const Layout = ({ children }) => {
   return (
     <div
       className={
-        "bg-secondary text-primary grid grid-rows-[auto_1fr_auto] grid-cols-1 duration-200"
+        "bg-bkg text-content grid grid-rows-[auto_1fr_auto] grid-cols-1 duration-200 mt-[var(--nav-height)] "
       }
     >
       <Navbar />

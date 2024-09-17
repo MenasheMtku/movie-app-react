@@ -3,6 +3,7 @@ import MovieCard from "../components/CardVertical/VerticalCard";
 import ProgressBar from "../components/ProgressBar";
 import "../index.css";
 import { fetchSearchQuery } from "../services/api";
+import LoadMoreButton from "../components/LoadMoreButton";
 
 const Search = () => {
   const [type, setType] = useState("movie");
@@ -59,14 +60,14 @@ const Search = () => {
 
   return (
     <>
-      <div className="min-h-screen w-full pb-8 bg-gray-800/40">
-        <div className="mx-auto h-full max-w-[1400px]">
+      <div className="min-h-screen w-full pb-8">
+        <div className="mx-auto h-full max-w-[1440px]">
           <form
             onSubmit={handleSearch}
             className="mx-auto flex place-content-center pt-10"
           >
             <input
-              className="clamp-width-input rounded-s-lg bg-content text-bkg px-6 py-2 text-center outline-0 focus:outline-none"
+              className="clamp-width-input rounded-s-lg bg-bkg border-2 border-content text-content px-6 py-2 text-center outline-0 focus:outline-none"
               placeholder="Type here"
               value={tempSearchValue}
               onChange={e => setTempSearchValue(e.target.value)}
@@ -98,17 +99,13 @@ const Search = () => {
           </div>
           {!isLoading && activePage < totalPages && (
             <div className="flex justify-center mt-6">
-              <button
-                className="px-4 py-2 bg-blue-500 text-white rounded"
-                onClick={loadMoreResults}
-                disabled={loadingMore}
-              >
-                {loadingMore ? "Loading..." : "Load More"}
-              </button>
+              <LoadMoreButton loading={loadingMore} onClick={loadMoreResults}>
+                Load More
+              </LoadMoreButton>
             </div>
           )}
           {data?.length === 0 && !isLoading && (
-            <h3 className="mt-10  text-center text-sm">Type To search</h3>
+            <h3 className="text-center text-sm font-medium">Type To search</h3>
           )}
         </div>
       </div>

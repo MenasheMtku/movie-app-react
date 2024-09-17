@@ -6,6 +6,7 @@ import ProgressBar from "../components/ProgressBar.jsx";
 import Title from "../components/PosterTitle.jsx";
 import "../index.css";
 import { fetchDiscoverShows } from "../services/api.js";
+import LoadMoreButton from "../components/LoadMoreButton";
 
 const Shows = () => {
   const [shows, setShows] = useState([]);
@@ -48,8 +49,8 @@ const Shows = () => {
 
   return (
     <>
-      <div className="min-h-full bg-gray-800/40 pb-8">
-        <div className="mx-auto min-h-screen max-w-[1400px]">
+      <div className="min-h-full pb-8">
+        <div className="mx-auto min-h-screen max-w-[1440px]">
           <Menu
             handlePage={setActivePage}
             handleSort={setSortBy}
@@ -72,13 +73,9 @@ const Shows = () => {
           {/* Load More Button */}
           {!loading && activePage < totalPages && (
             <div className="flex justify-center mt-6">
-              <button
-                className="px-4 py-2 bg-blue-500 text-white rounded"
-                onClick={loadMoreShows}
-                disabled={loadingMore}
-              >
-                {loadingMore ? "Loading..." : "Load More"}
-              </button>
+              <LoadMoreButton loading={loadingMore} onClick={loadMoreShows}>
+                Load More
+              </LoadMoreButton>
             </div>
           )}
         </div>

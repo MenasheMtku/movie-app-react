@@ -7,6 +7,7 @@ import Menu from "../components/Menu/Menu";
 import ProgressBar from "../components/ProgressBar";
 import Title from "../components/PosterTitle";
 import { fetchDiscoverMovies } from "../services/api";
+import LoadMoreButton from "../components/LoadMoreButton";
 
 const Movies = () => {
   const [movies, setMovies] = useState([]);
@@ -48,8 +49,8 @@ const Movies = () => {
 
   return (
     <>
-      <div className="min-h-full bg-gray-800/40 pb-8">
-        <div className="mx-auto min-h-screen max-w-[1400px]">
+      <div className="min-h-full pb-8">
+        <div className="mx-auto min-h-screen max-w-[1440px]">
           <Menu
             handlePage={setActivePage}
             handleSort={setSortBy}
@@ -72,13 +73,9 @@ const Movies = () => {
           </div>
           {!isLoading && activePage < totalPages && (
             <div className="flex justify-center mt-6">
-              <button
-                className="px-4 py-2 bg-content text-bkg rounded"
-                onClick={loadMoreMovies}
-                disabled={loadingMore}
-              >
-                {loadingMore ? "Loading..." : "Load More"}
-              </button>
+              <LoadMoreButton loading={loadingMore} onClick={loadMoreMovies}>
+                Load More
+              </LoadMoreButton>
             </div>
           )}
         </div>
@@ -88,15 +85,3 @@ const Movies = () => {
 };
 
 export default Movies;
-
-{
-  /* <div className="p-3">
-{isLoading ? (
-  <div className="h-[15px] w-full mx-auto bg-red-500 mt-0"></div>
-) : (
-  <>
-  
-  </>
-)}
-</div> */
-}

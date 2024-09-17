@@ -6,7 +6,7 @@
 
 :root {
   font-family: "Nunito", sans-serif;
-  line-height: 1.5;
+  /* line-height: 1.5; */
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -16,22 +16,24 @@
   --accent-2: 168deg 83.8% 78.2%;
   --color-bkg: 210deg 40% 98%;
   --color-content: 217deg 32.6% 17.5%;
-  --primary-color: #2c2f33;
-  --secondary-color: #e5e5e5;
+  --color-bkg-darker: 0deg 0% 80%;
+  --color-content-darker: 217deg 32.6% 17.5%;
 }
 
 :root[class="dark"] {
   --accent-1: 168deg 83.8% 78.2%;
   --accent-2: 288deg 95.8% 90.6%;
-  --color-bkg: 217deg 32.6% 27.5%;
+  /* --color-bkg: 217deg 32.6% 27.5%; */
+  --color-bkg: 0deg 0% 20%;
+  --color-bkg-darker: 0deg 0% 12%;
+  /* --color-content: 210deg 40% 98%; */
   --color-content: 210deg 40% 98%;
-  --secondary-color: #2c2f33;
-  --primary-color: #e5e5e5;
+  --color-content-darker: 210deg 40% 98%;
 }
 
 body {
-  min-height: 100vh;
-  padding-top: var(--nav-height);
+  min-height: 100%;
+  /* padding-top: var(--nav-height); */
 }
 
 .movie-grid {

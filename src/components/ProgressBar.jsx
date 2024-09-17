@@ -4,7 +4,7 @@ import "react-circular-progressbar/dist/styles.css";
 
 const ProgressBar = () => {
   return (
-    <div className="flex min-h-screen justify-start pt-8">
+    <div className="flex min-h-screen justify-start bg-bkg text-content pt-8">
       <div className="mx-auto pt-28">
         <div className="flex">
           <Spinner

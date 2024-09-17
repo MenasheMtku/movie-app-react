@@ -5,14 +5,14 @@ export default {
   theme: {
     extend: {
       colors: {
-        // primary: "var(--primary-color)",
-        // secondary: "var(--secondary-color)",
         accent: {
           1: "hsl(var(--accent-1) / <alpha-value>)",
           2: "hsl(var(--accent-2) / <alpha-value>)",
         },
         bkg: "hsl(var(--color-bkg) / <alpha-value>)",
+        bkgDarker: "hsl(var(--color-bkg-darker) / <alpha-value>)",
         content: "hsl(var(--color-content) / <alpha-value>)",
+        contentDarker: "hsl(var(--color-content-darker) / <alpha-value>)",
         primary: "var(--primary-color)",
         secondary: "var(--secondary-color)",
       },

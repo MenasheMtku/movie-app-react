@@ -3,9 +3,9 @@ import React from "react";
 const Skeleton = () => {
   return (
     <div className="p-2 rounded shadow-2xl">
-      <div className="relative h-60 mb-4 flex justify-center items-center bg-gray-300 animate-pulse rounded-md duration-150">
+      <div className="relative h-60 mb-4 flex justify-center items-center bg-bkgDarker text-contentDarker animate-pulse rounded-md duration-150">
         <svg
-          className="h-12 bg-bkg text-content/75"
+          className="h-12 bg-bkg text-content"
           aria-hidden="true"
           xmlns="http://www.w3.org/2000/svg"
           fill="currentColor"
