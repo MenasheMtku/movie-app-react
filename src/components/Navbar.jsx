@@ -57,7 +57,7 @@ const Navbar = () => {
           />
           {isOpen && (
             <div
-              className={`bg-bkg text-content fixed bottom-0 right-0 top-[--nav-height] z-[9999] h-screen w-1/2  p-6 ${isOpen ? "translate-x-0" : "translate-x-full"} ease-in-out font-semibold`}
+              className={`bg-bkgDarker text-contentDarker fixed bottom-0 right-0 top-[--nav-height] z-[99999] h-screen w-1/2  p-6 ${isOpen ? "translate-x-0" : "translate-x-full"} ease-in-out font-semibold`}
             >
               <ul
                 className="flex h-[auto]  w-full flex-col 
