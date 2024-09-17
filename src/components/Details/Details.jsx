@@ -31,22 +31,22 @@ const Details = ({ details, type }) => {
           {new Date(releaseDate).getFullYear()}
         </p>
       </div>
-      <div className="mb-5 mt-1 flex items-center gap-4 dark:text-white">
+      <div className="mb-5 mt-1 flex items-center gap-4">
         <div className="flex items-center gap-4">
-          <div className="flex items-center">
-            <BsCalendar3 className="mr-2 text-gray-400" />
+          <div className="flex items-center text-white">
+            <BsCalendar3 className="mr-2 " />
             <p className="text-sm">
               {new Date(releaseDate).toLocaleDateString("en-US")} (US)
             </p>
           </div>
           {type === "movie" && (
-            <>
+            <div className="text-white flex items-center gap-2">
               <span>*</span>
-              <div className="flex items-center">
+              <div className="flex">
                 <IoTimeSharp className="mr-1" mr="2" color={"gray.400"} />
                 <p className="text-sm">{minutesTohours(details?.runtime)}</p>
               </div>
-            </>
+            </div>
           )}
         </div>
       </div>
@@ -71,10 +71,8 @@ const Details = ({ details, type }) => {
       )}
       {details?.overview ? (
         <>
-          <h2 className="text-white dark:text-blue-gray-200 my-2 text-xl">
-            Overview
-          </h2>
-          <p className="text-white dark:text-blue-gray-200 mb-3 w-full text-base md:w-96">
+          <h2 className="text-white  my-2 text-xl">Overview</h2>
+          <p className="text-white  mb-3 w-full text-base md:w-96">
             {shortenOverview(details?.overview)}
           </p>
         </>

@@ -81,13 +81,16 @@ const DetailsPage = () => {
       <div className="min-h-screen w-full ">
         <div className="box-1">
           <div
-            className="image-dark-overlay-bottom z-[100] flex h-auto w-full items-center bg-gradient-to-r from-black/50 to-black/10 bg-cover bg-center bg-no-repeat py-2 md:h-[500px]"
+            className="relative image-dark-overlay-bottom z-[100] flex h-auto w-full items-center bg-cover bg-center bg-no-repeat py-2 md:h-[500px]"
             style={{
               backgroundImage: `url(${wide_image})`,
             }}
           >
-            <div className="container mx-auto my-4 w-11/12 md:my-0">
-              <div className="container flex flex-col  gap-4 rounded-full px-2  md:flex-row  md:items-center md:gap-10">
+            {/* Overlay */}
+            <div className="absolute inset-0 bg-black/50"></div>
+
+            <div className="container relative z-10 mx-auto my-4 w-11/12 md:my-0">
+              <div className="container flex flex-col gap-4 rounded-full px-2 md:flex-row md:items-center md:gap-10">
                 <div className="w-[220px]">
                   <Poster src={imgSrc} title={title} />
                 </div>
@@ -98,10 +101,7 @@ const DetailsPage = () => {
             </div>
           </div>
         </div>
-        <div
-          className="box-2 container mx-auto  pb-10 pt-2"
-          // style={{ border: "2px solid purple" }}
-        >
+        <div className="box-2 max-w-[1280px] mx-auto  pb-10 pt-2">
           {cast.length === 0 ? (
             <h2 className="mb-5 ml-4 mt-2 text-base uppercase">
               No cast found
@@ -109,52 +109,40 @@ const DetailsPage = () => {
           ) : (
             <h2 className="mb-5 ml-4 mt-2 text-base uppercase">Cast</h2>
           )}
-          {/* {!cast && <p>No cast found</p>} */}
-          {/* <div className="mb-10 mt-5 flex gap-2 rounded-2xl bg-yellow-600 px-2 py-2"> */}
           <Swiper
-            className="px-3 py-2  rounded-sm"
             modules={[Navigation, Pagination, Scrollbar, A11y]}
             slidesPerView={6}
-            spaceBetween={10}
+            spaceBetween={20}
             // navigation
             // paginaton
             breakpoints={{
-              0: {
-                slidesPerView: 1,
-              },
-              400: {
-                slidesPerView: 2,
-              },
-              639: {
-                slidesPerView: 3,
-              },
-              865: {
-                slidesPerView: 4,
-              },
-              1000: {
-                slidesPerView: 6,
-              },
+              0: { slidesPerView: 1 },
+              400: { slidesPerView: 2 },
+              500: { slidesPerView: 3 },
+              768: { slidesPerView: 4 },
+              1000: { slidesPerView: 6 },
             }}
           >
+            {/* <div className="min-w-[1280px] h-auto"> */}
             {cast &&
-              cast
-                ?.filter(item => item?.profile_path)
-                .map(item => (
-                  <SwiperSlide key={item.id}>
-                    {/* <div
-                      key={item?.id}
-                      className="relative rounded-full w-full min-h-[20rem] bg-white"
-                    ></div> */}
-                    <Poster
-                      src={`${imagePath}/${item?.profile_path}`}
-                      title={item?.name}
-                      width={160}
-                      round="rounded-full"
+              cast?.map(item => (
+                <SwiperSlide key={item.id}>
+                  <div className="w-[180px] h-[180px] rounded-full bg-slate-300 overflow-hidden">
+                    <img
+                      src={
+                        item?.profile_path
+                          ? `${imagePath}/${item.profile_path}`
+                          : defaultImage
+                      }
+                      alt={item?.name}
+                      className="object-cover w-full h-full"
                     />
-                  </SwiperSlide>
-                ))}
+                  </div>
+                </SwiperSlide>
+              ))}
+            {/* </div> */}
           </Swiper>
-          {/* </div> */}
+
           {cast.length === 0 ? (
             <h2 className="mb-5 ml-4 mt-2 text-base uppercase">
               No Trailer found

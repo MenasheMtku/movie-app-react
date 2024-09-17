@@ -13,8 +13,9 @@ const Poster = ({ src, alt }) => {
         placeholderSrc={defaultImage}
         wrapperProps={{
           // If you need to, you can tweak the effect transition using the wrapper style.
-          style: { transitionDelay: ".4s" },
+          style: { transitionDelay: ".15ms" },
         }}
+        className="object-cover w-full h-full"
       />
     </>
   );
