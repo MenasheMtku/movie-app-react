@@ -1,8 +1,8 @@
-![Alt text](public/images/moviesPage.png)
-
 # MovieAppReact 🎬
 
 MovieAppReact is a web application that showcases the latest movies and TV shows, using data from the TMDB (The Movie Database) API. Built with React, Vite, and Tailwind CSS, this app delivers a smooth and responsive user experience with modern front-end tools.
+
+![Alt text](public/images/moviesPage.png)
 
 ## Features ✨
 
