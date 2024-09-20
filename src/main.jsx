@@ -15,37 +15,21 @@ const router = createBrowserRouter([
     path: "/",
     element: <App />,
     children: [
-      {
-        path: "/",
-        element: <Home />,
-      },
-      {
-        path: "/movies",
-        element: <Movies />,
-      },
-      {
-        path: "/shows",
-        element: <Shows />,
-      },
-      {
-        path: "/search",
-        element: <Search />,
-      },
-      {
-        path: "/:type/:id",
-        element: <DetailsPage />,
-      },
+      // Home as the index route
+      { index: true, element: <Home /> },
+      { path: "movies", element: <Movies /> },
+      { path: "shows", element: <Shows /> },
+      { path: "search", element: <Search /> },
+      // Dynamic route
+      { path: ":type/:id", element: <DetailsPage /> },
     ],
   },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <>
-    {/* <App /> */}
-    {/* <div className="h-[20px] w-full"> */}
     <ThemeProvider>
       <RouterProvider router={router} />
     </ThemeProvider>
-    {/* </div> */}
   </>
 );

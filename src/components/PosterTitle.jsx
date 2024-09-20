@@ -1,22 +1,21 @@
-import { h4 } from "framer-motion/client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { shortenTitle } from "../utils/helpers";
 
-const PosterTitle = ({ title, loader }) => {
+const PosterTitle = ({ title }) => {
   const [isLoading, setIsLoading] = useState(true);
 
-  if (!isLoading) {
-    setIsLoading(false);
-  }
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 600);
+  }, []);
   return (
     <>
-      <div className="text-center">
-        {loader ? (
-          <h4>Loading</h4>
-        ) : (
-          <h4 className="font-bold">{shortenTitle(title)}</h4>
-        )}
-      </div>
+      {isLoading ? (
+        <div className="w-10/12 bg-bkg animate-pulse h-[1rem] text-center mx-auto rounded-2xl"></div>
+      ) : (
+        <p className="font-semibold">{shortenTitle(title)}</p>
+      )}
     </>
   );
 };

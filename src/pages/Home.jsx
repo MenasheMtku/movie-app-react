@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "../index.css";
 import {
   fetchPopularMovies,
@@ -16,23 +16,23 @@ import {
 import VerticalCard from "../components/CardVertical/VerticalCard";
 import { Swiper, SwiperSlide } from "../components/MySwiper/Swiper";
 import ProgressBar from "../components/ProgressBar";
-import { ThemeContext } from "../contexts/themeContext/ThemeContext";
 
 const Home = () => {
-  const [trend, setTrend] = useState([]);
-  const [all, setAll] = useState([]);
+  const [popularMovies, setPopularMovies] = useState([]);
+  const [trendingMovies, setTrendingMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const { isDark } = useContext(ThemeContext);
+  // const { isDark } = useContext(ThemeContext);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [moviesData, allData] = await Promise.all([
+        const [popular, trending] = await Promise.all([
           fetchPopularMovies(),
           fetchTrendingAll(),
         ]);
-        setTrend(moviesData?.results || []);
-        setAll(allData?.results || []);
+        setPopularMovies(popular?.results || []);
+        setTrendingMovies(trending?.results || []);
+        console.log(trendingMovies);
       } catch (error) {
         console.error("Error fetching data", error);
       } finally {
@@ -58,7 +58,7 @@ const Home = () => {
             spaceBetween={0}
             className="absolute inset-0"
           >
-            {trend.map(item => (
+            {popularMovies.map(item => (
               <SwiperSlide key={item.id}>
                 <div
                   className="relative w-full h-full p-8 bg-cover bg-center bg-no-repeat"
@@ -107,7 +107,7 @@ const Home = () => {
             }}
             className="px-4 py-1"
           >
-            {all.map(item => (
+            {trendingMovies.map(item => (
               <SwiperSlide key={item.id}>
                 <div className="py-2">
                   <VerticalCard item={item} type={item?.media_type} />

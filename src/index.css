@@ -12,6 +12,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   --nav-height: 3.8rem;
+  --max-width: 1440px;
   --accent-1: 288deg 95.8% 90.6%;
   --accent-2: 168deg 83.8% 78.2%;
   --color-bkg: 210deg 40% 98%;

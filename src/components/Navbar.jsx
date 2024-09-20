@@ -2,7 +2,6 @@ import Hamburger from "hamburger-react";
 import React, { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { useClickAway } from "react-use";
-// import "./navbar.css";
 import ThemeToggle from "./ThemeToggle/ThemeToggle";
 
 const Navbar = () => {
@@ -19,13 +18,13 @@ const Navbar = () => {
 
   return (
     <header
-      className="bg-bkgDarker text-contentDarker flex justify-between items-center w-full h-[var(--nav-height)] fixed top-0 z-[99999] duration-200 "
+      className="bg-bkgDarker text-contentDarker flex justify-between items-center w-full h-[var(--nav-height)] fixed top-0 z-50 duration-200"
       ref={ref}
     >
-      <div className="max-w-[1440px] p-4 mx-auto flex w-full items-center justify-between ">
+      <div className="max-w-[var(--max-width)] p-8 mx-auto flex w-full items-center justify-between ">
         <Link
           to="/"
-          className="text-3xl md:text-4xl font-bold text-cyan-500 dark:text-cyan-500"
+          className="text-3xl md:text-4xl font-bold text-cyan-700 dark:text-cyan-500"
         >
           TMDB
         </Link>
@@ -36,7 +35,7 @@ const Navbar = () => {
                 return (
                   <Link
                     key={link.id}
-                    className="mr-4 hover:border-b-[2px] border-primary py-4 duration-150"
+                    className="mr-4 hover:border-b-[3px] border-primary py-4 duration-150 font-bold"
                     to={link.to}
                   >
                     {link.title}
@@ -57,7 +56,7 @@ const Navbar = () => {
           />
           {isOpen && (
             <div
-              className={`bg-bkgDarker text-contentDarker fixed bottom-0 right-0 top-[--nav-height] z-[99999] h-screen w-1/2  p-6 ${isOpen ? "translate-x-0" : "translate-x-full"} ease-in-out font-semibold`}
+              className={`bg-bkgDarker/95 text-contentDarker fixed bottom-0 right-0 top-[--nav-height] z-[99999] h-screen w-1/2  p-6 ${isOpen ? "translate-x-0" : "translate-x-full"} ease-in-out font-semibold z-20`}
             >
               <ul
                 className="flex h-[auto]  w-full flex-col 
@@ -69,7 +68,7 @@ const Navbar = () => {
                       key={link.id}
                       className="text-lg"
                       to={link.to}
-                      onClick={useClickAway}
+                      onClick={() => useClickAway}
                     >
                       {link.title}
                     </Link>

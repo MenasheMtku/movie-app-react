@@ -17,9 +17,9 @@ const Search = () => {
 
   // Function to fetch search results and append data
   const loadSearchResults = page => {
-    if (page > totalPages) return; // Stop loading if all pages are loaded
-    setIsLoading(page === 1); // Set loading state for first page
-    setLoadingMore(page > 1); // Set loadingMore state for subsequent pages
+    if (page > totalPages) return;
+    setIsLoading(page === 1);
+    setLoadingMore(page > 1);
 
     fetchSearchQuery(searchValue, page, type)
       .then(res => {
@@ -35,11 +35,11 @@ const Search = () => {
         setLoadingMore(false);
       });
   };
-  // Fetch search results whenever the search value or type changes
+
   useEffect(() => {
     if (searchValue) {
-      setData([]); // Clear previous search data
-      loadSearchResults(1); // Fetch first page of results
+      setData([]);
+      loadSearchResults(1);
     }
   }, [searchValue, type]);
 
@@ -50,7 +50,7 @@ const Search = () => {
   const handleSearch = e => {
     e.preventDefault();
     setSearchValue(tempSearchValue);
-    setActivePage(1); // Reset to first page
+    setActivePage(1);
     console.log("Searching for:", tempSearchValue, "Type:", type);
   };
 
@@ -60,55 +60,55 @@ const Search = () => {
 
   return (
     <>
-      <div className="min-h-screen w-full pb-8">
-        <div className="mx-auto h-full max-w-[1440px]">
-          <form
-            onSubmit={handleSearch}
-            className="mx-auto flex place-content-center pt-10"
+      {/* <div className="min-h-screen w-full pb-8 "> */}
+      <div className="mx-auto min-h-screen max-w-[var(--max-width)] p-4">
+        <form
+          onSubmit={handleSearch}
+          className="mx-auto flex place-content-center pt-10"
+        >
+          <input
+            className="clamp-width-input rounded-s-lg bg-bkg border-2 border-content text-content px-6 py-2 text-center outline-0 focus:outline-none"
+            placeholder="Type here"
+            value={tempSearchValue}
+            onChange={e => setTempSearchValue(e.target.value)}
+          />
+          <select
+            className="w-[120px] rounded-e-lg bg-content text-bkg px-3 outline-none"
+            onChange={e => {
+              setActivePage(1);
+              setType(e.target.value);
+            }}
+            defaultValue={"DEFAULT"}
+            onSelect={onClear}
           >
-            <input
-              className="clamp-width-input rounded-s-lg bg-bkg border-2 border-content text-content px-6 py-2 text-center outline-0 focus:outline-none"
-              placeholder="Type here"
-              value={tempSearchValue}
-              onChange={e => setTempSearchValue(e.target.value)}
-            />
-            <select
-              className="w-[120px] rounded-e-lg bg-content text-bkg px-3 outline-none"
-              onChange={e => {
-                setActivePage(1);
-                setType(e.target.value);
-              }}
-              defaultValue={"DEFAULT"}
-              onSelect={onClear}
-            >
-              <option value={"DEFAULT"} disabled>
-                Choose...
-              </option>
-              <option value="tv">TV Show</option>
-              <option value="movie">Movie</option>
-            </select>
-          </form>
+            <option value={"DEFAULT"} disabled>
+              Choose...
+            </option>
+            <option value="tv">TV Show</option>
+            <option value="movie">Movie</option>
+          </select>
+        </form>
 
-          {/* Progress Bar for loading */}
-          {isLoading && <ProgressBar />}
-          <div className="movie-grid h-full mt-8">
-            {data?.length > 0 &&
-              data.map((item, i) => (
-                <MovieCard key={item.id} item={item} type={type} />
-              ))}
-          </div>
-          {!isLoading && activePage < totalPages && (
-            <div className="flex justify-center mt-6">
-              <LoadMoreButton loading={loadingMore} onClick={loadMoreResults}>
-                Load More
-              </LoadMoreButton>
-            </div>
-          )}
-          {data?.length === 0 && !isLoading && (
-            <h3 className="text-center text-sm font-medium">Type To search</h3>
-          )}
+        {/* Progress Bar for loading */}
+        {isLoading && <ProgressBar />}
+        <div className="movie-grid h-full mt-8">
+          {data?.length > 0 &&
+            data.map((item, i) => (
+              <MovieCard key={item.id} item={item} type={type} />
+            ))}
         </div>
+        {!isLoading && activePage < totalPages && (
+          <div className="flex justify-center mt-6">
+            <LoadMoreButton loading={loadingMore} onClick={loadMoreResults}>
+              Load More
+            </LoadMoreButton>
+          </div>
+        )}
+        {data?.length === 0 && !isLoading && (
+          <h3 className="text-center text-sm font-medium">Type To search</h3>
+        )}
       </div>
+      {/* </div> */}
     </>
   );
 };
