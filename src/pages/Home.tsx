@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../index.css";
 import {
   fetchPopularMovies,
@@ -17,11 +17,13 @@ import VerticalCard from "../components/CardVertical/VerticalCard";
 import { Swiper, SwiperSlide } from "../components/MySwiper/Swiper";
 import ProgressBar from "../components/ProgressBar";
 
+import { Movie } from "../types/movie";
+// import { Program } from "../types/movie";
+
 const Home = () => {
-  const [popularMovies, setPopularMovies] = useState([]);
-  const [trendingMovies, setTrendingMovies] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  // const { isDark } = useContext(ThemeContext);
+  const [popularMovies, setPopularMovies] = useState<Movie[]>([]);
+  const [trendingMovies, setTrendingMovies] = useState<Movie[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -42,6 +44,8 @@ const Home = () => {
 
     fetchData();
   }, []);
+
+  // console.log(typeof Movie);
 
   if (isLoading) {
     return <ProgressBar />;
@@ -107,13 +111,14 @@ const Home = () => {
             }}
             className="px-4 py-1"
           >
-            {trendingMovies.map(item => (
-              <SwiperSlide key={item.id}>
-                <div className="py-2">
-                  <VerticalCard item={item} type={item?.media_type} />
-                </div>
-              </SwiperSlide>
-            ))}
+            {trendingMovies &&
+              trendingMovies.map(item => (
+                <SwiperSlide key={item.id}>
+                  <div className="py-2">
+                    <VerticalCard item={item} type={item?.media_type} />
+                  </div>
+                </SwiperSlide>
+              ))}
           </Swiper>
         </div>
       </div>

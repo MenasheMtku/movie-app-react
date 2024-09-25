@@ -29,7 +29,7 @@ export const fetchPopularMovies = async () => {
   return res?.data;
 };
 // -------- DISCOVER MOVIES & SHOWS --------
-export const fetchDiscoverMovies = async (page, sortBy) => {
+export const fetchDiscoverMovies = async (page: number, sortBy: string) => {
   console.log("discover endponit called..");
   const res = await axios.get(
     `${baseUrl}discover/movie?api_key=${apiKey}&page=${page}&sort_by=${sortBy}`
@@ -37,7 +37,7 @@ export const fetchDiscoverMovies = async (page, sortBy) => {
 
   return res?.data;
 };
-export const fetchDiscoverShows = async (page, sortBy) => {
+export const fetchDiscoverShows = async (page: number, sortBy: string) => {
   const res = await axios.get(
     `${baseUrl}discover/tv?api_key=${apiKey}&page=${page}&sort_by=${sortBy}`
   );
@@ -51,14 +51,14 @@ export const fetchPopularShows = async () => {
 };
 
 // -------- DETAILS MOVIES & SHOWS --------
-export const fetchDetails = async (type, id) => {
+export const fetchDetails = async (type: string, id: string) => {
   const res = await axios.get(`${baseUrl}${type}/${id}?api_key=${apiKey}`);
   return res?.data;
 };
 
 // MOVIES & SERIES - Credits
 
-export const fetchCredits = async (type, id) => {
+export const fetchCredits = async (type: string, id: string) => {
   const res = await axios.get(
     `${baseUrl}${type}/${id}/credits?api_key=${apiKey}`
   );
@@ -67,7 +67,7 @@ export const fetchCredits = async (type, id) => {
 
 // MOVIES & SERIES - Videos
 
-export const fetchVideos = async (type, id) => {
+export const fetchVideos = async (type: string, id: string) => {
   const res = await axios.get(
     `${baseUrl}${type}/${id}/videos?api_key=${apiKey}`
   );
@@ -76,7 +76,11 @@ export const fetchVideos = async (type, id) => {
 
 // -------- MULTI SEARCH --------
 
-export const fetchSearchQuery = async (query, page, type) => {
+export const fetchSearchQuery = async (
+  query: string,
+  page: number,
+  type: string
+) => {
   const res = await axios.get(
     `${baseUrl}search/${type}?api_key=${apiKey}&query=${query}&page=${page}`
   );

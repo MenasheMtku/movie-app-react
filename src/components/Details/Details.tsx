@@ -2,7 +2,7 @@ import React from "react";
 import { imagePath } from "../../services/api";
 import { defaultImage } from "../../services/api";
 import {
-  minutesTohours,
+  minutesToHours,
   ratingToPercentage,
   resolveRatingColor,
   shortenOverview,
@@ -13,7 +13,23 @@ import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import { data } from "autoprefixer";
 
-const Details = ({ details, type }) => {
+type DetailsProps = {
+  details: {
+    title?: string;
+    name?: string;
+    first_air_date?: string;
+    release_date?: string;
+    poster_path?: string | null;
+    vote_average?: number;
+    runtime?: number;
+    tagline?: string;
+    overview?: string;
+    genres?: Array<{ id: number; name: string }>;
+  };
+  type: string;
+};
+
+const Details: React.FC<DetailsProps> = ({ details, type }) => {
   const title = details?.title || details?.name;
   const releaseDate =
     type === "tv" ? details?.first_air_date : details?.release_date;
@@ -21,14 +37,14 @@ const Details = ({ details, type }) => {
   if (details?.poster_path === null) {
     imgSrc = defaultImage;
   }
-  const rateColor = resolveRatingColor(details?.vote_average);
+  const rateColor = resolveRatingColor(details?.vote_average || 0);
 
   return (
     <>
       <div className="flex flex-row items-baseline gap-2 md:gap-1 text-white">
         <p className="text-xl">{title}</p>
         <p className="text-xl font-semibold text-gray-400">
-          {new Date(releaseDate).getFullYear()}
+          {releaseDate ? new Date(releaseDate).getFullYear() : ""}
         </p>
       </div>
       <div className="mb-5 mt-1 flex items-center gap-4">
@@ -36,15 +52,20 @@ const Details = ({ details, type }) => {
           <div className="flex items-center text-white">
             <BsCalendar3 className="mr-2 " />
             <p className="text-sm">
-              {new Date(releaseDate).toLocaleDateString("en-US")} (US)
+              {releaseDate
+                ? new Date(releaseDate).toLocaleDateString("en-US")
+                : "N/A"}
+              (US)
             </p>
           </div>
           {type === "movie" && (
             <div className="text-white flex items-center gap-2">
               <span>*</span>
               <div className="flex">
-                <IoTimeSharp className="mr-1" mr="2" color={"gray.400"} />
-                <p className="text-sm">{minutesTohours(details?.runtime)}</p>
+                <IoTimeSharp className="mr-1" color={"gray.400"} />
+                <p className="text-sm">
+                  {minutesToHours(details?.runtime ?? 0)}
+                </p>
               </div>
             </div>
           )}
@@ -54,8 +75,9 @@ const Details = ({ details, type }) => {
         {/* rating progress bar */}
         <a>
           <CircularProgressbar
+            value={+ratingToPercentage(details?.vote_average ?? 0)}
             className="mr-8 size-12"
-            text={ratingToPercentage(details?.vote_average) + "%"}
+            text={ratingToPercentage(details?.vote_average ?? 0) + "%"}
             strokeWidth={4}
             styles={buildStyles({
               textColor: `${rateColor}`,
@@ -66,7 +88,7 @@ const Details = ({ details, type }) => {
           ></CircularProgressbar>
         </a>
       </div>
-      {data?.tagline && (
+      {details?.tagline && (
         <p className="text-white my-5 text-sm italic">{details?.tagline}</p>
       )}
       {details?.overview ? (
@@ -86,7 +108,6 @@ const Details = ({ details, type }) => {
           <p
             className=" rounded bg-gray-200 text-black p-1 text-center font-bold text-sm dark:text-gray-200 dark:bg-gray-500"
             key={genre?.id}
-            // p="1"
           >
             {genre?.name}
           </p>

@@ -29,10 +29,4 @@ const Pagination = ({ activePage, totalPages, setActivePage }) => {
   );
 };
 
-// Pagination.propTypes = {
-//     activePage: PropTypes.number.isRequired,
-//     totalPages: PropTypes.number.isRequired,
-//     setActivePage: PropTypes.func.isRequired,
-// }
-
 export default Pagination;

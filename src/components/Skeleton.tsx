@@ -1,5 +1,3 @@
-import React from "react";
-
 const Skeleton = () => {
   return (
     <div className="p-2 rounded shadow-2xl">

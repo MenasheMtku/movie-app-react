@@ -7,6 +7,8 @@ import PosterTitle from "../components/PosterTitle";
 import ProgressBar from "../components/ProgressBar";
 import useFetchData from "../hooks/useFetchData";
 import { fetchDiscoverMovies } from "../services/api";
+import { Movie } from "../types/movie";
+
 const Movies = () => {
   const {
     data: movies,
@@ -16,8 +18,8 @@ const Movies = () => {
     setSortBy,
     activePage,
     totalPages,
-  } = useFetchData(fetchDiscoverMovies);
-
+  } = useFetchData<Movie>(fetchDiscoverMovies);
+  console.log(...movies);
   return (
     <>
       {/* <div className="min-h-full pb-8"> */}
@@ -42,6 +44,7 @@ const Movies = () => {
                 >
                   <VerticalCard item={item} type="movie" />
                   <PosterTitle title={item.title} />
+                  {/* <p> {item.popularity} </p> */}
                 </div>
               ))}
         </div>

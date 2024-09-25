@@ -1,9 +1,17 @@
 // src/ThemeContext.jsx
 import React, { createContext, useContext, useState, useEffect } from "react";
 
-export const ThemeContext = createContext();
+type ThemeContextProps = {
+  isDark: boolean;
+  setIsDark: (value: boolean) => void;
+};
 
-export const ThemeProvider = ({ children }) => {
+export const ThemeContext = createContext<ThemeContextProps>({
+  isDark: false,
+  setIsDark: () => {},
+});
+
+export const ThemeProvider = ({ children }: any) => {
   const [isDark, setIsDark] = useState(false);
   // Track when the theme is loaded
   const [themeLoaded, setThemeLoaded] = useState(false);

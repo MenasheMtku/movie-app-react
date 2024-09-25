@@ -5,25 +5,41 @@ import "../index.css";
 import { fetchSearchQuery } from "../services/api";
 import LoadMoreButton from "../components/LoadMoreButton";
 
+type SearchResult = {
+  id: number;
+  title?: string;
+  name?: string;
+  poster_path?: string;
+  vote_average?: number;
+  overview?: string;
+};
+
+type FetchResponse = {
+  page: number;
+  results: SearchResult[];
+  total_pages: number;
+};
+
 const Search = () => {
-  const [type, setType] = useState("movie");
-  const [searchValue, setSearchValue] = useState("");
-  const [tempSearchValue, setTempSearchValue] = useState("");
-  const [data, setData] = useState([]);
-  const [activePage, setActivePage] = useState([1]);
-  const [totalPages, setTotalPages] = useState(1);
-  const [isLoading, setIsLoading] = useState(false);
-  const [loadingMore, setLoadingMore] = useState(false);
+  const [type, setType] = useState<"movie" | "tv">("movie");
+  const [searchValue, setSearchValue] = useState<string>("");
+  const [tempSearchValue, setTempSearchValue] = useState<string>("");
+  const [data, setData] = useState<SearchResult[]>([]);
+  const [activePage, setActivePage] = useState<number>(1);
+  const [totalPages, setTotalPages] = useState<number>(1);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [loadingMore, setLoadingMore] = useState<boolean>(false);
 
   // Function to fetch search results and append data
-  const loadSearchResults = page => {
+  const loadSearchResults = (page: number) => {
     if (page > totalPages) return;
     setIsLoading(page === 1);
     setLoadingMore(page > 1);
 
     fetchSearchQuery(searchValue, page, type)
-      .then(res => {
-        setData(prevData => [...prevData, ...res?.results]); // Append new data
+      .then((res: FetchResponse) => {
+        // Append new data
+        setData(prevData => [...prevData, ...res?.results]);
         setActivePage(res?.page);
         setTotalPages(res?.total_pages);
       })
@@ -47,7 +63,7 @@ const Search = () => {
     setSearchValue("");
     console.log(searchValue);
   };
-  const handleSearch = e => {
+  const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setSearchValue(tempSearchValue);
     setActivePage(1);
@@ -76,14 +92,11 @@ const Search = () => {
             className="w-[120px] rounded-e-lg bg-content text-bkg px-3 outline-none"
             onChange={e => {
               setActivePage(1);
-              setType(e.target.value);
+              setType(e.target.value as "movie" | "tv");
             }}
             defaultValue={"DEFAULT"}
             onSelect={onClear}
           >
-            <option value={"DEFAULT"} disabled>
-              Choose...
-            </option>
             <option value="tv">TV Show</option>
             <option value="movie">Movie</option>
           </select>

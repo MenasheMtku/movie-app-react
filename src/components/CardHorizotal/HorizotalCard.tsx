@@ -3,20 +3,29 @@ import "react-lazy-load-image-component/src/effects/blur.css";
 import { Link } from "react-router-dom";
 import "../../index.css";
 import { defaultImage, imagePathOriginal } from "../../services/api";
-import Image from "../Poster";
-import Skeleton from "../Skeleton";
-import Title from "../Title/Title";
 
-const HorizontalCard = ({ item, type }) => {
-  const [isLoading, setIsLoading] = useState(true);
+import Skeleton from "../Skeleton";
+import PosterTitle from "../PosterTitle";
+import Poster from "../Poster";
+
+interface Item {
+  title?: string;
+  name?: string;
+  backdrop_path?: string;
+  vote_average?: number;
+  release_date?: string;
+  first_air_date?: string;
+  id: number;
+}
+
+const HorizontalCard = ({ item, type }: { item: Item; type: string }) => {
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   // ------------------------------------------
   const title = item?.title || item?.name;
   let imgSrc = imagePathOriginal + item?.backdrop_path;
   if (item?.backdrop_path === null) {
     imgSrc = defaultImage;
   }
-  const voteRate = item?.vote_average?.toFixed(1);
-  const release_date = item?.release_date || item?.first_air_date;
   const detailsUrl = `/${type}/${item?.id}`;
 
   useEffect(() => {
@@ -35,7 +44,7 @@ const HorizontalCard = ({ item, type }) => {
                 <Skeleton />
               ) : (
                 <>
-                  <Image src={imgSrc} title={title} />
+                  <Poster src={imgSrc} title={title || ""} />
                 </>
               )}
             </div>
@@ -45,7 +54,7 @@ const HorizontalCard = ({ item, type }) => {
           {isLoading ? (
             <div className="h-[5px] w-2/4 mx-auto bg-blue-gray-500/10 mt-0"></div>
           ) : (
-            <Title title={item.title} />
+            <PosterTitle title={item.title || ""} />
           )}
         </div>
       </div>

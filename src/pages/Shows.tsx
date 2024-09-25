@@ -6,6 +6,7 @@ import ProgressBar from "../components/ProgressBar.jsx";
 import useFetchData from "../hooks/useFetchData";
 import "../index.css";
 import { fetchDiscoverShows } from "../services/api.js";
+import { Program } from "../types/movie";
 
 const Shows = () => {
   const {
@@ -16,8 +17,8 @@ const Shows = () => {
     setSortBy,
     activePage,
     totalPages,
-  } = useFetchData(fetchDiscoverShows);
-
+  } = useFetchData<Program>(fetchDiscoverShows);
+  console.log(...shows);
   return (
     <>
       {/* <div className="min-h-full pb-8 "> */}

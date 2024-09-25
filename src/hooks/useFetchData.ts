@@ -1,27 +1,28 @@
 import { useEffect, useState } from "react";
+import { Program, ApiResponse } from "../types/movie";
 
-const useFetchData = (
-  fetchFunction,
+const useFetchData = <T>(
+  fetchFunction: (page: number, sort: string) => Promise<ApiResponse<T>>,
   initialType = "movie",
   initialQuery = "",
   initialSortBy = "popularity.desc"
 ) => {
-  const [data, setData] = useState([]);
-  const [activePage, setActivePage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
-  const [sortBy, setSortBy] = useState(initialSortBy);
-  const [isLoading, setIsLoading] = useState(true);
-  const [loadingMore, setLoadingMore] = useState(false);
+  const [data, setData] = useState<T[]>([]);
+  const [activePage, setActivePage] = useState<number>(1);
+  const [totalPages, setTotalPages] = useState<number>(1);
+  const [sortBy, setSortBy] = useState<string>(initialSortBy);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [loadingMore, setLoadingMore] = useState<boolean>(false);
 
-  const loadData = (page, sort) => {
+  const loadData = (page: number, sort: string) => {
     if (page > totalPages) return;
 
-    setIsLoading(page === 1); // Show main loader for first load
-    setLoadingMore(page > 1); // Show "load more" spinner for subsequent loads
+    setIsLoading(page === 1);
+    setLoadingMore(page > 1);
 
     fetchFunction(page, sort)
-      .then(res => {
-        setData(prevData => [...prevData, ...res?.results]); // Append new data to existing ones
+      .then((res: ApiResponse<T>) => {
+        setData(prevData => [...prevData, ...res.results]);
         setActivePage(res?.page);
         setTotalPages(res?.total_pages);
       })
@@ -30,7 +31,7 @@ const useFetchData = (
       })
       .finally(() => {
         setIsLoading(false);
-        setLoadingMore(false); // Disable loading states
+        setLoadingMore(false);
       });
   };
 

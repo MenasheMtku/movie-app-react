@@ -5,9 +5,9 @@ import { useClickAway } from "react-use";
 import ThemeToggle from "./ThemeToggle/ThemeToggle";
 
 const Navbar = () => {
-  const [isOpen, setOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const ref = useRef(null);
-  useClickAway(ref, () => setOpen(false));
+  useClickAway(ref, () => setIsOpen(false));
 
   const navLinks = [
     { id: 1, title: "Home", to: "/" },
@@ -50,34 +50,32 @@ const Navbar = () => {
         <div className="block md:hidden">
           <Hamburger
             toggled={isOpen}
-            size={28}
-            toggle={setOpen}
-            direction="right"
+            size={24}
+            toggle={setIsOpen}
+            direction="left"
           />
           {isOpen && (
             <div
-              className={`bg-bkgDarker/95 text-contentDarker fixed bottom-0 right-0 top-[--nav-height] z-[99999] h-screen w-1/2  p-6 ${isOpen ? "translate-x-0" : "translate-x-full"} ease-in-out font-semibold z-20`}
+              className={`fixed right-0 left-0 top-[var(--nav-height)] h-[25vh] z-50 p-6 bg-bkgDarker/95 text-contentDarker transition-transform duration-300 ease-linear ${
+                isOpen ? "translate-x-0" : "translate-x-full"
+              }`}
             >
-              <ul
-                className="flex h-[auto]  w-full flex-col 
-                             justify-start gap-9 pl-3"
-              >
+              <ul className="flex h-[auto] w-full place-items-center justify-center gap-4 ">
                 {navLinks.map(link => {
                   return (
                     <Link
                       key={link.id}
-                      className="text-lg"
+                      className="block px-3 py-2 rounded-md text-base font-semibold bg-content text-bkg"
                       to={link.to}
-                      onClick={() => useClickAway}
+                      onClick={() => setIsOpen(false)}
                     >
                       {link.title}
                     </Link>
                   );
                 })}
-              </ul>
-              <div className="pl-3 mt-4">
+
                 <ThemeToggle />
-              </div>
+              </ul>
             </div>
           )}
         </div>

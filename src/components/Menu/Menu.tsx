@@ -1,6 +1,12 @@
 import React from "react";
-
-const Menu = ({ handlePage, handleSort, header, opt1, opt2 }) => {
+interface MenuProps {
+  handlePage: (pageNumber: number) => void;
+  handleSort: (sortValue: string) => void;
+  header: string;
+  opt1: string;
+  opt2: string;
+}
+const Menu = ({ handlePage, handleSort, header, opt1, opt2 }: MenuProps) => {
   return (
     <>
       <div className="flex justify-between items-baseline px-4">

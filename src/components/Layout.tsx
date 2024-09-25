@@ -1,9 +1,8 @@
 import PropTypes from "prop-types";
-import React from "react";
 import Footer from "./Footer/Footer";
 import Navbar from "./Navbar";
 
-const Layout = ({ children }) => {
+const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <div
       className={

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { shortenTitle } from "../utils/helpers";
 
-const PosterTitle = ({ title }) => {
+const PosterTitle = ({ title }: { title: string }) => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {

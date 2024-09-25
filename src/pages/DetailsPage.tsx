@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import "../index.css";
 import {
@@ -10,7 +10,7 @@ import {
 } from "../services/api";
 
 import ProgressBar from "../components/ProgressBar";
-import VideoCompoennet from "../components/Video/VideoCompoennet";
+import VideoComponent from "../components/Video/VideoComponent";
 import { defaultImage } from "../services/api";
 
 import { A11y, Navigation, Pagination, Scrollbar } from "swiper/modules";
@@ -18,23 +18,49 @@ import Details from "../components/Details/Details";
 import { Swiper, SwiperSlide } from "../components/MySwiper/Swiper";
 import Poster from "../components/Poster";
 
-const DetailsPage = () => {
-  const router = useParams();
-  const { type, id } = router;
+type DetailsType = {
+  title?: string;
+  name?: string;
+  poster_path?: string | null;
+  backdrop_path?: string | null;
+  // Add other properties as needed from the API response
+};
 
-  const [details, setDetails] = useState({});
-  const [cast, setCast] = useState([]);
-  const [video, setVideo] = useState(null);
-  const [videos, setVideos] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+type CastType = {
+  id: number;
+  name: string;
+  profile_path: string | null;
+};
+
+type VideoType = {
+  key: string;
+  id: string;
+  name: string;
+  type: string;
+};
+
+type RouteParams = {
+  type: string;
+  id: string;
+};
+
+const DetailsPage = () => {
+  const { type, id } = useParams<RouteParams>();
+
+  const [details, setDetails] = useState<DetailsType | null>({});
+  const [cast, setCast] = useState<CastType[]>([]);
+  const [video, setVideo] = useState<VideoType | null>(null);
+  const [videos, setVideos] = useState<VideoType[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+
   useEffect(() => {
     const fetchData = async () => {
       //   isLoading = true;
       try {
         const [detailsData, creditsData, videosData] = await Promise.all([
-          fetchDetails(type, id),
-          fetchCredits(type, id),
-          fetchVideos(type, id),
+          fetchDetails(type ?? "", id ?? ""),
+          fetchCredits(type ?? "", id ?? ""),
+          fetchVideos(type ?? "", id ?? ""),
         ]);
 
         // Set details
@@ -45,11 +71,11 @@ const DetailsPage = () => {
 
         // Set video/s
         const video = videosData?.results?.find(
-          video => video?.type === "Trailer"
+          (video: { type: string }) => video?.type === "Trailer"
         );
         setVideo(video);
         const videos = videosData?.results
-          ?.filter(video => video?.type !== "Trailer")
+          ?.filter((video: { type: string }) => video?.type !== "Trailer")
           ?.slice(0, 10);
         setVideos(videos);
       } catch (error) {
@@ -81,21 +107,21 @@ const DetailsPage = () => {
       <div className="min-h-screen w-full ">
         <div className="box-1">
           <div
-            className="relative image-dark-overlay-bottom z-[100] flex h-auto w-full items-center bg-cover bg-center bg-no-repeat py-2 md:h-[500px]"
+            className="relative image-dark-overlay-bottom z-10 flex h-auto w-full items-center bg-cover bg-center bg-no-repeat py-2 md:h-[500px]"
             style={{
               backgroundImage: `url(${wide_image})`,
             }}
           >
             {/* Overlay */}
-            <div className="absolute inset-0 bg-black/50"></div>
+            <div className="absolute inset-0  bg-gradient-to-t from-black/90 to-gray-900/85"></div>
 
             <div className="container relative z-10 mx-auto my-4 w-11/12 md:my-0">
               <div className="container flex flex-col gap-4 rounded-full px-2 md:flex-row md:items-center md:gap-10">
                 <div className="w-[220px]">
-                  <Poster src={imgSrc} title={title} />
+                  <Poster src={imgSrc} title={title ?? ""} />
                 </div>
                 <div>
-                  <Details details={details} type={type} />
+                  <Details details={details || {}} type={type ?? ""} />
                 </div>
               </div>
             </div>
@@ -168,7 +194,7 @@ const DetailsPage = () => {
                   {videos &&
                     videos?.map(item => (
                       <div className="min-w-72" key={item?.id}>
-                        <VideoCompoennet id={item?.key} small />
+                        <VideoComponent id={item?.key} small />
                         <h1 className="mt-2 text-sm font-bold">
                           {item?.name}{" "}
                         </h1>
