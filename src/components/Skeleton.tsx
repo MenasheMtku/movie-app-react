@@ -1,4 +1,9 @@
-const Skeleton = () => {
+type SkeletonProps = {
+  height: number;
+  width: number;
+  className: string;
+};
+const Skeleton = ({ height, width, className }: SkeletonProps) => {
   return (
     <div className="p-2 rounded shadow-2xl">
       <div className="relative h-60 mb-4 flex justify-center items-center bg-bkgDarker text-contentDarker animate-pulse rounded-md duration-150">

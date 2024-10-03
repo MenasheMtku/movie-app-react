@@ -44,7 +44,6 @@ const Movies = () => {
                 >
                   <VerticalCard item={item} type="movie" />
                   <PosterTitle title={item.title} />
-                  {/* <p> {item.popularity} </p> */}
                 </div>
               ))}
         </div>

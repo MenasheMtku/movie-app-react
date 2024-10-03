@@ -1,12 +1,7 @@
 import React from "react";
 import { imagePath } from "../../services/api";
 import { defaultImage } from "../../services/api";
-import {
-  minutesToHours,
-  ratingToPercentage,
-  resolveRatingColor,
-  shortenOverview,
-} from "../../utils/helpers";
+import { minutesToHours, shortenOverview } from "../../utils/helpers";
 import { BsCalendar3 } from "react-icons/bs";
 import { IoTimeSharp } from "react-icons/io5";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
@@ -37,7 +32,6 @@ const Details: React.FC<DetailsProps> = ({ details, type }) => {
   if (details?.poster_path === null) {
     imgSrc = defaultImage;
   }
-  const rateColor = resolveRatingColor(details?.vote_average || 0);
 
   return (
     <>
@@ -71,23 +65,7 @@ const Details: React.FC<DetailsProps> = ({ details, type }) => {
           )}
         </div>
       </div>
-      <div className="flex items-start text-right">
-        {/* rating progress bar */}
-        <a>
-          <CircularProgressbar
-            value={+ratingToPercentage(details?.vote_average ?? 0)}
-            className="mr-8 size-12"
-            text={ratingToPercentage(details?.vote_average ?? 0) + "%"}
-            strokeWidth={4}
-            styles={buildStyles({
-              textColor: `${rateColor}`,
-              pathColor: `${rateColor}`,
-              trailColor: "gray",
-              textSize: "28px",
-            })}
-          ></CircularProgressbar>
-        </a>
-      </div>
+      <div className="flex items-start justify-items-start"></div>
       {details?.tagline && (
         <p className="text-white my-5 text-sm italic">{details?.tagline}</p>
       )}

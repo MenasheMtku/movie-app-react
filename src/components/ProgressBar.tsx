@@ -11,6 +11,8 @@ const ProgressBar = () => {
             radius={0}
             color="cyan"
             className="h-12 w-12 text-black/15"
+            onPointerEnterCapture={undefined}
+            onPointerLeaveCapture={undefined}
           />
         </div>
       </div>
