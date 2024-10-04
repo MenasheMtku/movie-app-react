@@ -55,7 +55,7 @@ const Home = () => {
     <div className="h-full w-full duration-200 bg-bkg/25 text-content">
       <div className="min-h-full pb-8 ">
         {/* Main Swiper for Popular Movies */}
-        <div className="relative w-full h-[65dvh] z-10">
+        <div className="relative w-full h-[65dvh] lg:h-screen z-10">
           <Swiper
             modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
             slidesPerView={1}
@@ -115,7 +115,7 @@ const Home = () => {
               trendingMovies.map(item => (
                 <SwiperSlide key={item.id}>
                   <div className="py-2">
-                    <VerticalCard item={item} type={item?.media_type} />
+                    <VerticalCard item={item} type={item?.media_type || ""} />
                   </div>
                 </SwiperSlide>
               ))}

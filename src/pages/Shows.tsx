@@ -22,7 +22,7 @@ const Shows = () => {
   return (
     <>
       {/* <div className="min-h-full pb-8 "> */}
-      <div className="mx-auto min-h-screen max-w-[var(--max-width)] p-4">
+      <div className="mx-auto min-h-screen max-w-[var(--max-width)] p-4 mt-14">
         <Menu
           handlePage={() => activePage}
           handleSort={setSortBy}

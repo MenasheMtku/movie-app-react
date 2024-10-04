@@ -110,7 +110,7 @@ const DetailsPage = () => {
   console.log("Teasers", videos);
   return (
     <>
-      <div className="min-h-screen w-full">
+      <div className="min-h-screen w-full pt-[var(--nav-height)]">
         <div className="box-1">
           <div
             className="relative image-dark-overlay-bottom z-10 flex h-auto w-full items-center bg-cover bg-center bg-no-repeat py-2 md:h-[500px]"

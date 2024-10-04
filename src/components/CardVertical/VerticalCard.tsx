@@ -41,7 +41,11 @@ const VerticalCard = ({ item, type }: { item: Item; type: string }) => {
         <Link to={detailsUrl}>
           <div className="relative mt-1 overflow-hidden">
             <div className="transition-all hover:scale-105 hover:ease-in duration-300">
-              {isLoading ? <Skeleton /> : <Poster src={imgSrc} title={title} />}
+              {isLoading ? (
+                <Skeleton height={0} width={0} className={""} />
+              ) : (
+                <Poster src={imgSrc} title={title} />
+              )}
             </div>
           </div>
         </Link>

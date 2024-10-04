@@ -77,7 +77,7 @@ const Search = () => {
   return (
     <>
       {/* <div className="min-h-screen w-full pb-8 "> */}
-      <div className="mx-auto min-h-screen max-w-[var(--max-width)] p-4">
+      <div className="mx-auto min-h-screen max-w-[var(--max-width)] p-4 mt-14">
         <form
           onSubmit={handleSearch}
           className="mx-auto flex place-content-center pt-10"

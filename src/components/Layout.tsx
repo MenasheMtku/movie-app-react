@@ -6,7 +6,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <div
       className={
-        "bg-bkg text-content grid grid-rows-[auto_1fr_auto] grid-cols-1 duration-200 mt-[var(--nav-height)]"
+        "bg-bkg text-content grid grid-rows-[auto_1fr_auto] grid-cols-1 duration-200"
       }
     >
       <Navbar />

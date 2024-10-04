@@ -1,10 +1,11 @@
 import Hamburger from "hamburger-react";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { useClickAway } from "react-use";
 import ThemeToggle from "./ThemeToggle/ThemeToggle";
 
 const Navbar = () => {
+  const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const ref = useRef(null);
   useClickAway(ref, () => setIsOpen(false));
@@ -16,9 +17,26 @@ const Navbar = () => {
     { id: 4, title: "Search", to: "/search" },
   ];
 
+  const handleScroll = () => {
+    if (window.scrollY > 0) {
+      setIsScrolled(true);
+    }
+    if (window.scrollY === 0) {
+      setIsScrolled(false);
+    }
+  };
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+  let navBackground = isScrolled
+    ? "bg-bkgDarker text-content duration-200"
+    : "bg-gradient-to-l from-bkg/20 to-content/5 text-content duration-200";
   return (
     <header
-      className="bg-bkgDarker text-contentDarker flex justify-between items-center w-full h-[var(--nav-height)] fixed top-0 z-50 duration-200"
+      className={`${navBackground} flex justify-between items-center w-full h-[var(--nav-height)] fixed top-0 z-50`}
       ref={ref}
     >
       <div className="max-w-[var(--max-width)] p-8 mx-auto flex w-full items-center justify-between ">
@@ -30,12 +48,12 @@ const Navbar = () => {
         </Link>
         <div className="hidden md:flex lg:flex-row lg:items-center ">
           <nav className="mr-10 ">
-            <ul className="justify-between font-semibold ">
+            <ul className="justify-between">
               {navLinks.map(link => {
                 return (
                   <Link
                     key={link.id}
-                    className="mr-4 hover:border-b-[3px] border-primary py-4 duration-150 font-bold"
+                    className="mr-4 hover:border-b-[3px] border-primary py-4 duration-150"
                     to={link.to}
                   >
                     {link.title}
