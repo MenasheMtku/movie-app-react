@@ -71,7 +71,7 @@ const Home = () => {
                   }}
                 >
                   {/* Overlay with proper z-index */}
-                  <div className="absolute inset-0 bg-black/65 z-10"></div>
+                  <div className="absolute inset-0 bg-black/75 z-10"></div>
                   {/* You can add content on top of the overlay here */}
                   <div className="absolute inset-0 flex flex-col justify-center items-center z-20 text-white text-center">
                     <h2 className="text-2xl max-w-[35rem] font-semibold">

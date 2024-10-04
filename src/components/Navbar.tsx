@@ -32,8 +32,8 @@ const Navbar = () => {
     };
   }, []);
   let navBackground = isScrolled
-    ? "bg-bkgDarker text-content duration-200"
-    : "bg-gradient-to-l from-bkg/20 to-content/5 text-content duration-200";
+    ? "bg-bkgDarker text-contentDarker duration-200"
+    : "bg-gradient-to-l from-bkg/20 to-content/5 text-white  duration-200";
   return (
     <header
       className={`${navBackground} flex justify-between items-center w-full h-[var(--nav-height)] fixed top-0 z-50`}
@@ -46,7 +46,7 @@ const Navbar = () => {
         >
           TMDB
         </Link>
-        <div className="hidden md:flex lg:flex-row lg:items-center ">
+        <div className="hidden md:flex lg:flex-row lg:items-center">
           <nav className="mr-10 ">
             <ul className="justify-between">
               {navLinks.map(link => {
