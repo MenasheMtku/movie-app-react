@@ -15,14 +15,12 @@ export const fetchTrendingAll = async (timeWindow = "day") => {
 };
 // -------- MOVIES --------
 export const fetchUpcomingMovies = async () => {
-  const { data } = await axios.get(
-    `${baseUrl}movie/upcoming?api_key=${apiKey}`
-  );
-  return data?.results;
+  const res = await axios.get(`${baseUrl}movie/upcoming?api_key=${apiKey}`);
+  return res?.data;
 };
 export const fetchTrendingMovies = async () => {
-  const { data } = await axios.get(`${baseUrl}movie/popular?api_key=${apiKey}`);
-  return data?.results;
+  const res = await axios.get(`${baseUrl}movie/popular?api_key=${apiKey}`);
+  return res?.data;
 };
 export const fetchPopularMovies = async () => {
   const res = await axios.get(`${baseUrl}movie/popular?api_key=${apiKey}`);
@@ -46,8 +44,12 @@ export const fetchDiscoverShows = async (page: number, sortBy: string) => {
 
 // -------- SHOWS --------
 export const fetchPopularShows = async () => {
-  const { data } = await axios.get(`${baseUrl}tv/popular?api_key=${apiKey}`);
-  return data?.results;
+  const res = await axios.get(`${baseUrl}tv/popular?api_key=${apiKey}`);
+  return res?.data;
+};
+export const fetchTrendingShows = async () => {
+  const res = await axios.get(`${baseUrl}trending/tv/week?api_key=${apiKey}`);
+  return res?.data;
 };
 
 // -------- DETAILS MOVIES & SHOWS --------
