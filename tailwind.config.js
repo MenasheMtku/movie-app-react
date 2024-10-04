@@ -13,6 +13,7 @@ export default {
         bkgDarker: "hsl(var(--color-bkg-darker) / <alpha-value>)",
         content: "hsl(var(--color-content) / <alpha-value>)",
         contentDarker: "hsl(var(--color-content-darker) / <alpha-value>)",
+        navColor: "hsl(var(--color-nav) / <alpha-value>)",
         primary: "var(--primary-color)",
         secondary: "var(--secondary-color)",
       },

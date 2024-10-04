@@ -19,6 +19,7 @@
   --color-content: 217deg 32.6% 17.5%;
   --color-bkg-darker: 0deg 0% 80%;
   --color-content-darker: 217deg 32.6% 17.5%;
+  --color-nav: 0deg 0.6% 28.5%;
 }
 
 :root[class="dark"] {
@@ -29,7 +30,8 @@
   --color-bkg-darker: 0deg 0% 12%;
   /* --color-content: 210deg 40% 98%; */
   --color-content: 210deg 40% 98%;
-  --color-content-darker: 210deg 40% 98%;
+  --color-content-darker: 210deg 90% 98%;
+  --color-nav: 198deg 62.6% 47.5%;
 }
 
 body {
