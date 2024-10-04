@@ -32,18 +32,15 @@ const Navbar = () => {
     };
   }, []);
   let navBackground = isScrolled
-    ? "bg-bkgDarker text-navColor duration-200"
-    : "bg-gradient-to-l from-bkg/20 to-content/5 text-navColor duration-200";
+    ? "bg-bkgDarker text-primary duration-200"
+    : "bg-gradient-to-r from-bkg/20 to-content/5 text-primary duration-200";
   return (
     <header
       className={`${navBackground} flex justify-between  items-center w-full h-[var(--nav-height)] fixed top-0 z-50 font-semibold`}
       ref={ref}
     >
       <div className="max-w-[var(--max-width)] p-8 mx-auto flex w-full items-center justify-between ">
-        <Link
-          to="/"
-          className="text-3xl md:text-4xl font-bold text-cyan-600 dark:text-cyan-800"
-        >
+        <Link to="/" className="text-3xl md:text-4xl font-bold text-primary">
           TMDB
         </Link>
         <div className="hidden md:flex lg:flex-row lg:items-center">

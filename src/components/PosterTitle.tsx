@@ -12,7 +12,7 @@ const PosterTitle = ({ title }: { title: string }) => {
   return (
     <>
       {isLoading ? (
-        <div className="w-10/12 bg-bkg animate-pulse h-[1rem] text-center mx-auto rounded-2xl"></div>
+        <div className="w-10/12 bg-bkgDarker animate-pulse h-[1rem] text-center mx-auto rounded-2xl"></div>
       ) : (
         <p className="font-semibold">{shortenTitle(title)}</p>
       )}

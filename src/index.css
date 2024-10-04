@@ -13,25 +13,24 @@
   -moz-osx-font-smoothing: grayscale;
   --nav-height: 3.8rem;
   --max-width: 1440px;
-  --accent-1: 288deg 95.8% 90.6%;
-  --accent-2: 168deg 83.8% 78.2%;
-  --color-bkg: 210deg 40% 98%;
-  --color-content: 217deg 32.6% 17.5%;
-  --color-bkg-darker: 0deg 0% 80%;
-  --color-content-darker: 217deg 32.6% 17.5%;
-  --color-nav: 0deg 0.6% 28.5%;
+
+  --color-primary: 180deg 100% 25%; /* Accent Color 1 */
+  --color-secondary: 168deg 83.8% 70%; /* Accent Color 2 */
+  --color-bkg: 210deg 40% 98%; /* Light Background */
+  --color-bkg-alt: 0deg 0% 90%; /* Light Background Alt */
+  --color-content: 217deg 32.6% 17.5%; /* Text Color */
+  --color-content-secondary: 217deg 32.6% 37.5%; /* Lighter Text Color */
+  --color-border: 0deg 0% 85%; /* Border Color */
 }
 
 :root[class="dark"] {
-  --accent-1: 168deg 83.8% 78.2%;
-  --accent-2: 288deg 95.8% 90.6%;
-  /* --color-bkg: 217deg 32.6% 27.5%; */
-  --color-bkg: 0deg 0% 20%;
-  --color-bkg-darker: 0deg 0% 12%;
-  /* --color-content: 210deg 40% 98%; */
-  --color-content: 210deg 40% 98%;
-  --color-content-darker: 210deg 90% 98%;
-  --color-nav: 198deg 62.6% 47.5%;
+  --color-primary: 180deg 100% 75%; /* Darker Accent 1 */
+  --color-secondary: 168deg 83.8% 60%; /* Darker Accent 2 */
+  --color-bkg: 217deg 32.6% 12.3%; /* Dark Background */
+  --color-bkg-alt: 217deg 32.6% 10%; /* Darker Background Alt */
+  --color-content: 210deg 40% 98%; /* Light Text Color */
+  --color-content-secondary: 217deg 32.6% 80%; /* Slightly Muted Text */
+  --color-border: 217deg 32.6% 20%; /* Border Color */
 }
 
 body {
