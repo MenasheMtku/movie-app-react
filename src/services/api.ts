@@ -59,7 +59,6 @@ export const fetchDetails = async (type: string, id: string) => {
 };
 
 // MOVIES & SERIES - Credits
-
 export const fetchCredits = async (type: string, id: string) => {
   const res = await axios.get(
     `${baseUrl}${type}/${id}/credits?api_key=${apiKey}`

@@ -1,5 +1,4 @@
 import { Spinner } from "@material-tailwind/react";
-import React from "react";
 import "react-circular-progressbar/dist/styles.css";
 
 const ProgressBar = () => {
@@ -11,8 +10,8 @@ const ProgressBar = () => {
             radius={0}
             color="cyan"
             className="h-12 w-12 text-black/15"
-            onPointerEnterCapture={undefined}
-            onPointerLeaveCapture={undefined}
+            // onPointerEnterCapture={() => console.log("first")}
+            // onPointerLeaveCapture={() => console.log("second")}
           />
         </div>
       </div>

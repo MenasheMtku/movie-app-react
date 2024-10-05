@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "../index.css";
 import {
-  fetchPopularMovies,
-  fetchTrendingAll,
   fetchUpcomingMovies,
   imagePathOriginal,
   fetchTrendingShows,
@@ -22,7 +20,6 @@ import { Swiper, SwiperSlide } from "../components/MySwiper/Swiper";
 import ProgressBar from "../components/ProgressBar";
 
 import { Movie, Program } from "../types/movie";
-// import { Program } from "../types/movie";
 
 type VideoType = {
   key: string;
@@ -77,8 +74,6 @@ const Home = () => {
     fetchData();
   }, []);
 
-  console.log("Upcoming Movies:", upcomingMoviesVideo);
-
   if (isLoading) {
     return <ProgressBar />;
   }
@@ -93,6 +88,7 @@ const Home = () => {
     setSelectedMovie(null);
   }
 
+  // console.log("Trending Movies:", trendingMovies);
   return (
     <div className="h-full w-full duration-200 bg-bkg/25 text-content">
       <div className="min-h-full pb-8 ">
@@ -192,7 +188,10 @@ const Home = () => {
               trendingMovies.map(item => (
                 <SwiperSlide key={item.id}>
                   <div className="py-2">
-                    <VerticalCard item={item} type={item?.media_type || ""} />
+                    <VerticalCard
+                      item={item}
+                      type={item?.media_type || "movie"}
+                    />
                   </div>
                 </SwiperSlide>
               ))}
