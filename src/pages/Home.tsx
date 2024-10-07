@@ -41,18 +41,24 @@ const Home = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [upcoming, trending, trendingShows] = await Promise.all([
+        const [upcoming, trending, trendingShows] = (await Promise.all([
           fetchUpcomingMovies(),
           fetchTrendingMovies(),
           fetchTrendingShows(),
-        ]);
+        ])) as [
+          { results: Movie[] },
+          { results: Movie[] },
+          { results: Program[] },
+        ];
 
-        setUpcomingMovies(upcoming?.results || []);
-        setTrendingMovies(trending?.results || []);
-        setTrendingShows(trendingShows?.results || []);
+        setUpcomingMovies((upcoming as { results: Movie[] }).results ?? []);
+        setTrendingMovies((trending as { results: Movie[] }).results ?? []);
+        setTrendingShows(
+          (trendingShows as { results: Program[] }).results ?? []
+        );
 
-        upcoming?.results.forEach(async (movie: { id: string }) => {
-          const videos = await fetchVideos("movie", movie.id);
+        upcoming?.results.forEach(async (movie: { id: number }) => {
+          const videos = await fetchVideos("movie", `${movie.id}`);
           const youtubeVideo = videos?.results?.find(
             (video: { site: string; type: string }) =>
               video.site === "YouTube" && video.type === "Trailer"

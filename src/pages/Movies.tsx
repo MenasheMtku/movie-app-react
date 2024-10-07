@@ -40,7 +40,7 @@ const Movies = () => {
               .map(item => (
                 <div
                   key={item.id}
-                  className="bg-black/30 p-2 rounded-lg overflow-hidden text-center"
+                  className="bg-bkg_alt p-2 rounded-lg overflow-hidden text-center"
                 >
                   <VerticalCard item={item} type="movie" />
                   <PosterTitle title={item.title} />
