@@ -18,7 +18,7 @@ import {
 import VerticalCard from "../components/CardVertical/VerticalCard";
 import { Swiper, SwiperSlide } from "../components/MySwiper/Swiper";
 import ProgressBar from "../components/ProgressBar";
-
+import { FaYoutube } from "react-icons/fa";
 import { Movie, Program } from "../types/movie";
 
 type VideoType = {
@@ -118,16 +118,18 @@ const Home = () => {
                     {/* Overlay with proper z-index */}
                     <div className="absolute inset-0 bg-black/75 z-10"></div>
                     {/* You can add content on top of the overlay here */}
-                    <div className="absolute inset-0 grid grid-rows-[100px_100px] place-content-center gap-4 justify-center items-center z-20 text-white text-center">
-                      <h2 className="text-2xl max-w-[12rem] text-balance font-semibold text-stone-400">
+                    <div className="absolute inset-0 grid grid-rows-[100px_100px] place-content-center gap-1 justify-center items-center z-20 text-white text-center">
+                      <h2 className="text-2xl max-w-[12rem] text-balance font-semibold text-stone-200">
                         {item.title}
                       </h2>
-                      <button
-                        className="mt-4 p-4 bg-red-600 text-white rounded-full hover:bg-red-800"
-                        onClick={() => handlePlayVideo(item)}
-                      >
-                        ▶ Play Trailer
-                      </button>
+                      <div className="w-full">
+                        <button
+                          className="p-2 bg-red-600 text-white rounded-full hover:bg-red-800 w-max text-center"
+                          onClick={() => handlePlayVideo(item)}
+                        >
+                          <FaYoutube size={40} />
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </SwiperSlide>
