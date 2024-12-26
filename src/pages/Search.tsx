@@ -4,7 +4,8 @@ import ProgressBar from "../components/ProgressBar";
 import "../index.css";
 import { fetchSearchQuery } from "../services/api";
 import LoadMoreButton from "../components/LoadMoreButton";
-
+// hooks
+import useInfiniteScroll from "../hooks/useInfiniteScroll";
 type SearchResult = {
   id: number;
   title?: string;
@@ -37,11 +38,12 @@ const Search = () => {
     setLoadingMore(page > 1);
 
     fetchSearchQuery(searchValue, page, type)
-      .then((res: FetchResponse) => {
+      .then(res => {
+        const typedRes = res as FetchResponse;
         // Append new data
-        setData(prevData => [...prevData, ...res?.results]);
-        setActivePage(res?.page);
-        setTotalPages(res?.total_pages);
+        setData(prevData => [...prevData, ...typedRes?.results]);
+        setActivePage(typedRes?.page);
+        setTotalPages(typedRes?.total_pages);
       })
       .catch(err => {
         console.log("Error fetching search results", err);
@@ -51,6 +53,12 @@ const Search = () => {
         setLoadingMore(false);
       });
   };
+
+  const observerRef = useInfiniteScroll({
+    loading: loadingMore,
+    hasMore: activePage < totalPages,
+    onLoadMore: () => loadSearchResults(activePage + 1),
+  });
 
   useEffect(() => {
     if (searchValue) {
@@ -111,7 +119,7 @@ const Search = () => {
             ))}
         </div>
         {!isLoading && activePage < totalPages && (
-          <div className="flex justify-center mt-6">
+          <div ref={observerRef} className="flex justify-center mt-6">
             <LoadMoreButton loading={loadingMore} onClick={loadMoreResults}>
               Load More
             </LoadMoreButton>

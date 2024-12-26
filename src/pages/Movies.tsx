@@ -5,8 +5,11 @@ import LoadMoreButton from "../components/LoadMoreButton";
 import Menu from "../components/Menu/Menu";
 import PosterTitle from "../components/PosterTitle";
 import ProgressBar from "../components/ProgressBar";
+// hooks
 import useFetchData from "../hooks/useFetchData";
+import useInfiniteScroll from "../hooks/useInfiniteScroll";
 import { fetchDiscoverMovies } from "../services/api";
+// types
 import { Movie } from "../types/movie";
 
 const Movies = () => {
@@ -19,7 +22,15 @@ const Movies = () => {
     activePage,
     totalPages,
   } = useFetchData<Movie>(fetchDiscoverMovies);
+
+  const observerRef = useInfiniteScroll({
+    loading: loadingMore,
+    hasMore: activePage < totalPages,
+    onLoadMore: loadMoreMovies,
+  });
+
   console.log(...movies);
+
   return (
     <>
       {/* <div className="min-h-full pb-8"> */}
@@ -48,7 +59,7 @@ const Movies = () => {
               ))}
         </div>
         {!isLoading && activePage < totalPages && (
-          <div className="flex justify-center mt-6">
+          <div ref={observerRef} className="flex justify-center mt-6">
             <LoadMoreButton loading={loadingMore} onClick={loadMoreMovies}>
               Load More
             </LoadMoreButton>

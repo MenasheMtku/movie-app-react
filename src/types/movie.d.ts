@@ -23,9 +23,3 @@ export type Program = CommonFeatures & {
   first_air_date?: string;
   origin_country?: string[];
 };
-
-export type ApiResponse<T> = {
-  page: number;
-  total_pages: number;
-  results: T[];
-};

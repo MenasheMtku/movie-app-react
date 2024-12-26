@@ -1,26 +1,38 @@
 import { useEffect, useRef } from "react";
 import { register } from "swiper/element/bundle";
 
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      "swiper-container": any;
+      "swiper-slide": any;
+    }
+  }
+}
+
 register();
 
-export function Swiper(props) {
-  const swiperRef = useRef(null);
-  const { children, ...rest } = props;
-  // ------------------
+interface SwiperProps {
+  children: React.ReactNode;
+  [key: string]: any;
+}
+
+export function Swiper({ children, ...rest }: SwiperProps) {
+  const swiperRef = useRef<any>(null);
+
   useEffect(() => {
-    // Register Swiper web component
-    register();
-    // pass component props to parameters
-    const params = {
-      ...rest,
-    };
+    if (!swiperRef.current) return;
+
+    // Pass component props to parameters
+    const params = { ...rest };
 
     // Assign it to swiper element
     Object.assign(swiperRef.current, params);
 
-    // initialize swiper
+    // Initialize swiper
     swiperRef.current.initialize();
-  }, []);
+  }, [rest]);
+
   return (
     <swiper-container init="false" ref={swiperRef}>
       {children}
@@ -28,9 +40,11 @@ export function Swiper(props) {
   );
 }
 
-// export default MySwiper;
-export function SwiperSlide(props) {
-  const { children, ...rest } = props;
+interface SwiperSlideProps {
+  children: React.ReactNode;
+  [key: string]: any;
+}
 
+export function SwiperSlide({ children, ...rest }: SwiperSlideProps) {
   return <swiper-slide {...rest}>{children}</swiper-slide>;
 }

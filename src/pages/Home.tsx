@@ -27,6 +27,7 @@ type VideoType = {
   name: string;
   type: string;
 };
+
 const Home = () => {
   const [upcomingMovies, setUpcomingMovies] = useState<Movie[]>([]);
   const [upcomingMoviesVideo, setUpcomingMoviesVideo] = useState<{
@@ -138,7 +139,7 @@ const Home = () => {
         </div>
         {/* Modal for YouTube Video */}
         {isModalOpen && selectedMovie && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-75">
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-75 ">
             <div className="relative w-full max-w-3xl bg-black">
               {/* Close Button */}
               <button

@@ -6,7 +6,6 @@
 
 :root {
   font-family: "Nunito", sans-serif;
-  /* line-height: 1.5; */
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -14,23 +13,23 @@
   --nav-height: 3.8rem;
   --max-width: 1440px;
 
-  --color-primary: 180deg 100% 25%; /* Accent Color 1 */
-  --color-secondary: 168deg 83.8% 70%; /* Accent Color 2 */
-  --color-bkg: 210deg 40% 98%; /* Light Background */
-  --color-bkg-alt: 0deg 0% 90%; /* Light Background Alt */
-  --color-content: 217deg 32.6% 17.5%; /* Text Color */
-  --color-content-secondary: 217deg 32.6% 37.5%; /* Lighter Text Color */
-  --color-border: 0deg 0% 85%; /* Border Color */
+  --color-primary: 210deg 100% 50%; /* Blue - Accent Color 1 */
+  --color-secondary: 160deg 100% 79%; /* Green - Accent Color 2 */
+  --color-bkg: 210deg 17% 98%; /* Light Gray - Light Background */
+  --color-bkg-alt: 210deg 14% 92%; /* Light Gray - Light Background Alt */
+  --color-content: 210deg 22% 16%; /* Dark Gray - Text Color */
+  --color-content-secondary: 210deg 14% 34%; /* Gray - Lighter Text Color */
+  --color-border: 210deg 14% 89%; /* Light Gray - Border Color */
 }
 
 :root[class="dark"] {
-  --color-primary: 180deg 100% 75%; /* Darker Accent 1 */
-  --color-secondary: 168deg 83.8% 60%; /* Darker Accent 2 */
-  --color-bkg: 217deg 32.6% 12.3%; /* Dark Background */
-  --color-bkg-alt: 217deg 32.6% 10%; /* Darker Background Alt */
-  --color-content: 210deg 40% 98%; /* Light Text Color */
-  --color-content-secondary: 217deg 32.6% 80%; /* Slightly Muted Text */
-  --color-border: 217deg 32.6% 20%; /* Border Color */
+  --color-primary: 210deg 100% 50%; /* Blue - Accent Color 1 */
+  --color-secondary: 160deg 100% 82%; /* Green - Accent Color 2 */
+  --color-bkg: 210deg 22% 7%; /* Dark Gray - Dark Background */
+  --color-bkg-alt: 210deg 22% 11%; /* Dark Gray - Dark Background Alt */
+  --color-content: 210deg 17% 92%; /* Light Gray - Light Text Color */
+  --color-content-secondary: 210deg 14% 56%; /* Gray - Slightly Muted Text */
+  --color-border: 210deg 14% 17%; /* Dark Gray - Border Color */
 }
 
 body {

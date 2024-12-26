@@ -28,7 +28,7 @@ export const fetchPopularMovies = async () => {
 };
 // -------- DISCOVER MOVIES & SHOWS --------
 export const fetchDiscoverMovies = async (page: number, sortBy: string) => {
-  console.log("discover endponit called..");
+  console.log("discover endpoint called..");
   const res = await axios.get(
     `${baseUrl}discover/movie?api_key=${apiKey}&page=${page}&sort_by=${sortBy}`
   );

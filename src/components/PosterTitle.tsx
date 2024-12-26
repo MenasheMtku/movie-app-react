@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { shortenTitle } from "../utils/helpers";
 
 const PosterTitle = ({ title }: { title: string }) => {
