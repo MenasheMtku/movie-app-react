@@ -1,8 +1,6 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-// @ts-expect-error: side-effect CSS import without type declarations
-import "@/index.css";
 import {
   fetchUpcomingMovies,
   imagePathOriginal,
