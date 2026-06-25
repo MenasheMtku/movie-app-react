@@ -26,6 +26,7 @@ export type Program = CommonFeatures & {
 };
 
 export type DetailsType = {
+  id?: number;
   title?: string;
   name?: string;
   poster_path?: string | null;
@@ -43,6 +44,7 @@ export type CastType = {
   id: number;
   name: string;
   profile_path: string | null;
+  character?: string;
 };
 
 export type VideoType = {

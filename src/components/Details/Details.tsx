@@ -15,64 +15,66 @@ const Details: React.FC<DetailsProps> = ({ details, type }) => {
     type === "tv" ? details?.first_air_date : details?.release_date;
 
   return (
-    <>
-      <div className="flex flex-row items-baseline gap-2 md:gap-1 text-white">
-        <p className="text-xl">{title}</p>
-        <p className="text-xl font-semibold text-gray-400">
-          {releaseDate ? new Date(releaseDate).getFullYear() : ""}
-        </p>
+    <div className="flex flex-col gap-3">
+      <div className="flex flex-row items-baseline gap-2">
+        <h1 className="text-3xl md:text-4xl font-bold text-content leading-tight">
+          {title}
+        </h1>
+        {releaseDate && (
+          <span className="text-xl text-content_secondary font-normal flex-shrink-0">
+            {new Date(releaseDate).getFullYear()}
+          </span>
+        )}
       </div>
-      <div className="mb-5 mt-1 flex items-center gap-4">
-        <div className="flex items-center gap-4">
-          <div className="flex items-center text-white">
-            <BsCalendar3 className="mr-2 " />
-            <p className="text-sm">
-              {releaseDate
-                ? new Date(releaseDate).toLocaleDateString("en-US")
-                : "N/A"}
-              (US)
-            </p>
-          </div>
-          {type === "movie" && (
-            <div className="text-white flex items-center gap-2">
-              <span>*</span>
-              <div className="flex">
-                <IoTimeSharp className="mr-1" color={"gray.400"} />
-                <p className="text-sm">
-                  {minutesToHours(details?.runtime ?? 0)}
-                </p>
-              </div>
-            </div>
-          )}
+
+      <div className="flex items-center gap-4 text-sm text-content_secondary">
+        <div className="flex items-center gap-1.5">
+          <BsCalendar3 className="size-3.5" />
+          <span>
+            {releaseDate
+              ? new Date(releaseDate).toLocaleDateString("en-US")
+              : "N/A"}{" "}
+            (US)
+          </span>
         </div>
+        {type === "movie" && details?.runtime ? (
+          <div className="flex items-center gap-1.5">
+            <IoTimeSharp className="size-3.5" />
+            <span>{minutesToHours(details.runtime)}</span>
+          </div>
+        ) : null}
       </div>
-      <div className="flex items-start justify-items-start"></div>
+
       {details?.tagline && (
-        <p className="text-white my-5 text-sm italic">{details?.tagline}</p>
+        <p className="text-content_secondary italic text-sm">
+          &ldquo;{details.tagline}&rdquo;
+        </p>
       )}
+
       {details?.overview ? (
-        <>
-          <h2 className="text-white  my-2 text-xl">Overview</h2>
-          <p className="text-white  mb-3 w-full text-base md:w-96">
-            {shortenOverview(details?.overview)}
+        <div>
+          <h2 className="text-lg font-semibold text-content mb-1">Overview</h2>
+          <p className="text-content/80 leading-relaxed text-base">
+            {shortenOverview(details.overview)}
           </p>
-        </>
+        </div>
       ) : (
-        <>
-          <h2 className="mb-2 text-sm">Overview Unavailable</h2>
-        </>
+        <p className="text-sm text-content_secondary">Overview unavailable</p>
       )}
-      <div className="mt-6 flex w-full flex-wrap  gap-2 md:flex-row">
-        {details?.genres?.map(genre => (
-          <p
-            className=" rounded bg-gray-200 text-black p-1 text-center font-bold text-sm dark:text-gray-200 dark:bg-gray-500"
-            key={genre?.id}
-          >
-            {genre?.name}
-          </p>
-        ))}
-      </div>
-    </>
+
+      {details?.genres && details.genres.length > 0 && (
+        <div className="flex flex-wrap gap-2 mt-2">
+          {details.genres.map(genre => (
+            <span
+              key={genre?.id}
+              className="bg-primary/15 text-primary border border-primary/30 rounded-full px-3 py-0.5 text-xs font-semibold"
+            >
+              {genre?.name}
+            </span>
+          ))}
+        </div>
+      )}
+    </div>
   );
 };
 
