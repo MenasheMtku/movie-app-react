@@ -15,7 +15,7 @@ import { A11y, Navigation, Pagination, Scrollbar } from "swiper/modules";
 import dynamic from "next/dynamic";
 import Details from "@/components/Details/Details";
 import Poster from "@/components/Poster";
-import { buildStyles, CircularProgressbar } from "react-circular-progressbar";
+import { CircularProgressbar } from "react-circular-progressbar";
 import { ratingToPercentage, resolveRatingColor } from "@/utils/helpers";
 import { CastType, DetailsType, VideoType } from "@/types/movie";
 import { useQuery } from "@tanstack/react-query";
@@ -55,7 +55,11 @@ const SectionHeading = ({ children }: { children: React.ReactNode }) => (
 const DetailsPage = ({ type }: Props) => {
   const params = useParams();
   const id = params.id as string;
-  const { add: addToWatchlist, remove: removeFromWatchlist, isInWatchlist } = useWatchlist();
+  const {
+    add: addToWatchlist,
+    remove: removeFromWatchlist,
+    isInWatchlist,
+  } = useWatchlist();
 
   const {
     data: details,
@@ -128,7 +132,12 @@ const DetailsPage = ({ type }: Props) => {
 
   const watchlistItem =
     details?.id != null
-      ? { id: details.id, type, title: title ?? "", poster_path: details.poster_path ?? "" }
+      ? {
+          id: details.id,
+          type,
+          title: title ?? "",
+          poster_path: details.poster_path ?? "",
+        }
       : null;
   const inWatchlist = watchlistItem ? isInWatchlist(watchlistItem.id) : false;
 
@@ -153,18 +162,22 @@ const DetailsPage = ({ type }: Props) => {
               <Poster src={imgSrc} title={title ?? ""} />
             </div>
             {/* Rating badge */}
-            <div className="absolute -bottom-3 -right-3 bg-bkg rounded-full p-1 shadow-lg">
+            <div className="absolute -bottom-3 -right-3 bg-bkg rounded-full p-1 shadow-lg flex items-center justify-center">
               <CircularProgressbar
                 value={+ratingToPercentage(details?.vote_average ?? 0)}
                 className="size-14"
                 text={ratingToPercentage(details?.vote_average ?? 0) + "%"}
                 strokeWidth={4}
-                styles={buildStyles({
-                  textColor: rateColor,
-                  pathColor: rateColor,
-                  trailColor: "transparent",
-                  textSize: "28px",
-                })}
+                styles={{
+                  path: { stroke: rateColor },
+                  trail: { stroke: "transparent" },
+                  text: {
+                    fill: rateColor,
+                    fontSize: "24px",
+                    dominantBaseline: "middle",
+                    textAnchor: "middle",
+                  },
+                }}
               />
             </div>
           </div>
@@ -198,7 +211,6 @@ const DetailsPage = ({ type }: Props) => {
 
       {/* ── Content ── */}
       <div className="max-w-[1280px] mx-auto px-4 pb-16 flex flex-col gap-12 mt-10">
-
         {/* Cast */}
         {cast.length > 0 && (
           <motion.section {...fadeUp(0.2)}>
@@ -265,7 +277,10 @@ const DetailsPage = ({ type }: Props) => {
                 <SectionHeading>More Videos</SectionHeading>
                 <div className="flex gap-4 overflow-x-auto pb-2 scrollbar-hide">
                   {videos.map(item => (
-                    <div key={item.id} className="min-w-[260px] flex flex-col gap-1">
+                    <div
+                      key={item.id}
+                      className="min-w-[260px] flex flex-col gap-1"
+                    >
                       <VideoComponent id={item.key} small />
                       <p className="text-sm font-semibold text-content line-clamp-2">
                         {item.name}
