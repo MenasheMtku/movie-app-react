@@ -2,7 +2,11 @@
 
 A modern Movie & TV show discovery app built with Next.js 14 (App Router), React 18, and TypeScript. Pulls live data from the [TMDB API](https://www.themoviedb.org/documentation/api) and is hosted on Netlify.
 
-![Movies page](public/images/moviesPage.png)
+## Screenshots
+
+| Home | Movies | Watchlist |
+|------|--------|-----------|
+| ![Home](public/images/homePage.png) | ![Movies](public/images/moviesPage.png) | ![Watchlist](public/images/watchlistPage.png) |
 
 ## Features
 
