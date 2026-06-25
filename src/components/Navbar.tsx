@@ -1,5 +1,7 @@
-import React, { useState, useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
+"use client";
+
+import { useState, useEffect, useRef } from "react";
+import Link from "next/link";
 import { useClickAway } from "react-use";
 import { FaBars, FaTimes } from "react-icons/fa";
 import ThemeToggle from "./ThemeToggle/ThemeToggle";
@@ -15,18 +17,23 @@ const Navbar = () => {
     { id: 2, title: "Movies", to: "/movies" },
     { id: 3, title: "Shows", to: "/shows" },
     { id: 4, title: "Search", to: "/search" },
+    { id: 5, title: "Watchlist", to: "/watchlist" },
   ];
 
-  const handleScroll = () => {
-    setIsScrolled(window.scrollY > 0);
-  };
+  useEffect(() => {
+    const handleScroll = () => setIsScrolled(window.scrollY > 0);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
+    if (!isOpen) return;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setIsOpen(false);
     };
-  }, []);
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [isOpen]);
 
   const navBackground = isScrolled
     ? "bg-bkgDarker text-primary shadow-md"
@@ -38,12 +45,12 @@ const Navbar = () => {
       ref={ref}
     >
       <div className="max-w-[var(--max-width)] mx-auto flex items-center justify-between p-4">
-        <Link to="/" className="text-2xl lg:text-3xl font-bold">
+        <Link href="/" className="text-2xl lg:text-3xl font-bold">
           MovieApp
         </Link>
-        <nav className="hidden md:flex space-x-4 font-semibold">
+        <nav aria-label="Main navigation" className="hidden md:flex space-x-4 font-semibold">
           {navLinks.map(link => (
-            <Link key={link.id} to={link.to} className="hover:text-[#f59e0b]">
+            <Link key={link.id} href={link.to} className="hover:text-amber-500">
               {link.title}
             </Link>
           ))}
@@ -51,24 +58,24 @@ const Navbar = () => {
         <ThemeToggle />
         <button
           className="md:hidden text-2xl"
+          aria-label={isOpen ? "Close menu" : "Open menu"}
           onClick={() => setIsOpen(!isOpen)}
         >
           {isOpen ? <FaTimes /> : <FaBars />}
         </button>
       </div>
       {isOpen && (
-        <nav className="md:hidden bg-bkgDarker text-primary p-4">
+        <nav aria-label="Mobile navigation" className="md:hidden bg-bkgDarker text-primary p-4">
           {navLinks.map(link => (
             <Link
               key={link.id}
-              to={link.to}
-              className="block py-2 font-bold hover:text-[#f59e0b]"
+              href={link.to}
+              className="block py-2 font-bold hover:text-amber-500"
               onClick={() => setIsOpen(false)}
             >
               {link.title}
             </Link>
           ))}
-          {/* <ThemeToggle /> */}
         </nav>
       )}
     </header>

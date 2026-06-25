@@ -1,30 +1,21 @@
-import React, { useContext, useEffect } from "react";
+"use client";
 
+import { useContext } from "react";
 import { IoMoon } from "react-icons/io5";
 import { MdSunny } from "react-icons/md";
-
-import { ThemeContext } from "../../contexts/themeContext/ThemeContext";
+import { ThemeContext } from "@/contexts/themeContext/ThemeContext";
 
 const ThemeToggle = () => {
   const { isDark, setIsDark } = useContext(ThemeContext);
-  const iconSize = 25;
 
   return (
-    <>
-      {isDark ? (
-        <MdSunny
-          onClick={() => setIsDark(!isDark)}
-          size={iconSize}
-          className="cursor-pointer transition-all duration-100"
-        />
-      ) : (
-        <IoMoon
-          onClick={() => setIsDark(!isDark)}
-          size={iconSize}
-          className="cursor-pointer transition-all duration-100"
-        />
-      )}
-    </>
+    <button
+      aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
+      onClick={() => setIsDark(!isDark)}
+      className="cursor-pointer transition-all duration-100"
+    >
+      {isDark ? <MdSunny size={25} /> : <IoMoon size={25} />}
+    </button>
   );
 };
 

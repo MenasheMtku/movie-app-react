@@ -1,6 +1,12 @@
 import React from "react";
 
-const LoadMoreButton = ({ loading, onClick, children }: any) => {
+interface LoadMoreButtonProps {
+  loading: boolean;
+  onClick: () => void;
+  children: React.ReactNode;
+}
+
+const LoadMoreButton = ({ loading, onClick, children }: LoadMoreButtonProps) => {
   return (
     <button
       className="px-4 py-2 bg-content text-bkg rounded"

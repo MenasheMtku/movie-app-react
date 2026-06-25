@@ -1,28 +1,28 @@
-import { LazyLoadImage } from "react-lazy-load-image-component";
-import "react-lazy-load-image-component/src/effects/blur.css";
-import { defaultImage } from "../services/api";
+import Image from "next/image";
+import { defaultImage } from "@/services/api";
 
 type PosterProps = {
   src: string;
   title: string;
+  onLoad?: () => void;
+  onError?: () => void;
 };
 
-const Poster = ({ src, title }: PosterProps) => {
+const Poster = ({ src, title, onLoad, onError }: PosterProps) => {
+  const safeSrc = src || defaultImage;
+
   return (
-    <>
-      <LazyLoadImage
-        effect="blur"
-        loading="lazy"
-        src={src}
+    <div className="relative w-full aspect-[2/3]">
+      <Image
+        src={safeSrc}
         alt={title}
-        placeholderSrc={defaultImage}
-        wrapperProps={{
-          // If you need to, you can tweak the effect transition using the wrapper style.
-          style: { transitionDelay: ".3s" },
-        }}
-        className="object-cover w-full h-full"
+        fill
+        sizes="(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 200px"
+        className="object-cover"
+        onLoad={onLoad}
+        onError={onError}
       />
-    </>
+    </div>
   );
 };
 

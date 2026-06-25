@@ -1,6 +1,9 @@
 node_modules
 bower_components
 .env
+.next/
+dist/
+tsconfig.tsbuildinfo
 .prettierrc
 .eslintrc.cjs
 # postcss.config.js

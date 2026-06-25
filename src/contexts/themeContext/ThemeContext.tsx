@@ -1,4 +1,5 @@
-// src/ThemeContext.jsx
+"use client";
+
 import React, { createContext, useContext, useState, useEffect } from "react";
 
 type ThemeContextProps = {
@@ -11,9 +12,8 @@ export const ThemeContext = createContext<ThemeContextProps>({
   setIsDark: () => {},
 });
 
-export const ThemeProvider = ({ children }: any) => {
+export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   const [isDark, setIsDark] = useState(false);
-  // Track when the theme is loaded
   const [themeLoaded, setThemeLoaded] = useState(false);
 
   useEffect(() => {
@@ -21,12 +21,8 @@ export const ThemeProvider = ({ children }: any) => {
     if (savedTheme) {
       setIsDark(savedTheme === "dark");
     } else {
-      const prefersDark = window.matchMedia(
-        "(prefers-color-scheme: dark)"
-      ).matches;
-      setIsDark(prefersDark);
+      setIsDark(window.matchMedia("(prefers-color-scheme: dark)").matches);
     }
-    // Theme is now loaded
     setThemeLoaded(true);
   }, []);
 
@@ -37,7 +33,6 @@ export const ThemeProvider = ({ children }: any) => {
 
   useEffect(() => {
     if (themeLoaded) {
-      // Remove 'invisible' class once theme is set
       document.body.classList.remove("invisible");
     }
   }, [themeLoaded]);
@@ -49,7 +44,4 @@ export const ThemeProvider = ({ children }: any) => {
   );
 };
 
-// Custom hook for using the ThemeContext
-export const useTheme = () => {
-  return useContext(ThemeContext);
-};
+export const useTheme = () => useContext(ThemeContext);

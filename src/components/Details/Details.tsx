@@ -1,26 +1,11 @@
 import React from "react";
-import { imagePath } from "../../services/api";
-import { defaultImage } from "../../services/api";
-import { minutesToHours, shortenOverview } from "../../utils/helpers";
+import { minutesToHours, shortenOverview } from "@/utils/helpers";
 import { BsCalendar3 } from "react-icons/bs";
 import { IoTimeSharp } from "react-icons/io5";
-import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
-import "react-circular-progressbar/dist/styles.css";
-import { data } from "autoprefixer";
+import { DetailsType } from "@/types/movie";
 
 type DetailsProps = {
-  details: {
-    title?: string;
-    name?: string;
-    first_air_date?: string;
-    release_date?: string;
-    poster_path?: string | null;
-    vote_average?: number;
-    runtime?: number;
-    tagline?: string;
-    overview?: string;
-    genres?: Array<{ id: number; name: string }>;
-  };
+  details: DetailsType;
   type: string;
 };
 
@@ -28,10 +13,6 @@ const Details: React.FC<DetailsProps> = ({ details, type }) => {
   const title = details?.title || details?.name;
   const releaseDate =
     type === "tv" ? details?.first_air_date : details?.release_date;
-  let imgSrc = `${imagePath}/${details?.poster_path}`;
-  if (details?.poster_path === null) {
-    imgSrc = defaultImage;
-  }
 
   return (
     <>

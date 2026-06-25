@@ -1,7 +1,12 @@
 import React from "react";
-import PropTypes from "prop-types";
 
-const Pagination = ({ activePage, totalPages, setActivePage }) => {
+type PaginationProps = {
+  activePage: number;
+  totalPages: number;
+  setActivePage: (page: number) => void;
+};
+
+const Pagination = ({ activePage, totalPages, setActivePage }: PaginationProps) => {
   return (
     <div className="mb-4 mt-3 flex w-full items-center justify-center gap-8">
       <div className="my-2 flex max-w-64 gap-2">
