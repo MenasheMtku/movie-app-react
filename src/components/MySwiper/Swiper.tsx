@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import { register } from "swiper/element/bundle";
 
 declare global {
+  // eslint-disable-next-line @typescript-eslint/no-namespace
   namespace JSX {
     interface IntrinsicElements {
       "swiper-container": React.HTMLAttributes<HTMLElement> & { [key: string]: unknown };
@@ -29,6 +30,7 @@ export function Swiper({ children, ...rest }: SwiperProps) {
     if (!swiperRef.current) return;
     Object.assign(swiperRef.current, rest);
     swiperRef.current.initialize();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

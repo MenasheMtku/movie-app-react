@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-// @ts-ignore: side-effect CSS import without type declarations
+// @ts-expect-error: side-effect CSS import without type declarations
 import "@/index.css";
 import {
   fetchUpcomingMovies,
@@ -44,17 +44,17 @@ const Home = () => {
   const closeButtonRef = useRef<HTMLButtonElement>(null);
   const triggerButtonRef = useRef<HTMLButtonElement | null>(null);
 
-  const { data: upcomingData, isLoading: upcomingLoading } = useQuery({
+  const { data: upcomingData } = useQuery({
     queryKey: ["upcoming-movies"],
     queryFn: fetchUpcomingMovies,
   });
 
-  const { data: popularData, isLoading: popularLoading } = useQuery({
+  const { data: popularData } = useQuery({
     queryKey: ["popular-movies"],
     queryFn: fetchPopularMovies,
   });
 
-  const { data: trendingShowsData, isLoading: showsLoading } = useQuery({
+  const { data: trendingShowsData } = useQuery({
     queryKey: ["trending-shows"],
     queryFn: fetchTrendingShows,
   });
@@ -62,7 +62,6 @@ const Home = () => {
   const upcomingMovies: Movie[] = upcomingData?.results ?? [];
   const trendingMovies: Movie[] = popularData?.results ?? [];
   const trendingShows: Program[] = trendingShowsData?.results ?? [];
-  const isLoading = upcomingLoading || popularLoading || showsLoading;
 
   const videoQueries = useQueries({
     queries: upcomingMovies.map(movie => ({
@@ -92,7 +91,6 @@ const Home = () => {
     };
     document.addEventListener("keydown", onKeyDown);
     return () => document.removeEventListener("keydown", onKeyDown);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isModalOpen]);
 
   function handlePlayVideo(

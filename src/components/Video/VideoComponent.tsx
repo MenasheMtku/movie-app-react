@@ -1,5 +1,3 @@
-import React from "react";
-
 const VideoComponent = ({ id, small }: { id: string; small: boolean }) => {
   return (
     <iframe

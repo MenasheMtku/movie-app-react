@@ -47,11 +47,9 @@ const Movies = () => {
       lastPage.page < lastPage.total_pages ? lastPage.page + 1 : undefined,
   });
 
-  const movies: Movie[] = data?.pages.flatMap(page => page.results) ?? [];
-
   const filteredMovies = useMemo(
-    () => movies.filter(item => item?.backdrop_path !== null),
-    [movies]
+    () => (data?.pages.flatMap(page => page.results as Movie[]) ?? []).filter(item => item?.backdrop_path !== null),
+    [data]
   );
 
   const observerRef = useInfiniteScroll({

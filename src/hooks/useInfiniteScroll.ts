@@ -30,14 +30,11 @@ const useInfiniteScroll = ({
       }
     );
 
-    if (observerRef.current) {
-      observer.observe(observerRef.current);
-    }
+    const el = observerRef.current;
+    if (el) observer.observe(el);
 
     return () => {
-      if (observerRef.current) {
-        observer.unobserve(observerRef.current);
-      }
+      if (el) observer.unobserve(el);
     };
   }, [loading, hasMore, stableOnLoadMore]);
 

@@ -32,7 +32,9 @@ export function WatchlistProvider({ children }: { children: React.ReactNode }) {
     try {
       const stored = localStorage.getItem(STORAGE_KEY);
       if (stored) setWatchlist(JSON.parse(stored));
-    } catch {}
+    } catch {
+      // localStorage unavailable or data corrupted — start with empty watchlist
+    }
   }, []);
 
   const add = useCallback((item: WatchlistItem) => {

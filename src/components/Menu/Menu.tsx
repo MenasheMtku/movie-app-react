@@ -1,5 +1,3 @@
-import React from "react";
-
 interface MenuProps {
   handleSort: (sortValue: string) => void;
   header: string;

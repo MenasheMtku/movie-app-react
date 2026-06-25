@@ -47,11 +47,9 @@ const Shows = () => {
       lastPage.page < lastPage.total_pages ? lastPage.page + 1 : undefined,
   });
 
-  const shows: Program[] = data?.pages.flatMap(page => page.results) ?? [];
-
   const filteredShows = useMemo(
-    () => shows.filter(item => item?.backdrop_path !== null),
-    [shows]
+    () => (data?.pages.flatMap(page => page.results as Program[]) ?? []).filter(item => item?.backdrop_path !== null),
+    [data]
   );
 
   const observerRef = useInfiniteScroll({
